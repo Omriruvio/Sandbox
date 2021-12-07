@@ -218,6 +218,27 @@
 
 // searchSorted(array, x);
 
+// const recursiveBinarySearch = function (a, low, high, x) {
+//   if (low > high) return -1;
+//   let mid = Math.floor(low + (high - low) / 2);
+//   if (x === a[mid]) return mid;
+//   if (x > a[mid]) {
+//       return recursiveBinarySearch(a, mid+1, high, x);
+//   }
+//   return recursiveBinarySearch(a, low, mid-1, x);
+  
+// }
+
+// function recursiveSearchSorted(a, x) {
+//   let low = 0;
+//   let high = a.length -1;
+//   let result = recursiveBinarySearch(a, low, high, x);
+//   if (result != -1) { console.log('Number ' + x + ' was found at position ' + result +'.')}
+//   else console.log('Number was not found in array.')
+// }
+
+// recursiveSearchSorted(array, x);
+
 
 
 
