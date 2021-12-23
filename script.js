@@ -27,9 +27,8 @@
 //     const lastLine = shark + ' shark!';
 //     return dooChunk + lastLine;
 //   }).join('\n') + '\n' + letsGoHuntChunk + finale);
-//
 // }
-//
+
 
 // const person = {
 //     firstName: 'Omri',
@@ -238,6 +237,86 @@
 // }
 
 // recursiveSearchSorted(array, x);
+
+
+// let userInput = prompt('H, Q or 9? What is your requirement?');
+// let bottleSong = '99 bottles of beer on the wall, 99 bottles of beer. \nTake one down and pass it around, 98 bottles of beer on the wall.\n98 bottles of beer on the wall, 98 bottles of beer.\nTake one down and pass it around, 97 bottles of beer on the wall.\n97 bottles of beer on the wall, 97 bottles of beer.\nTake one down and pass it around, 96 bottles of beer on the wall.\n...\n...\n...\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n1 bottle of beer on the wall, 1 bottle of beer.\nTake one down and pass it around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.';
+
+// function HQ9 (code) {
+//   if (code === null || code === undefined) return;
+//   else if (code.toString() === 'H') {
+//     return 'Hello World!';
+//   } else if (code.toString() === 'Q') {
+//     return code;
+//   } else if (code.toString() === '9') {
+//     let songBody = '';
+//     let i = 99;
+//     while (i >= 3) {
+//       let currentChunk = `${i} bottles of beer on the wall, ${i} bottles of beer.\nTake one down and pass it around, ${(i-1)} bottles of beer on the wall.\n`;      
+//       i--;
+//       songBody += currentChunk;
+//     }
+//     while (i >= 0) {
+//       currentChunk = `${i == 0 ? 'No more' : i} ${i == 1 ? 'bottle' : 'bottles'} of beer on the wall, ${i==0 ? 'no more' : i} ${i==1 ? 'bottle' : 'bottles'} of beer.\n`
+//       currentChunk += `${i == 0 ? 'Go to the store and buy some more, 99 bottles of beer on the wall.' : ''}`;
+//       if (i != 0) { 
+//         currentChunk +=  `Take one down and pass it around, ${(i == 2) ? '1 bottle' : (i == 1) ? 'no more bottles' : ''} of beer on the wall.\n`
+//       }
+      
+//       songBody += currentChunk;
+//       i--;
+//     }
+
+//     return songBody;
+//   }
+//   return;
+// }
+
+// console.log(HQ9('9'));
+
+// // my way
+// function closeCompare (a, b, margin) { 
+//   // margin = (margin ?? 0);
+//   let distance;
+//   if (margin === null || margin === undefined) margin = 0;
+//   if ((a >= 0 && b >= 0) || (a < 0 && b < 0)) {
+//     distance = Math.abs(Math.abs(a) - Math.abs(b))}
+//   else {distance = Math.abs(a - b)};
+//   if (margin >= distance) return 0;
+//   if (a < b) return -1;
+//   if (a > b) return 1;
+// }
+
+// // the smarter way
+// function closeCompare(a, b, margin = 0){
+//   return Math.abs(a - b) <= margin? 0: Math.sign(a - b);
+// }
+
+// //another smart way
+// function closeCompare(a, b, margin = 0) {
+//   if (a < b - margin) return -1;
+//   if (a - margin > b) return 1;
+//   return 0;
+// }
+
+// // my way
+// function numberToPower(number, power){
+//   if (power === 0) return 1;
+//   let result = number;
+//   for (let i = 1; i<power; i++) {
+//     result = result*number;
+//   }
+//   return result;
+// }
+
+// // recursive way
+// function numberToPower(number, power){
+//   if (power === 0) return 1;
+//   return number * numberToPower(number, power - 1)
+// }
+
+// // recursive short
+// const numberToPower = (number,power) => power > 0 ? number * numberToPower(number,power-1) : 1;
 
 
 
