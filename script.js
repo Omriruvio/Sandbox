@@ -319,6 +319,213 @@
 // const numberToPower = (number,power) => power > 0 ? number * numberToPower(number,power-1) : 1;
 
 
+// // take an array and make an object containing items and number of recursions of each item as key:value
+
+// function occurenceCount(array) {
+//    let result = array.reduce(function (previous, item) {
+//     if (!previous[item]) previous[item] = 1;
+//     else previous[item] += 1;
+//     return previous;
+//   }, {})
+//   return result;
+// }
+
+// const fruits = ["apple", "banana", "orange", "banana", "apple", "banana"];
+// console.log(occurenceCount(fruits));
+
+
+// const chessChampions = [
+// 	"Wilhelm Steinitz",
+//   "Emanuel Lasker",
+//   "Jose Capablanca",
+//   "Alexander Alekhine",
+//   "Machgielis Euwe",
+//   "Mikhail Botvinnik",
+//   "Vasily Smyslov",
+//   "Mikhail Tal",
+//   "Tigran Petrosian",
+//   "Boris Spassky",
+//   "Robert Fischer",
+//   "Anatoly Karpov",
+//   "Garry Kasparov",
+//   "Vladimir Kramnik",
+//   "Viswanathan Anand",
+//   "Magnus Carlsen"
+// ];
+
+// chessChampions.sort(function (a, b) {
+//   if (a.split(' ')[1].toLowerCase > b.split(' ')[1].toLowerCase) return 1;
+//   if (a.split(' ')[1].toLowerCase < b.split(' ')[1].toLowerCase) return -1;
+//   return 0;
+// });
+
+// console.log(chessChampions);
+
+
+// // printPrimes is a function that takes n and prints all prime numbers up to and including n
+// // my way
+// function checkPrime(number) {
+//   let res = true;
+//   for (let i=2; i < number; i++) {
+//     if (number % i == 0) {res=false; break;} else {res=true}
+//   }
+//   return res;
+// }
+
+// function printPrimes(n) {
+//   for (let i=1; i<=n; i++) {
+//     if (checkPrime(i)) console.log(i);
+//   }
+// }
+
+// function printMorePrimes (n) {
+//   nextPrime:
+//   for (let i = 2; i <= n; i++) {
+//     for (let j = 2; j < i; j++) {
+//       if (i % j == 0) continue nextPrime;
+//     } 
+//     console.log(i);
+//   }
+// }
+
+// let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+// // let arr = ['apple', 'orange', 'banana', 'tomato', 'cabbage']
+// // console.log(arr.map((item, i) => { return {index: i, object: item}}))
+// console.log(arr.reduce((prev, current, i) => {
+//   return prev+current;
+// }, ))
+
+
+
+// const array = ["apple", "banana", "orange", "banana", "apple", "banana"];
+
+// const randomBetweenAny = (a, b) => {
+//   let min = a<b?a:b;
+//   let max = a>b?a:b;
+//   let range = max - min + 1;
+//   return Math.floor(Math.random()*Math.abs(range) + min);
+// }
+
+// console.log(randomBetweenAny(10, -5));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
