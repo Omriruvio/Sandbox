@@ -408,9 +408,71 @@
 
 // console.log(randomBetweenAny(10, -5));
 
+function toCamelCase(str){
+  if (!str) return '';
+  let letters = str.split('');
+  letters.forEach((letter, i) => {
+    if (letter == '_' || letter == '-') {
+      letters.splice(i, 1);
+      letters[i] = letters[i].toUpperCase();
+    }
+  })
+  return letters.join('');
+}
 
+function filter_list(l) {
+  if (!l) return [];
+  let newArray = l.filter(x => {return (Number.isInteger(x))})
+  return newArray;
+}
 
+function duplicateEncode(word){
+  if (!word) return '';
+  const array = word.toLowerCase().split('');
+  const counts = {};
+  // map each character in array 
+  return array.map(char => {
+    if (!counts[char]) {
+      // if doesnt exist in object, iterate over array and 
+      counts[char] = 0;
+      array.forEach(x => { if (x == char) {++counts[char]} })
+      //      update counts with character: count
+      
+      //      check if character count is > 1 then 
+      if (counts[char] > 1) {return ')'} else {return '('}
+      //          splice with either ( or )
+    } else {
+      // if already exists in object
+      //      splice with with )  
+      return ')'
+    } 
+  }).join('');
+}
 
+function findOdd(A) {
+  const counts = {};
+  A.forEach(num => {
+    if (!counts[num]) {counts[num] = 1} else {counts[num]++}
+  })
+  for (const count of Object.keys(counts)) {
+    if (counts[count] % 2 != 0) { return parseInt(count) }
+  }
+  return 0;
+}
+
+var uniqueInOrder=function(iterable){
+  return (typeof(iterable) == "string" ? iterable.split('') : iterable)
+  .filter((x, i, a) => {
+    return a[i] != a[i+1] ? x : false;
+  })
+}
+
+function humanReadable (seconds) {
+  hours = parseInt(seconds / 3600) < 10 ? `0${parseInt(seconds / 3600)}` : parseInt(seconds / 3600);
+  minutes = parseInt(seconds / 60) < 10 ? `0${parseInt(seconds / 60)}` : parseInt(seconds / 60);
+  secs = parseInt(seconds % 60) < 10 ? `0${parseInt(seconds % 60)}` : parseInt(seconds % 60);
+  return `${hours}:${minutes}:${secs}`;
+}
 
 
 
