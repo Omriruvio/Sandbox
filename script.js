@@ -468,13 +468,39 @@ var uniqueInOrder=function(iterable){
 }
 
 function humanReadable (seconds) {
-  hours = parseInt(seconds / 3600) < 10 ? `0${parseInt(seconds / 3600)}` : parseInt(seconds / 3600);
-  minutes = parseInt(seconds / 60) < 10 ? `0${parseInt(seconds / 60)}` : parseInt(seconds / 60);
-  secs = parseInt(seconds % 60) < 10 ? `0${parseInt(seconds % 60)}` : parseInt(seconds % 60);
-  return `${hours}:${minutes}:${secs}`;
+  const h = Math.floor(seconds / 3600);
+  const secRemain = seconds % 3600;
+  const m = Math.floor(secRemain / 60);
+  const s = Math.floor(secRemain % 60);
+  return `${h < 10 ? `0${h}` : h}:${m < 10 ? `0${m}` : m}:${s < 10 ? `0${s}` : s}`;
 }
 
+// get hours 
+// get minutes = hours / 60
+// get seconds = minutes / 60 + hours % 60
 
+
+var maxSequence = function(arr){
+  let biggestS = 0;
+  const checkSum = (start, end, origin) => {
+    const slice = origin.slice(start, end+1);
+    let currentSliceSum = slice.reduce((a, b)=> a+b);
+    if (currentSliceSum > biggestS) {
+      biggestS = currentSliceSum;
+    }
+  }
+  for (let i = 0; i < arr.length; i++) {
+  // sets external low and high
+    let low = i;
+    let high = arr.length -1;
+    while (low <= high) {
+      // sets internal low and high until 1 cell left
+      checkSum(low, high, arr);
+      high--;
+    }
+  }
+  return(biggestS);
+}
 
 
 
