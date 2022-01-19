@@ -15,6 +15,8 @@
 // newArray = [...pentagon.getSides()] // [1,2,3,4,5]
 // console.log(newArray);
 
+// const { list } = require("mocha/lib/reporters");
+// 
 // function babyShark() {
 //   const sharks = ['Baby', 'Mommy', 'Daddy', 'Grandma', 'Grandpa'];
 //   const doo = ' doo'.repeat(6);
@@ -504,9 +506,84 @@ var maxSequence = function(arr){
 
 
 
+function bouncingBall(h,  bounce,  window) {
+  if (!(h > 0 && bounce > 0 && bounce < 1 && h > window)) return -1;
+  let passes = 1;
+  while (Math.floor(bounce * h) > 0) {
+    h *= bounce;
+    if (h > window) {
+      passes += 2;
+    }
+  }
+  return(passes);
+}
+
+// You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
+
+// Examples:
+// strarr = ["tree", "foling", "trashy", "blue", "abcdef", "uvwxyz"], k = 2
+
+// Concatenate the consecutive strings of strarr by 2, we get:
+
+// treefoling   (length 10)  concatenation of strarr[0] and strarr[1]
+// folingtrashy ("      12)  concatenation of strarr[1] and strarr[2]
+// trashyblue   ("      10)  concatenation of strarr[2] and strarr[3]
+// blueabcdef   ("      10)  concatenation of strarr[3] and strarr[4]
+// abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
+
+// Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
+// The first that came is "folingtrashy" so 
+// longest_consec(strarr, 2) should return "folingtrashy".
+
+// In the same way:
+// longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
 
 
+// my solution:
+// function longestConsec(strarr, k) {
+//   if (strarr.length == 0 || k > strarr.length || k <= 0) return '';
+//   let longest = '';
+//   for (let i = 0; i <= strarr.length - k; i++) {
+//   // for i in  <= list.length - k
+//     let concatted = '';
+//     // init concattedstring;
+//     for (let j=i; j < i + k; j++) {
+//     //  from j=i < j+k-1? iterations -- I was wrong - it is (i < i + k)
+//     //    current = array[j]
+//       concatted += strarr[j];
+//     //    concattedstring += current
+//     }
+//     //  compare and update global sum & longest concattedstring
+//     longest = concatted.length > longest.length ? concatted : longest;
+//   }
+//   return longest;
+// }
 
+// other solutions:
+// function longestConsec(strarr, k) {
+//   var longest = "";
+//   for(var i=0;k>0 && i<=strarr.length-k;i++){
+//     var tempArray = strarr.slice(i,i+k);
+//     var tempStr = tempArray.join("");
+//     if(tempStr.length > longest.length){
+//       longest = tempStr;
+//     }
+//   }
+//   return longest;
+// }
+
+// function longestConsec(strarr, k) {
+//   if (k <= 0 || k > strarr.length) {
+//     return '';
+//   }
+  
+//   return strarr.reduce((long, item, i) => {
+//     const currString = strarr.slice(i, i + k).join('');
+//     return (currString.length > long.length)
+//       ? currString
+//       : long;
+//   }, '');
+// }
 
 
 
