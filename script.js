@@ -585,13 +585,96 @@ function bouncingBall(h,  bounce,  window) {
 //   }, '');
 // }
 
+// function anagrams(word, [...words]) {
+//   const tempWord = word.split('').sort().join('');
+//   const tempArray = words.map((w) => w.split('').sort().join(''));
+//   return tempArray.map((w, i) => (w == tempWord) ? words[i] : null).filter(w => w != null);
+// }
+
+const sort = (string) => string.split('').sort().join('');
+const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(words[i]));
 
 
 
+// let result = [];
+// for word in origin
+//  for i in temparray
+      // if origin[word] == temparray[i];
+        // result.push(origin[word]);
+// return result;
 
 
+// word = input.split('');
+// for each letter in word 
+//   if word.indexOf(letter.toLowerCase()) == word.lastIndexOf(letter.toLowerCase()) return letter
 
+// return 'None';
 
+// function firstNonRepeatingLetter(s) {
+//   const array = s.toLowerCase().split('');
+//   for (let i = 0; i < array.length; i++) {
+//     if (array.indexOf(array[i].toLowerCase()) == array.lastIndexOf(array[i].toLowerCase())) return s[i];
+//   }
+//   return '';
+// }
+
+// function add(x) {
+//   return function add(y) {
+//     return x+y;
+//   }
+// }
+
+const MORSE_CODE = {
+  '.-': 'A',
+  '-…': 'B',
+  '-.-.': 'C',
+  '-..': 'D',
+  '.': 'E',
+  '..-.': 'F',
+  '--.': 'G',
+  '....': 'H',
+  '..': 'I',
+  '.---': 'J',
+  '-.-': 'K',
+  '.-..': 'L',
+  '--': 'M',
+  '-.': 'N',
+  '---': 'O',
+  '.--.': 'P',
+  '--.-': 'Q',
+  '.-.': 'R',
+  '…': 'S',
+  '-': 'T',
+  '..-': 'U',
+  '…-': 'V',
+  '.--': 'W',
+  '-..-': 'X',
+  '-.--': 'Y',
+  '--..': 'Z',
+  '-----': '0',
+  '.----': '1',
+  '..---': '2',
+  '…--': '3',
+  '….-': '4',
+  '…..': '5',
+  '-….': '6',
+  '--…': '7',
+  '---..': '8',
+  '----.': '9',
+}
+
+decodeMorse = function(morseCode){
+  const words = morseCode.split('   ');
+  const result = [];
+  for (const word of words) {
+    let letters = word.split(' ');
+    for (const letter of letters) {
+      result.push(MORSE_CODE[letter]);
+    }
+    result.push(' ');
+  }
+  return result.join('').trim();
+}
 
 
 
