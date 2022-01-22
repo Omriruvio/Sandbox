@@ -110,9 +110,9 @@
 
 // const canNest=(a,b)=>Math.min(...a)>Math.min(...b)&&Math.max(...a)<Math.max(...b) //checks if array1 can be nested in array2
 //
-// const arr1 = [5,10,15];
-// const arr2 = [3,15,20];
-// console.log(canNest(arr1,arr2));
+// const dataArray = [5,10,15];
+// const searchStringArray = [3,15,20];
+// console.log(canNest(dataArray,searchStringArray));
 
 // const array = [true, false, true, true, true, false, true];
 // function countTrue(arr) {
@@ -129,8 +129,8 @@
 // const array = [true, false, true, true, true, false, true];
 // // return how many 'true's in array
 // function countTrue(arr) {
-//     arr2 = arr.filter(a=>a) //function checksums(a){if (a===true) return a}
-//     return arr2.length;}
+//     searchStringArray = arr.filter(a=>a) //function checksums(a){if (a===true) return a}
+//     return searchStringArray.length;}
 //
 // console.log(countTrue(array));
 
@@ -687,28 +687,60 @@ decodeMorse = function(morseCode){
 // list_squared(1, 250) --> [[1, 1], [42, 2500], [246, 84100]]
 // list_squared(42, 250) --> [[42, 2500], [246, 84100]]
 
-function listSquared(m, n) {
-  const isNumberSquare = (num) => Number.isInteger(Math.sqrt(num));
-  // function that gets an array all of a number's divisors
-  const getDivisorArray = (num) => {
-    let divisorsArray = [];
-    for (let i = 1; i<=num; i++) {
-      if (num % i == 0) divisorsArray.push(i);
-    }
-    return divisorsArray;
+// function listSquared(m, n) {
+//   const isNumberSquare = (num) => Number.isInteger(Math.sqrt(num));
+//   // function that gets an array all of a number's divisors
+//   const getDivisorArray = (num) => {
+//     let divisorsArray = [];
+//     for (let i = 1; i<=num; i++) {
+//       if (num % i == 0) divisorsArray.push(i);
+//     }
+//     return divisorsArray;
+//   }
+//   const getDivisorSquaredSum = (num) => getDivisorArray(num).map(x => x*x).reduce((x, y) => x+y);
+//   const results = [];
+//   for (let i = m; i <= n; i++) {
+//     const divisorSquaredSum = getDivisorSquaredSum(i);
+//     if (isNumberSquare(divisorSquaredSum)) results.push([i, divisorSquaredSum]);
+//   }
+//   return results;
+// }
+
+
+// function scramble(str1, str2) {
+//   const dataArray = str1.split('').sort();
+//   const searchStringArray = str2.split('').sort();
+//   return searchStringArray.every((letter)=> {
+//     const searchLetterOccurrences = getOccurrences(letter, searchStringArray);
+//     const dataLetterOccurences =  getOccurrences(letter, dataArray);
+//     return (dataLetterOccurences >= searchLetterOccurrences);
+//   }); 
+
+//   function getOccurrences(letter, array) {
+//     const first = array.indexOf(letter);
+//     const last = array.lastIndexOf(letter);
+//     const occurences = first == -1 ? 0 : first == 0 ? last + 1 : last - first + 1;
+//     return occurences;
+//   }
+//  }
+ 
+
+
+function scramble(str1, str2) {
+  const dataDict = {};
+  const searchDict = {};
+  let result = false;
+  str1.split('').forEach((char) => {
+    if (!dataDict[char]) {dataDict[char] = 1} else dataDict[char]++;
+  })
+  str2.split('').forEach((char) => {
+    if (!searchDict[char]) {searchDict[char] = 1} else {searchDict[char]++};
+  })
+  for (letter in searchDict) {
+    if (!(dataDict[letter] >= searchDict[letter])) return false;
   }
-  const getDivisorSquaredSum = (num) => getDivisorArray(num).map(x => x*x).reduce((x, y) => x+y);
-  const results = [];
-  for (let i = m; i <= n; i++) {
-    const divisorSquaredSum = getDivisorSquaredSum(i);
-    if (isNumberSquare(divisorSquaredSum)) results.push([i, divisorSquaredSum]);
-  }
-  return results;
+  return true;
 }
-
-
-
-
 
 
 
