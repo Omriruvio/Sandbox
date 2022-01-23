@@ -492,11 +492,11 @@ var maxSequence = function(arr){
     }
   }
   for (let i = 0; i < arr.length; i++) {
-  // sets external low and high
+  // arrs external low and high
     let low = i;
     let high = arr.length -1;
     while (low <= high) {
-      // sets internal low and high until 1 cell left
+      // arrs internal low and high until 1 cell left
       checkSum(low, high, arr);
       high--;
     }
@@ -726,120 +726,64 @@ decodeMorse = function(morseCode){
  
 
 
-function scramble(str1, str2) {
-  const dataDict = {};
-  const searchDict = {};
-  let result = false;
-  str1.split('').forEach((char) => {
-    if (!dataDict[char]) {dataDict[char] = 1} else dataDict[char]++;
-  })
-  str2.split('').forEach((char) => {
-    if (!searchDict[char]) {searchDict[char] = 1} else {searchDict[char]++};
-  })
-  for (letter in searchDict) {
-    if (!(dataDict[letter] >= searchDict[letter])) return false;
-  }
-  return true;
+// function scramble(str1, str2) {
+//   const dataDict = {};
+//   const searchDict = {};
+//   let result = false;
+//   str1.split('').forEach((char) => {
+//     if (!dataDict[char]) {dataDict[char] = 1} else dataDict[char]++;
+//   })
+//   str2.split('').forEach((char) => {
+//     if (!searchDict[char]) {searchDict[char] = 1} else {searchDict[char]++};
+//   })
+//   for (letter in searchDict) {
+//     if (!(dataDict[letter] >= searchDict[letter])) return false;
+//   }
+//   return true;
+// }
+
+
+
+// const stringPermutations = str => {
+//   if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
+//   return str
+//     .split('')
+//     .reduce(
+//       (acc, letter, i) =>
+//         acc.concat(stringPermutations(str.slice(0, i) + str.slice(i + 1)).map(val => letter + val)),
+//       []
+//     );
+// };
+
+// function factorialize(num) {
+//   let result = 1;
+//   for (let i = num; i > 0; i--) result *= i;
+//   return result;
+// }
+
+// function shuffle(string) {
+//   const letters = string.split('');
+  
+//   for (let i = 0; i < string.length; i++) {
+//     let tmp = letters[i];
+//     let randomIndex = Math.floor(Math.random() * (string.length));
+//     letters[i] = letters[randomIndex];
+//     letters[randomIndex] = tmp;
+//   }
+//   return letters.join('');
+// }
+
+
+
+function permutations (str, current = [], results = []) {
+  str = !(Array.isArray(str)) ? str.split('') : str;
+  if (str.length == 0) results.push(current.join(''));
+    for (let i = 0; i < str.length; i++) {
+      current.push(str[i]);
+      const newStr = str.filter((x, j) => i !== j );
+      permutations(newStr, current, results);
+      current.pop();
+    }
+    
+  return [...new Set(results)];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
