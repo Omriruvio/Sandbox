@@ -775,15 +775,103 @@ decodeMorse = function(morseCode){
 
 
 
-function permutations (str, current = [], results = []) {
-  str = !(Array.isArray(str)) ? str.split('') : str;
-  if (str.length == 0) results.push(current.join(''));
-    for (let i = 0; i < str.length; i++) {
-      current.push(str[i]);
-      const newStr = str.filter((x, j) => i !== j );
-      permutations(newStr, current, results);
-      current.pop();
-    }
+// function permutations (str, current = [], results = []) {
+//   str = !(Array.isArray(str)) ? str.split('') : str;
+//   if (str.length == 0) results.push(current.join(''));
+  
+//   for (let i = 0; i < str.length; i++) {
+//     current.push(str[i]);
+//     const newStr = str.filter((x, j) => i !== j );
+//     permutations(newStr, current, results);
+//     current.pop();
+//   }
     
-  return [...new Set(results)];
+//   return [...new Set(results)];
+// }
+
+
+// function factorialize(num) {
+//   if (num == 0) return 1;
+
+//   return num * factorialize(num -1);
+// }
+
+// function removeNb (n) {
+//   const results = [];
+//   const arr = Array.from({length: n}, (x, i) => i + 1);
+//   let total = (n * (n + 1)) / 2;
+
+//   arr.forEach((a, i) => {
+//     arr.forEach((b, i) => {
+//       if (a * b == total - a - b) results.push([a, b]);
+//     })
+//   })
+//   return results;
+// }
+
+
+function Calculator () {
+  this.read = function () {
+    this.a = +prompt('a?', 0)
+    this.b = +prompt('b?', 0)
+  }
+  this.sum = function () {
+    return this.a + this.b;
+  }
+  this.mul = function () {
+    return this.a * this.b;
+  }
 }
+
+function Accumulator(startingValue) {
+  this.value = startingValue;
+  this.read = function () {
+    this.value += +prompt('New value?', 0);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
