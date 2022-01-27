@@ -859,6 +859,19 @@ function getSum( a,b )
   return sum;
 }
 
+function readNumber () {
+  do {
+      num = prompt('number?');
+      if (!num) return null;
+  } while (Number.isNaN(parseInt(num)));
+  return +num;
+}
+
+function randomInteger(min, max) {
+  let range = max - min + 1;
+  return Math.floor(Math.random() * Math.abs(range)) + min;
+}
+
 
 
 
