@@ -227,7 +227,7 @@
 //       return recursiveBinarySearch(a, mid+1, high, x);
 //   }
 //   return recursiveBinarySearch(a, low, mid-1, x);
-  
+
 // }
 
 // function recursiveSearchSorted(a, x) {
@@ -264,7 +264,7 @@
 //       if (i != 0) { 
 //         currentChunk +=  `Take one down and pass it around, ${(i == 2) ? '1 bottle' : (i == 1) ? 'no more bottles' : ''} of beer on the wall.\n`
 //       }
-      
+
 //       songBody += currentChunk;
 //       i--;
 //     }
@@ -410,7 +410,7 @@
 
 // console.log(randomBetweenAny(10, -5));
 
-function toCamelCase(str){
+function toCamelCase(str) {
   if (!str) return '';
   let letters = str.split('');
   letters.forEach((letter, i) => {
@@ -424,11 +424,11 @@ function toCamelCase(str){
 
 function filter_list(l) {
   if (!l) return [];
-  let newArray = l.filter(x => {return (Number.isInteger(x))})
+  let newArray = l.filter(x => { return (Number.isInteger(x)) })
   return newArray;
 }
 
-function duplicateEncode(word){
+function duplicateEncode(word) {
   if (!word) return '';
   const array = word.toLowerCase().split('');
   const counts = {};
@@ -437,24 +437,24 @@ function duplicateEncode(word){
     if (!counts[char]) {
       // if doesnt exist in object, iterate over array and 
       counts[char] = 0;
-      array.forEach(x => { if (x == char) {++counts[char]} })
+      array.forEach(x => { if (x == char) { ++counts[char] } })
       //      update counts with character: count
-      
+
       //      check if character count is > 1 then 
-      if (counts[char] > 1) {return ')'} else {return '('}
+      if (counts[char] > 1) { return ')' } else { return '(' }
       //          splice with either ( or )
     } else {
       // if already exists in object
       //      splice with with )  
       return ')'
-    } 
+    }
   }).join('');
 }
 
 function findOdd(A) {
   const counts = {};
   A.forEach(num => {
-    if (!counts[num]) {counts[num] = 1} else {counts[num]++}
+    if (!counts[num]) { counts[num] = 1 } else { counts[num]++ }
   })
   for (const count of Object.keys(counts)) {
     if (counts[count] % 2 != 0) { return parseInt(count) }
@@ -462,14 +462,14 @@ function findOdd(A) {
   return 0;
 }
 
-var uniqueInOrder=function(iterable){
-  return (typeof(iterable) == "string" ? iterable.split('') : iterable)
-  .filter((x, i, a) => {
-    return a[i] != a[i+1] ? x : false;
-  })
+var uniqueInOrder = function (iterable) {
+  return (typeof (iterable) == "string" ? iterable.split('') : iterable)
+    .filter((x, i, a) => {
+      return a[i] != a[i + 1] ? x : false;
+    })
 }
 
-function humanReadable (seconds) {
+function humanReadable(seconds) {
   const h = Math.floor(seconds / 3600);
   const secRemain = seconds % 3600;
   const m = Math.floor(secRemain / 60);
@@ -482,31 +482,31 @@ function humanReadable (seconds) {
 // get seconds = minutes / 60 + hours % 60
 
 
-var maxSequence = function(arr){
+var maxSequence = function (arr) {
   let biggestS = 0;
   const checkSum = (start, end, origin) => {
-    const slice = origin.slice(start, end+1);
-    let currentSliceSum = slice.reduce((a, b)=> a+b);
+    const slice = origin.slice(start, end + 1);
+    let currentSliceSum = slice.reduce((a, b) => a + b);
     if (currentSliceSum > biggestS) {
       biggestS = currentSliceSum;
     }
   }
   for (let i = 0; i < arr.length; i++) {
-  // arrs external low and high
+    // arrs external low and high
     let low = i;
-    let high = arr.length -1;
+    let high = arr.length - 1;
     while (low <= high) {
       // arrs internal low and high until 1 cell left
       checkSum(low, high, arr);
       high--;
     }
   }
-  return(biggestS);
+  return (biggestS);
 }
 
 
 
-function bouncingBall(h,  bounce,  window) {
+function bouncingBall(h, bounce, window) {
   if (!(h > 0 && bounce > 0 && bounce < 1 && h > window)) return -1;
   let passes = 1;
   while (Math.floor(bounce * h) > 0) {
@@ -515,7 +515,7 @@ function bouncingBall(h,  bounce,  window) {
       passes += 2;
     }
   }
-  return(passes);
+  return (passes);
 }
 
 // You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
@@ -576,7 +576,7 @@ function bouncingBall(h,  bounce,  window) {
 //   if (k <= 0 || k > strarr.length) {
 //     return '';
 //   }
-  
+
 //   return strarr.reduce((long, item, i) => {
 //     const currString = strarr.slice(i, i + k).join('');
 //     return (currString.length > long.length)
@@ -599,8 +599,8 @@ const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(word
 // let result = [];
 // for word in origin
 //  for i in temparray
-      // if origin[word] == temparray[i];
-        // result.push(origin[word]);
+// if origin[word] == temparray[i];
+// result.push(origin[word]);
 // return result;
 
 
@@ -663,7 +663,7 @@ const MORSE_CODE = {
   '----.': '9',
 }
 
-decodeMorse = function(morseCode){
+decodeMorse = function (morseCode) {
   const words = morseCode.split('   ');
   const result = [];
   for (const word of words) {
@@ -723,7 +723,7 @@ decodeMorse = function(morseCode){
 //     return occurences;
 //   }
 //  }
- 
+
 
 
 // function scramble(str1, str2) {
@@ -763,7 +763,7 @@ decodeMorse = function(morseCode){
 
 // function shuffle(string) {
 //   const letters = string.split('');
-  
+
 //   for (let i = 0; i < string.length; i++) {
 //     let tmp = letters[i];
 //     let randomIndex = Math.floor(Math.random() * (string.length));
@@ -778,14 +778,14 @@ decodeMorse = function(morseCode){
 // function permutations (str, current = [], results = []) {
 //   str = !(Array.isArray(str)) ? str.split('') : str;
 //   if (str.length == 0) results.push(current.join(''));
-  
+
 //   for (let i = 0; i < str.length; i++) {
 //     current.push(str[i]);
 //     const newStr = str.filter((x, j) => i !== j );
 //     permutations(newStr, current, results);
 //     current.pop();
 //   }
-    
+
 //   return [...new Set(results)];
 // }
 
@@ -810,7 +810,7 @@ decodeMorse = function(morseCode){
 // }
 
 
-function Calculator () {
+function Calculator() {
   this.read = function () {
     this.a = +prompt('a?', 0)
     this.b = +prompt('b?', 0)
@@ -841,10 +841,9 @@ function pillars(num_pill, dist, width) {
 //  and including them and return it. If the two numbers are equal return a or b.
 // Note: a and b are not ordered!
 
-function getSum( a,b )
-  {
+function getSum(a, b) {
   if (a == b) {
-    return a; 
+    return a;
   }
 
   let low = a < b ? a : b;
@@ -859,10 +858,10 @@ function getSum( a,b )
   return sum;
 }
 
-function readNumber () {
+function readNumber() {
   do {
-      num = prompt('number?');
-      if (!num) return null;
+    num = prompt('number?');
+    if (!num) return null;
   } while (Number.isNaN(parseInt(num)));
   return +num;
 }
@@ -870,6 +869,25 @@ function readNumber () {
 function randomInteger(min, max) {
   let range = max - min + 1;
   return Math.floor(Math.random() * Math.abs(range)) + min;
+}
+
+function ucFirst(str) {
+  return str ? str[0].toUpperCase() + str.slice(1) : str;
+}
+
+function checkSpam(str) {
+  return (str.toLowerCase().includes('xxx') || str.toLowerCase().includes('viagra'));
+}
+
+function truncate(str, maxlength) {
+  if (str.length > maxlength) {
+      return str.slice(0, maxlength - 1) + '…';
+  }
+  return str;
+}
+
+function extractCurrencyValue(str) {
+  return parseInt(str.slice(1));
 }
 
 
