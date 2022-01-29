@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+}
+
+.parent {
+  width: 90vw;
+  height: 90vw;
+  border: 2px solid black;
+  margin: auto;
+}
+
+.rectangle {
+}
+
+.rectangle-top-left {
+  width: 33.3333%;
+  height: 66.6666%;
+  float: left;
+  background-color: salmon;
+}
+
+.rectangle-top-right {
+  width: 66.6666%;
+  height: 33.3333%;
+  float: left;
+  background-color: lightblue;
+}
+
+.rectangle-bottom-left {
+  width: 33.3333%;
+  height: 66.6666%;
+  float: right;
+  background-color: lightgreen;
+}
+
+.rectangle-bottom-right {
+  width: 66.6666%;
+  height: 33.3333%;
+  float: left;
+  background-color: lightslategray;
+}
