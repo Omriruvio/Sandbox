@@ -663,7 +663,7 @@ const MORSE_CODE = {
   '----.': '9',
 }
 
-decodeMorse = function (morseCode) {
+const decodeMorse = function (morseCode) {
   const words = morseCode.split('   ');
   const result = [];
   for (const word of words) {
@@ -890,7 +890,15 @@ function extractCurrencyValue(str) {
   return parseInt(str.slice(1));
 }
 
-
+function sumInput() {
+  let sum = 0;
+  while (true) {
+      let num = parseInt(prompt('Number to sum?'));
+      if (Number.isNaN(num)) {return sum};
+      sum += num;
+   } 
+  return sum;        
+}
 
 
 
