@@ -918,11 +918,10 @@ function sumInput() {
     // splice (correctLocation, 0, item)
 
     sortIntegerArray = (arr) => {
-      debugger
       for (let i = 1; i < arr.length; i++) {
         if (arr[i] < arr[i-1]) {
           const removed = arr.splice(i, 1);
-          for (let j = 0; j < i-1; j++) {
+          for (let j = 0; j < i; j++) {
             if (arr[j] >= removed[0]) {
               arr.splice((j-1) < 0 ? 0 : j, 0, removed[0]);
               break;
