@@ -900,37 +900,20 @@ function sumInput() {
   return sum;        
 }
 
-
-// manually sort an array (without using array.sort(sortFunction))
-
-// for each item of the array:
-  // if current > previous => 
-    // continue
-  // else => 
-    // remove item from current location
-    // find correct index to place item:
-      // for each item from array[0] to array[current index -1] 
-        // if item > currentItem
-          // continue
-        // else
-          // return current index -1 as correct location
-    // place item in correct location:
-    // splice (correctLocation, 0, item)
-
-    sortIntegerArray = (arr) => {
-      for (let i = 1; i < arr.length; i++) {
-        if (arr[i] < arr[i-1]) {
-          const removed = arr.splice(i, 1);
-          for (let j = 0; j < i; j++) {
-            if (arr[j] >= removed[0]) {
-              arr.splice((j-1) < 0 ? 0 : j, 0, removed[0]);
-              break;
-            }
-          }
+sortIntegerArray = (arr) => {
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < arr[i-1]) {
+      const removed = arr.splice(i, 1);
+      for (let j = 0; j < i; j++) {
+        if (arr[j] >= removed[0]) {
+          arr.splice((j-1) < 0 ? 0 : j, 0, removed[0]);
+          break;
         }
       }
-      return arr;
     }
+  }
+  return arr;
+}
 
 
 
