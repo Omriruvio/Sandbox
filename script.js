@@ -900,6 +900,9 @@ function sumInput() {
   return sum;        
 }
 
+
+// manually sort an array (without using array.sort(sortFunction))
+
 sortIntegerArray = (arr) => {
   for (let i = 1; i < arr.length; i++) {
     if (arr[i] < arr[i-1]) {
@@ -915,6 +918,83 @@ sortIntegerArray = (arr) => {
   return arr;
 }
 
+// Task:
+// You are given two sorted lists, with distinct elements. Find the maximum path sum while traversing through the lists.
+
+// Points to consider for a valid path:
+
+// A path can start from either list, and can finish in either list.
+// If there is an element which is present in both lists (regardless of its index in the lists), you can choose to change your path to the other list.
+// Return only the maximum path sum.
+
+// Example:
+// [0, 2, 3, 7, 10, 12]
+//    [1, 5, 7, 8]
+// Both lists having only 7 as common element, the possible paths would be:
+
+// 0->2->3->7->10->12 => 34
+// 0->2->3->7->8      => 20
+// 1->5->7->8         => 21
+// 1->5->7->10->12    => 35 (maximum path)
+
+
+// my original solution
+
+// function maxSumPath(arr1,arr2){
+//   const junctions = {};
+//   let junctionMax = 0;
+//   const arr1Sum = arr1.reduce((a, b) => {
+//     let currentSum = a+b;
+//     if (arr2.includes(b)) junctions[b] = [currentSum];
+//     return currentSum;
+//   }, 0)
+//   const arr2Sum = arr2.reduce((a, b)=>{ 
+//     let currentSum = a+b;
+//     if (b in junctions) junctions[b][1] = currentSum;
+//     return currentSum;
+//   }, 0);
+//   for (const junction in junctions) {
+//     aToB = junctions[junction][0] + arr2Sum - junctions[junction][1];
+//     bToA = junctions[junction][1] + arr1Sum - junctions[junction][0];
+//     junctionMax = Math.max(junctionMax, aToB, bToA);
+//   }
+
+//   return Math.max(arr1Sum, arr2Sum, junctionMax);
+// }
+
+// working solution:
+
+// function maxSumPath(arr1, arr2) {
+//   let i = 0;
+//   let j = 0; 
+//   let max1 = 0;
+//   let max2 = 0;
+//   while ((i < arr1.length) && (j < arr2.length)) {
+//     if (arr1[i] < arr2[j]) {
+//       max1 += arr1[i];
+//       i++
+//     } else if (arr2[j] < arr1[i]) {
+//       max2 += arr2[j];
+//       j++
+//     } else {
+//       max1 += arr1[i];
+//       max2 += arr2[j];
+//       max1 = Math.max(max1, max2);
+//       max2 = max1;
+//       i++;
+//       j++;
+//     }
+//   }
+//   while (i < arr1.length) {
+//     max1 += arr1[i];
+//     i++;
+//   }
+//   while (j < arr2.length) {
+//     max2 += arr2[j];
+//     j++;
+//   }
+//   return Math.max(max1, max2)
+// }
 
 
 
