@@ -410,113 +410,113 @@
 
 // console.log(randomBetweenAny(10, -5));
 
-function toCamelCase(str) {
-  if (!str) return '';
-  let letters = str.split('');
-  letters.forEach((letter, i) => {
-    if (letter == '_' || letter == '-') {
-      letters.splice(i, 1);
-      letters[i] = letters[i].toUpperCase();
-    }
-  })
-  return letters.join('');
-}
+// function toCamelCase(str) {
+//   if (!str) return '';
+//   let letters = str.split('');
+//   letters.forEach((letter, i) => {
+//     if (letter == '_' || letter == '-') {
+//       letters.splice(i, 1);
+//       letters[i] = letters[i].toUpperCase();
+//     }
+//   })
+//   return letters.join('');
+// }
 
-function filter_list(l) {
-  if (!l) return [];
-  let newArray = l.filter(x => { return (Number.isInteger(x)) })
-  return newArray;
-}
+// function filter_list(l) {
+//   if (!l) return [];
+//   let newArray = l.filter(x => { return (Number.isInteger(x)) })
+//   return newArray;
+// }
 
-function duplicateEncode(word) {
-  if (!word) return '';
-  const array = word.toLowerCase().split('');
-  const counts = {};
-  // map each character in array 
-  return array.map(char => {
-    if (!counts[char]) {
-      // if doesnt exist in object, iterate over array and 
-      counts[char] = 0;
-      array.forEach(x => { if (x == char) { ++counts[char] } })
-      //      update counts with character: count
+// function duplicateEncode(word) {
+//   if (!word) return '';
+//   const array = word.toLowerCase().split('');
+//   const counts = {};
+//   // map each character in array 
+//   return array.map(char => {
+//     if (!counts[char]) {
+//       // if doesnt exist in object, iterate over array and 
+//       counts[char] = 0;
+//       array.forEach(x => { if (x == char) { ++counts[char] } })
+//       //      update counts with character: count
 
-      //      check if character count is > 1 then 
-      if (counts[char] > 1) { return ')' } else { return '(' }
-      //          splice with either ( or )
-    } else {
-      // if already exists in object
-      //      splice with with )  
-      return ')'
-    }
-  }).join('');
-}
+//       //      check if character count is > 1 then 
+//       if (counts[char] > 1) { return ')' } else { return '(' }
+//       //          splice with either ( or )
+//     } else {
+//       // if already exists in object
+//       //      splice with with )  
+//       return ')'
+//     }
+//   }).join('');
+// }
 
-function findOdd(A) {
-  const counts = {};
-  A.forEach(num => {
-    if (!counts[num]) { counts[num] = 1 } else { counts[num]++ }
-  })
-  for (const count of Object.keys(counts)) {
-    if (counts[count] % 2 != 0) { return parseInt(count) }
-  }
-  return 0;
-}
+// function findOdd(A) {
+//   const counts = {};
+//   A.forEach(num => {
+//     if (!counts[num]) { counts[num] = 1 } else { counts[num]++ }
+//   })
+//   for (const count of Object.keys(counts)) {
+//     if (counts[count] % 2 != 0) { return parseInt(count) }
+//   }
+//   return 0;
+// }
 
-var uniqueInOrder = function (iterable) {
-  return (typeof (iterable) == "string" ? iterable.split('') : iterable)
-    .filter((x, i, a) => {
-      return a[i] != a[i + 1] ? x : false;
-    })
-}
+// var uniqueInOrder = function (iterable) {
+//   return (typeof (iterable) == "string" ? iterable.split('') : iterable)
+//     .filter((x, i, a) => {
+//       return a[i] != a[i + 1] ? x : false;
+//     })
+// }
 
-function humanReadable(seconds) {
-  const h = Math.floor(seconds / 3600);
-  const secRemain = seconds % 3600;
-  const m = Math.floor(secRemain / 60);
-  const s = Math.floor(secRemain % 60);
-  return `${h < 10 ? `0${h}` : h}:${m < 10 ? `0${m}` : m}:${s < 10 ? `0${s}` : s}`;
-}
+// function humanReadable(seconds) {
+//   const h = Math.floor(seconds / 3600);
+//   const secRemain = seconds % 3600;
+//   const m = Math.floor(secRemain / 60);
+//   const s = Math.floor(secRemain % 60);
+//   return `${h < 10 ? `0${h}` : h}:${m < 10 ? `0${m}` : m}:${s < 10 ? `0${s}` : s}`;
+// }
 
-// get hours 
-// get minutes = hours / 60
-// get seconds = minutes / 60 + hours % 60
-
-
-var maxSequence = function (arr) {
-  let biggestS = 0;
-  const checkSum = (start, end, origin) => {
-    const slice = origin.slice(start, end + 1);
-    let currentSliceSum = slice.reduce((a, b) => a + b);
-    if (currentSliceSum > biggestS) {
-      biggestS = currentSliceSum;
-    }
-  }
-  for (let i = 0; i < arr.length; i++) {
-    // arrs external low and high
-    let low = i;
-    let high = arr.length - 1;
-    while (low <= high) {
-      // arrs internal low and high until 1 cell left
-      checkSum(low, high, arr);
-      high--;
-    }
-  }
-  return (biggestS);
-}
+// // get hours 
+// // get minutes = hours / 60
+// // get seconds = minutes / 60 + hours % 60
 
 
+// var maxSequence = function (arr) {
+//   let biggestS = 0;
+//   const checkSum = (start, end, origin) => {
+//     const slice = origin.slice(start, end + 1);
+//     let currentSliceSum = slice.reduce((a, b) => a + b);
+//     if (currentSliceSum > biggestS) {
+//       biggestS = currentSliceSum;
+//     }
+//   }
+//   for (let i = 0; i < arr.length; i++) {
+//     // arrs external low and high
+//     let low = i;
+//     let high = arr.length - 1;
+//     while (low <= high) {
+//       // arrs internal low and high until 1 cell left
+//       checkSum(low, high, arr);
+//       high--;
+//     }
+//   }
+//   return (biggestS);
+// }
 
-function bouncingBall(h, bounce, window) {
-  if (!(h > 0 && bounce > 0 && bounce < 1 && h > window)) return -1;
-  let passes = 1;
-  while (Math.floor(bounce * h) > 0) {
-    h *= bounce;
-    if (h > window) {
-      passes += 2;
-    }
-  }
-  return (passes);
-}
+
+
+// function bouncingBall(h, bounce, window) {
+//   if (!(h > 0 && bounce > 0 && bounce < 1 && h > window)) return -1;
+//   let passes = 1;
+//   while (Math.floor(bounce * h) > 0) {
+//     h *= bounce;
+//     if (h > window) {
+//       passes += 2;
+//     }
+//   }
+//   return (passes);
+// }
 
 // You are given an array(list) strarr of strings and an integer k. Your task is to return the first longest string consisting of k consecutive strings taken in the array.
 
@@ -591,8 +591,8 @@ function bouncingBall(h, bounce, window) {
 //   return tempArray.map((w, i) => (w == tempWord) ? words[i] : null).filter(w => w != null);
 // }
 
-const sort = (string) => string.split('').sort().join('');
-const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(words[i]));
+// const sort = (string) => string.split('').sort().join('');
+// const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(words[i]));
 
 
 
@@ -624,57 +624,57 @@ const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(word
 //   }
 // }
 
-const MORSE_CODE = {
-  '.-': 'A',
-  '-…': 'B',
-  '-.-.': 'C',
-  '-..': 'D',
-  '.': 'E',
-  '..-.': 'F',
-  '--.': 'G',
-  '....': 'H',
-  '..': 'I',
-  '.---': 'J',
-  '-.-': 'K',
-  '.-..': 'L',
-  '--': 'M',
-  '-.': 'N',
-  '---': 'O',
-  '.--.': 'P',
-  '--.-': 'Q',
-  '.-.': 'R',
-  '…': 'S',
-  '-': 'T',
-  '..-': 'U',
-  '…-': 'V',
-  '.--': 'W',
-  '-..-': 'X',
-  '-.--': 'Y',
-  '--..': 'Z',
-  '-----': '0',
-  '.----': '1',
-  '..---': '2',
-  '…--': '3',
-  '….-': '4',
-  '…..': '5',
-  '-….': '6',
-  '--…': '7',
-  '---..': '8',
-  '----.': '9',
-}
+// const MORSE_CODE = {
+//   '.-': 'A',
+//   '-…': 'B',
+//   '-.-.': 'C',
+//   '-..': 'D',
+//   '.': 'E',
+//   '..-.': 'F',
+//   '--.': 'G',
+//   '....': 'H',
+//   '..': 'I',
+//   '.---': 'J',
+//   '-.-': 'K',
+//   '.-..': 'L',
+//   '--': 'M',
+//   '-.': 'N',
+//   '---': 'O',
+//   '.--.': 'P',
+//   '--.-': 'Q',
+//   '.-.': 'R',
+//   '…': 'S',
+//   '-': 'T',
+//   '..-': 'U',
+//   '…-': 'V',
+//   '.--': 'W',
+//   '-..-': 'X',
+//   '-.--': 'Y',
+//   '--..': 'Z',
+//   '-----': '0',
+//   '.----': '1',
+//   '..---': '2',
+//   '…--': '3',
+//   '….-': '4',
+//   '…..': '5',
+//   '-….': '6',
+//   '--…': '7',
+//   '---..': '8',
+//   '----.': '9',
+// }
 
-const decodeMorse = function (morseCode) {
-  const words = morseCode.split('   ');
-  const result = [];
-  for (const word of words) {
-    let letters = word.split(' ');
-    for (const letter of letters) {
-      result.push(MORSE_CODE[letter]);
-    }
-    result.push(' ');
-  }
-  return result.join('').trim();
-}
+// const decodeMorse = function (morseCode) {
+//   const words = morseCode.split('   ');
+//   const result = [];
+//   for (const word of words) {
+//     let letters = word.split(' ');
+//     for (const letter of letters) {
+//       result.push(MORSE_CODE[letter]);
+//     }
+//     result.push(' ');
+//   }
+//   return result.join('').trim();
+// }
 
 // 1, 246, 2, 123, 3, 82, 6, 41 are the divisors of number 246. Squaring these divisors we get: 1, 60516, 4, 15129, 9, 6724, 36, 1681. The sum of these squares is 84100 which is 290 * 290.
 
@@ -810,113 +810,113 @@ const decodeMorse = function (morseCode) {
 // }
 
 
-function Calculator() {
-  this.read = function () {
-    this.a = +prompt('a?', 0)
-    this.b = +prompt('b?', 0)
-  }
-  this.sum = function () {
-    return this.a + this.b;
-  }
-  this.mul = function () {
-    return this.a * this.b;
-  }
-}
+// function Calculator() {
+//   this.read = function () {
+//     this.a = +prompt('a?', 0)
+//     this.b = +prompt('b?', 0)
+//   }
+//   this.sum = function () {
+//     return this.a + this.b;
+//   }
+//   this.mul = function () {
+//     return this.a * this.b;
+//   }
+// }
 
-function Accumulator(startingValue) {
-  this.value = startingValue;
-  this.read = function () {
-    this.value += +prompt('New value?', 0);
-  }
+// function Accumulator(startingValue) {
+//   this.value = startingValue;
+//   this.read = function () {
+//     this.value += +prompt('New value?', 0);
+//   }
 
-}
+// }
 
-function pillars(num_pill, dist, width) {
-  return num_pill == 1 ? 0 : ((num_pill - 1) * dist * 100 + (num_pill - 2) * width);
-}
-
-
-// Given two integers a and b, which can be positive or negative, 
-// find the sum of all the integers between
-//  and including them and return it. If the two numbers are equal return a or b.
-// Note: a and b are not ordered!
-
-function getSum(a, b) {
-  if (a == b) {
-    return a;
-  }
-
-  let low = a < b ? a : b;
-  const high = b > a ? b : a;
-
-  let sum = 0;
-  // loop from low until including high low <= high
-  for (let i = low; low <= high; low++) {
-    sum += low;
-  }
-
-  return sum;
-}
-
-function readNumber() {
-  do {
-    num = prompt('number?');
-    if (!num) return null;
-  } while (Number.isNaN(parseInt(num)));
-  return +num;
-}
-
-function randomInteger(min, max) {
-  let range = max - min + 1;
-  return Math.floor(Math.random() * Math.abs(range)) + min;
-}
-
-function ucFirst(str) {
-  return str ? str[0].toUpperCase() + str.slice(1) : str;
-}
-
-function checkSpam(str) {
-  return (str.toLowerCase().includes('xxx') || str.toLowerCase().includes('viagra'));
-}
-
-function truncate(str, maxlength) {
-  if (str.length > maxlength) {
-      return str.slice(0, maxlength - 1) + '…';
-  }
-  return str;
-}
-
-function extractCurrencyValue(str) {
-  return parseInt(str.slice(1));
-}
-
-function sumInput() {
-  let sum = 0;
-  while (true) {
-      let num = parseInt(prompt('Number to sum?'));
-      if (Number.isNaN(num)) {return sum};
-      sum += num;
-   } 
-  return sum;        
-}
+// function pillars(num_pill, dist, width) {
+//   return num_pill == 1 ? 0 : ((num_pill - 1) * dist * 100 + (num_pill - 2) * width);
+// }
 
 
-// manually sort an array (without using array.sort(sortFunction))
+// // Given two integers a and b, which can be positive or negative, 
+// // find the sum of all the integers between
+// //  and including them and return it. If the two numbers are equal return a or b.
+// // Note: a and b are not ordered!
 
-sortIntegerArray = (arr) => {
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < arr[i-1]) {
-      const removed = arr.splice(i, 1);
-      for (let j = 0; j < i; j++) {
-        if (arr[j] >= removed[0]) {
-          arr.splice((j-1) < 0 ? 0 : j, 0, removed[0]);
-          break;
-        }
-      }
-    }
-  }
-  return arr;
-}
+// function getSum(a, b) {
+//   if (a == b) {
+//     return a;
+//   }
+
+//   let low = a < b ? a : b;
+//   const high = b > a ? b : a;
+
+//   let sum = 0;
+//   // loop from low until including high low <= high
+//   for (let i = low; low <= high; low++) {
+//     sum += low;
+//   }
+
+//   return sum;
+// }
+
+// function readNumber() {
+//   do {
+//     num = prompt('number?');
+//     if (!num) return null;
+//   } while (Number.isNaN(parseInt(num)));
+//   return +num;
+// }
+
+// function randomInteger(min, max) {
+//   let range = max - min + 1;
+//   return Math.floor(Math.random() * Math.abs(range)) + min;
+// }
+
+// function ucFirst(str) {
+//   return str ? str[0].toUpperCase() + str.slice(1) : str;
+// }
+
+// function checkSpam(str) {
+//   return (str.toLowerCase().includes('xxx') || str.toLowerCase().includes('viagra'));
+// }
+
+// function truncate(str, maxlength) {
+//   if (str.length > maxlength) {
+//       return str.slice(0, maxlength - 1) + '…';
+//   }
+//   return str;
+// }
+
+// function extractCurrencyValue(str) {
+//   return parseInt(str.slice(1));
+// }
+
+// function sumInput() {
+//   let sum = 0;
+//   while (true) {
+//       let num = parseInt(prompt('Number to sum?'));
+//       if (Number.isNaN(num)) {return sum};
+//       sum += num;
+//    } 
+//   return sum;        
+// }
+
+
+// // manually sort an array (without using array.sort(sortFunction))
+
+// sortIntegerArray = (arr) => {
+//   for (let i = 1; i < arr.length; i++) {
+//     if (arr[i] < arr[i-1]) {
+//       const removed = arr.splice(i, 1);
+//       for (let j = 0; j < i; j++) {
+//         if (arr[j] >= removed[0]) {
+//           arr.splice((j-1) < 0 ? 0 : j, 0, removed[0]);
+//           break;
+//         }
+//       }
+//     }
+//   }
+//   return arr;
+// }
 
 // Task:
 // You are given two sorted lists, with distinct elements. Find the maximum path sum while traversing through the lists.
@@ -997,6 +997,29 @@ sortIntegerArray = (arr) => {
 // }
 
 
+// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+// Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in. Additionally, if the number is negative, return 0 (for languages that do have them).
+
+function solution(num) {
+  if (num < 3) return 0;
+  let sum = 0;
+  for (let i = 3; i < num; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
+      sum += i;
+    } 
+  }
+  return sum;
+}
+
+// Description:
+// Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+// Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"
+
+function spinWords(string){
+  return string.split(' ').map((word) => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ');  
+}
 
 
 
