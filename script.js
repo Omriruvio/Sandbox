@@ -1022,6 +1022,24 @@ function spinWords(string){
 }
 
 
+// Translate border-left-width to borderLeftWidth
+// importance: 5
+// Write the function camelize(str) that changes dash-separated words like “my-short-string” into camel-cased “myShortString”.
+
+// That is: removes all dashes, each word after dash becomes uppercased.
+
+// Examples:
+
+// camelize("background-color") == 'backgroundColor';
+// camelize("list-style-image") == 'listStyleImage';
+// camelize("-webkit-transition") == 'WebkitTransition';
+
+function camelize (str) {
+  return str.split('-').map((x, i, arr) => {
+      return (i != 0) ? x = x[0].toUpperCase() + x.slice(1) : x;
+      }).join('')
+}
+
 
 
 
