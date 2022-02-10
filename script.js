@@ -1001,25 +1001,25 @@
 
 // Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in. Additionally, if the number is negative, return 0 (for languages that do have them).
 
-function solution(num) {
-  if (num < 3) return 0;
-  let sum = 0;
-  for (let i = 3; i < num; i++) {
-    if (i % 3 == 0 || i % 5 == 0) {
-      sum += i;
-    } 
-  }
-  return sum;
-}
+// function solution(num) {
+//   if (num < 3) return 0;
+//   let sum = 0;
+//   for (let i = 3; i < num; i++) {
+//     if (i % 3 == 0 || i % 5 == 0) {
+//       sum += i;
+//     } 
+//   }
+//   return sum;
+// }
 
 // Description:
 // Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
 
 // Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"
 
-function spinWords(string){
-  return string.split(' ').map((word) => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ');  
-}
+// function spinWords(string){
+//   return string.split(' ').map((word) => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ');  
+// }
 
 
 // Translate border-left-width to borderLeftWidth
@@ -1034,13 +1034,34 @@ function spinWords(string){
 // camelize("list-style-image") == 'listStyleImage';
 // camelize("-webkit-transition") == 'WebkitTransition';
 
-function camelize (str) {
-  return str.split('-').map((x, i, arr) => {
-      return (i != 0) ? x = x[0].toUpperCase() + x.slice(1) : x;
-      }).join('')
+// function camelize (str) {
+//   return str.split('-').map((x, i, arr) => {
+//       return (i != 0) ? x = x[0].toUpperCase() + x.slice(1) : x;
+//       }).join('')
+// }
+
+
+function Calculator () {
+  this.methods = {
+    '+' : (a, b) => a + b,
+    '-' : (a, b) => a-b
+  }
+
+  this.calculate = (str) => {
+    let split = str.split(' ')
+    let a = +split[0]
+    let op = split[1]
+    let b = +split[2]
+
+    if (!this.methods[op] || Number.isNaN(a) || Number.isNaN(b)) return NaN;
+
+    return this.methods[op](a, b);
+  }
+
+  this.addMethod = (op, func) => {
+    this.methods[op] = func;
+  }
 }
-
-
 
 
 
