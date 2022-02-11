@@ -462,7 +462,7 @@
 //   return 0;
 // }
 
-// var uniqueInOrder = function (iterable) {
+// const uniqueInOrder = function (iterable) {
 //   return (typeof (iterable) == "string" ? iterable.split('') : iterable)
 //     .filter((x, i, a) => {
 //       return a[i] != a[i + 1] ? x : false;
@@ -482,7 +482,7 @@
 // // get seconds = minutes / 60 + hours % 60
 
 
-// var maxSequence = function (arr) {
+// const maxSequence = function (arr) {
 //   let biggestS = 0;
 //   const checkSum = (start, end, origin) => {
 //     const slice = origin.slice(start, end + 1);
@@ -561,10 +561,10 @@
 
 // other solutions:
 // function longestConsec(strarr, k) {
-//   var longest = "";
-//   for(var i=0;k>0 && i<=strarr.length-k;i++){
-//     var tempArray = strarr.slice(i,i+k);
-//     var tempStr = tempArray.join("");
+//   const longest = "";
+//   for(const i=0;k>0 && i<=strarr.length-k;i++){
+//     const tempArray = strarr.slice(i,i+k);
+//     const tempStr = tempArray.join("");
 //     if(tempStr.length > longest.length){
 //       longest = tempStr;
 //     }
@@ -1061,6 +1061,17 @@ function Calculator () {
   this.addMethod = (op, func) => {
     this.methods[op] = func;
   }
+}
+
+function createPhoneNumber(numbers){
+  const format = "(xxx) xxx-xxxx";
+  
+  for(let i = 0; i < numbers.length; i++)
+  {
+    format = format.replace('x', numbers[i]);
+  }
+  
+  return format;
 }
 
 
