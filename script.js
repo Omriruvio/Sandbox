@@ -1041,38 +1041,37 @@
 // }
 
 
-function Calculator () {
-  this.methods = {
-    '+' : (a, b) => a + b,
-    '-' : (a, b) => a-b
-  }
+// function Calculator() {
+//   this.methods = {
+//     '+': (a, b) => a + b,
+//     '-': (a, b) => a - b
+//   }
 
-  this.calculate = (str) => {
-    let split = str.split(' ')
-    let a = +split[0]
-    let op = split[1]
-    let b = +split[2]
+//   this.calculate = (str) => {
+//     let split = str.split(' ')
+//     let a = +split[0]
+//     let op = split[1]
+//     let b = +split[2]
 
-    if (!this.methods[op] || Number.isNaN(a) || Number.isNaN(b)) return NaN;
+//     if (!this.methods[op] || Number.isNaN(a) || Number.isNaN(b)) return NaN;
 
-    return this.methods[op](a, b);
-  }
+//     return this.methods[op](a, b);
+//   }
 
-  this.addMethod = (op, func) => {
-    this.methods[op] = func;
-  }
-}
+//   this.addMethod = (op, func) => {
+//     this.methods[op] = func;
+//   }
+// }
 
-function createPhoneNumber(numbers){
-  const format = "(xxx) xxx-xxxx";
-  
-  for(let i = 0; i < numbers.length; i++)
-  {
-    format = format.replace('x', numbers[i]);
-  }
-  
-  return format;
-}
+// function createPhoneNumber(numbers) {
+//   const format = "(xxx) xxx-xxxx";
+
+//   for (let i = 0; i < numbers.length; i++) {
+//     format = format.replace('x', numbers[i]);
+//   }
+
+//   return format;
+// }
 
 
 
