@@ -15,6 +15,8 @@
 // newArray = [...pentagon.getSides()] // [1,2,3,4,5]
 // console.log(newArray);
 
+// const words = require("random-words");
+
 // const { list } = require("mocha/lib/reporters");
 // 
 // function babyShark() {
@@ -1074,10 +1076,56 @@
 // }
 
 
+// initiate new sentance
+// split input to words, for each word:
+  // move first letter to end + ay:
+  // let i = 0;
+  // while word[i] && word[i] includes punctuation
+    // i++
+  // const removed = word.split('').splice(i, 1);
+  // sentance += word.append(removed).join('') + 'ay';
+
+// return sentance 
 
 
+// function pigIt (str) {
+//   let sentance = '';
+//   const words = str.split(' ');
+//   words.forEach(word => {
+//     let i = 0;
+//     while (word[i] && !!word[i].match(/^[.,:!?]/)) i++;
+//     if (word[i]) {
+//       let splitword = word.split('');
+//       let removed = splitword.splice(i, 1);
+//       splitword.push(removed[0]);
+//       sentance += splitword.join('') + 'ay ';
+//     } else {
+//       sentance += word + ' ';
+//     }
+//   });
+//   return sentance.trim();
+// }
+
+// let users = [
+//   {id: 'john', name: "John Smith", age: 20},
+//   {id: 'ann', name: "Ann Smith", age: 24},
+//   {id: 'pete', name: "Pete Peterson", age: 31},
+// ];
+
+// function createUserDB(users) {
+//   return users.reduce((obj, user) => {obj[user.id] = user; return obj}, {})
+// }
+// console.log(createUserDB(users));
 
 
+const moveZeros = function (arr) {
+  const newArr = [];
+  const zeroes = [];
+  arr.forEach(x => {
+    if (x === 0) zeroes.push(x); else newArr.push(x);
+  })
+  return newArr.concat([...zeroes])
+}
 
 
 
