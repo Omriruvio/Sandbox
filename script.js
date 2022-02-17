@@ -1118,15 +1118,43 @@
 // console.log(createUserDB(users));
 
 
-const moveZeros = function (arr) {
-  const newArr = [];
-  const zeroes = [];
-  arr.forEach(x => {
-    if (x === 0) zeroes.push(x); else newArr.push(x);
-  })
-  return newArr.concat([...zeroes])
+// const moveZeros = function (arr) {
+//   const newArr = [];
+//   const zeroes = [];
+//   arr.forEach(x => {
+//     if (x === 0) zeroes.push(x); else newArr.push(x);
+//   })
+//   return newArr.concat([...zeroes])
+// }
+
+
+// Write a function that takes a string of parentheses, and determines if the order 
+// of the parentheses is valid. The function should return true if the string is valid, 
+// and false if it's invalid.
+
+// my solution
+
+function validParentheses(parens) {
+  let [ a, b ] = [ 0, 0 ];
+  let open = false;
+  const splitParens = parens.split('');
+  for (let i = 0; i < splitParens.length; i++) {
+    if (splitParens[i] === '(') a++;
+    if (splitParens[i] === ')' && !open) return false;
+    if (splitParens[i] === ')') b++;
+    open = a == b ? false : true; 
+  };
+  if (a == b && !open) return true;
+  return false;
 }
 
+// nice solution
+// function validParentheses(parens){
+//   while(parens.indexOf('()') != -1){
+//     parens = parens.replace('()', '');
+//   }
+//   return !parens.length;
+// }
 
 
 
