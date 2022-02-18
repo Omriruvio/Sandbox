@@ -1134,19 +1134,19 @@
 
 // my solution
 
-function validParentheses(parens) {
-  let [ a, b ] = [ 0, 0 ];
-  let open = false;
-  const splitParens = parens.split('');
-  for (let i = 0; i < splitParens.length; i++) {
-    if (splitParens[i] === '(') a++;
-    if (splitParens[i] === ')' && !open) return false;
-    if (splitParens[i] === ')') b++;
-    open = a == b ? false : true; 
-  };
-  if (a == b && !open) return true;
-  return false;
-}
+// function validParentheses(parens) {
+//   let [ a, b ] = [ 0, 0 ];
+//   let open = false;
+//   const splitParens = parens.split('');
+//   for (let i = 0; i < splitParens.length; i++) {
+//     if (splitParens[i] === '(') a++;
+//     if (splitParens[i] === ')' && !open) return false;
+//     if (splitParens[i] === ')') b++;
+//     open = a == b ? false : true; 
+//   };
+//   if (a == b && !open) return true;
+//   return false;
+// }
 
 // nice solution
 // function validParentheses(parens){
@@ -1157,7 +1157,72 @@ function validParentheses(parens) {
 // }
 
 
+// get starting point (x, y)
+// if starting point is falsey return []
+// push starting point
+// go right until no more right (if right move right, results.push[currentX][currentY], falsey it)
+// go down until no more down (if down move down, results.push[currentX][currentY], falsey it)
+// go left until no more left (if left move left, results.push[currentX][currentY], falsey it)
+// go up until no more up  (if up  move up, results.push[currentX][currentY], falsey it) ELSE => starting point right
+// pass the next starting point
 
+
+// function snail(matrix, position = [0, 0], direction = 'right', results)
+
+// base condition: no possible path
+
+// if direction == right 
+  // if right exists set currentPosition to right, results.push(currentPosition)
+    // else snail(matrix, currentPosition, 'down', results)
+
+
+
+// basic solution
+
+function snail(array) {
+  let results = [];
+
+  while (array.length > 0) {
+    results = results ? results.concat(array.shift()) : array.shift();
+    for (let i = 0; i < array.length; i++){
+      results.push(array[i].pop())
+    }
+    results = results.concat((array.pop() || []).reverse());
+    for (let i = array.length - 1; i >= 0; i--) {
+      results.push(array[i].shift());
+    }
+  }
+  return results;
+}
+
+// cleaner basic solution:
+// function snail(array) {
+//   var vector = [];
+//   while (array.length) {
+//     vector.push(...array.shift());
+//     array.map(row => vector.push(row.pop()));
+//     array.reverse().map(row => row.reverse());
+//   }
+//   return vector;
+// }
+
+// clean solution with pointers
+
+// snail = function(arr) {
+//   var result = [];
+//   var top = 0, bottom = arr.length-1;
+//   var left = 0, right = arr[0].length-1;
+  
+//   do {
+//     for (var i = left; i <= right; i++){result.push(arr[top][i])} // top row
+//     for (var i = top+1; i <= bottom; i++){result.push(arr[i][right])} // right column
+//     for (var i = right-1; i >= left; i--){result.push(arr[bottom][i])} // bottom row
+//     for (var i = bottom-1; i > top; i--){result.push(arr[i][left])} // left column
+//     top++; bottom--; left++; right--;
+//   } while (top <= bottom);
+  
+//   return result;
+}
 
 
 
