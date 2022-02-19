@@ -1179,21 +1179,21 @@
 
 // basic solution
 
-function snail(array) {
-  let results = [];
+// function snail(array) {
+//   let results = [];
 
-  while (array.length > 0) {
-    results = results ? results.concat(array.shift()) : array.shift();
-    for (let i = 0; i < array.length; i++){
-      results.push(array[i].pop())
-    }
-    results = results.concat((array.pop() || []).reverse());
-    for (let i = array.length - 1; i >= 0; i--) {
-      results.push(array[i].shift());
-    }
-  }
-  return results;
-}
+//   while (array.length > 0) {
+//     results = results ? results.concat(array.shift()) : array.shift();
+//     for (let i = 0; i < array.length; i++){
+//       results.push(array[i].pop())
+//     }
+//     results = results.concat((array.pop() || []).reverse());
+//     for (let i = array.length - 1; i >= 0; i--) {
+//       results.push(array[i].shift());
+//     }
+//   }
+//   return results;
+// }
 
 // cleaner basic solution:
 // function snail(array) {
@@ -1222,6 +1222,25 @@ function snail(array) {
 //   } while (top <= bottom);
   
 //   return result;
+
+
+function aclean(arr) {
+  let results = new Map;
+  for (word of arr) {
+    let sorted = word.split('').sort().join('');
+    results.set(sorted, word);
+  }
+  return Array.from(results.keys());
+}
+
+function bclean(arr) {
+  let results = [];
+  for (word of arr) {
+    let sorted = word.split('').sort().join('');
+    results.push(sorted);
+  }
+
+  return [...new Set(results)]
 }
 
 
