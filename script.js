@@ -1243,18 +1243,22 @@
 //   return [...new Set(results)]
 // }
 
-function topSalary(obj) {
-  let max = 0;
-  let highest = null;
-  for (const [name, salary] of Object.entries(obj)) {
-      if (salary > max) {
-          max = salary;
-          highest = name;
-      }
-  }
-  return highest;
-}
+// function topSalary(obj) {
+//   let max = 0;
+//   let highest = null;
+//   for (const [name, salary] of Object.entries(obj)) {
+//       if (salary > max) {
+//           max = salary;
+//           highest = name;
+//       }
+//   }
+//   return highest;
+// }
 
+function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month+1, 0);
+  return date.getDate()
+}
 
 
 
