@@ -1224,26 +1224,36 @@
 //   return result;
 
 
-function aclean(arr) {
-  let results = new Map;
-  for (word of arr) {
-    let sorted = word.split('').sort().join('');
-    results.set(sorted, word);
+// function aclean(arr) {
+//   let results = new Map;
+//   for (word of arr) {
+//     let sorted = word.split('').sort().join('');
+//     results.set(sorted, word);
+//   }
+//   return Array.from(results.keys());
+// }
+
+// function bclean(arr) {
+//   let results = [];
+//   for (word of arr) {
+//     let sorted = word.split('').sort().join('');
+//     results.push(sorted);
+//   }
+
+//   return [...new Set(results)]
+// }
+
+function topSalary(obj) {
+  let max = 0;
+  let highest = null;
+  for (const [name, salary] of Object.entries(obj)) {
+      if (salary > max) {
+          max = salary;
+          highest = name;
+      }
   }
-  return Array.from(results.keys());
+  return highest;
 }
-
-function bclean(arr) {
-  let results = [];
-  for (word of arr) {
-    let sorted = word.split('').sort().join('');
-    results.push(sorted);
-  }
-
-  return [...new Set(results)]
-}
-
-
 
 
 
