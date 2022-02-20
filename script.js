@@ -1260,6 +1260,43 @@ function getLastDayOfMonth(year, month) {
   return date.getDate()
 }
 
+function secondsPassedToday() {
+  const current = new Date();
+  const dayStart = new Date();
+  dayStart.setHours(0);
+  dayStart.setMinutes(0);
+  dayStart.setSeconds(0);
+  return Math.round((current - dayStart) / 1000);
+}
+
+function secondsUntilTomorrow() {
+  const now = new Date();
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1)
+  return (tomorrow - now) / 1000;
+}
+
+function formatDate(date) {
+  const now = new Date();
+  const diffInSeconds = (now - date) / 1000;
+  switch (true) {
+    case diffInSeconds < 1:
+      return `right now`
+    case (diffInSeconds < 60):
+      return `${Math.round(diffInSeconds)} sec. ago`
+    case (diffInSeconds < 3600):
+      return `${Math.round(diffInSeconds / 60)} min. ago`
+    default:
+      // return date.toLocaleString().replaceAll('/', '.').replace(',', '').slice(0, -6);
+      // [day, month, year, hours, minutes] = [ 
+      //   date.getDate(), date.getMonth() + 1, date.getFullYear().slice(0, 3), date.getHours(), date.getMinutes()
+      // ]
+      return `${date.getDate() < 10 ? ('0' + date.getDate()): date.getDate()}.` +
+             `${(date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)): (date.getMonth() + 1)}.` +
+             `${String(date.getUTCFullYear()).slice(-2)} ` +
+             `${date.getHours() < 10 ? ('0' + date.getHours()): date.getHours()}:` +
+             `${date.getMinutes() < 10 ? ('0' + date.getMinutes()): date.getMinutes()}`
+  }
+}
 
 
 
