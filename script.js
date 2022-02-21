@@ -1299,6 +1299,57 @@ function formatDate(date) {
 }
 
 
+function dirReduc(arr){
+  let vertical = '';
+  let horizontal = '';
+  const results = [];
+  for (const direction of arr) {
+    if (direction == 'NORTH' && vertical != 'SOUTH' && results[results.length -1] != 'SOUTH') {
+      vertical = 'NORTH'
+      results.push('NORTH');
+      horizontal = null;
+    } else if (direction == 'SOUTH' && vertical != 'NORTH' && results[results.length -1] != 'NORTH') {
+      vertical = 'SOUTH';
+      results.push('SOUTH');
+      horizontal = null;
+    } else if (direction == 'EAST' && horizontal != 'WEST' && results[results.length -1] != 'WEST') {
+      horizontal = 'EAST';
+      results.push('EAST');
+      vertical = null;
+    } else if (direction == 'WEST' && horizontal != 'EAST' && results[results.length -1] != 'EAST') {
+      horizontal = 'WEST';
+      results.push('WEST');
+      vertical = null;
+    } else {
+      results.pop();
+      if (direction == 'NORTH' || direction == 'SOUTH') vertical = null;
+      if (direction == 'EAST' || direction == 'WEST') horizontal = null;
+      
+    }
+  }
+  return results;
+}
+
+// cleaner solution
+
+function dirReduc(arr){
+  const dir = {
+    "NORTH": "SOUTH",
+    "EAST": "WEST",
+    "SOUTH": "NORTH",
+    "WEST": "EAST"
+  }
+  
+  const stack = []
+  for (let i = 0; i < arr.length; i++) {
+    if (stack[stack.length-1] === dir[arr[i]]) {
+      stack.pop()
+    } else {
+      stack.push(arr[i])
+    }
+  }
+  return stack
+}
 
 
 
