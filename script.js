@@ -1351,6 +1351,34 @@ function dirReduc(arr){
   return stack
 }
 
+const maxSalaries = (salaries) => {
+  let max = 0;
+  let highest = '';
+  for ([person, salary] of Object.entries(salaries)) {
+      if (salary > max) {
+        max = salary;
+        highest = person;
+      }
+  }
+  return highest;
+}
+
+
+const rotLetter = (letter) => {
+  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  const result = alphabet[(alphabet.indexOf(letter.toLowerCase()) + 13) % alphabet.length];
+  if (letter.toUpperCase() == letter) 
+    return result.toUpperCase()
+  else 
+    return result
+}
+const isLetter = (letter) => /[a-zA-Z]/.test(letter);
+
+function rot13(message) {
+  return message.split('').map((letter) => {
+    return !isLetter(letter) ? letter : rotLetter(letter)
+  }).join('')
+}
 
 
 
