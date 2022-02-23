@@ -1380,6 +1380,36 @@ function rot13(message) {
   }).join('')
 }
 
+const calc = (num1, num2, op) => {
+  switch (op) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    case '/':
+      return Math.floor(num1 / num2)
+    default:
+      alert('Invalid operand.')
+  }
+}
+
+const zero = ([op, num] = []) => op ? calc(0, num, op) : 0
+const one = ([op, num] = []) => op ? calc(1, num, op) : 1
+const two = ([op, num] = []) => op ? calc(2, num, op) : 2
+const three = ([op, num] = []) => op ? calc(3, num, op) : 3
+const four = ([op, num] = []) => op ? calc(4, num, op) : 4
+const five = ([op, num] = []) => op ? calc(5, num, op) : 5
+const six = ([op, num] = []) => op ? calc(6, num, op) : 6
+const seven = ([op, num] = []) => op ? calc(7, num, op) : 7
+const eight = ([op, num] = []) => op ? calc(8, num, op) : 8
+const nine = ([op, num] = []) => op ? calc(9, num, op) : 9
+
+const plus = (num) => ['+', num]
+const minus = (num) => ['-', num]
+const times = (num) => ['*', num]
+const dividedBy = (num) => ['/', num]
 
 
 
