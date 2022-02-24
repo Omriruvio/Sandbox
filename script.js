@@ -1255,164 +1255,211 @@
 //   return highest;
 // }
 
-function getLastDayOfMonth(year, month) {
-  let date = new Date(year, month+1, 0);
-  return date.getDate()
-}
+// function getLastDayOfMonth(year, month) {
+//   let date = new Date(year, month+1, 0);
+//   return date.getDate()
+// }
 
-function secondsPassedToday() {
-  const current = new Date();
-  const dayStart = new Date();
-  dayStart.setHours(0);
-  dayStart.setMinutes(0);
-  dayStart.setSeconds(0);
-  return Math.round((current - dayStart) / 1000);
-}
+// function secondsPassedToday() {
+//   const current = new Date();
+//   const dayStart = new Date();
+//   dayStart.setHours(0);
+//   dayStart.setMinutes(0);
+//   dayStart.setSeconds(0);
+//   return Math.round((current - dayStart) / 1000);
+// }
 
-function secondsUntilTomorrow() {
-  const now = new Date();
-  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1)
-  return (tomorrow - now) / 1000;
-}
+// function secondsUntilTomorrow() {
+//   const now = new Date();
+//   const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1)
+//   return (tomorrow - now) / 1000;
+// }
 
-function formatDate(date) {
-  const now = new Date();
-  const diffInSeconds = (now - date) / 1000;
-  switch (true) {
-    case diffInSeconds < 1:
-      return `right now`
-    case (diffInSeconds < 60):
-      return `${Math.round(diffInSeconds)} sec. ago`
-    case (diffInSeconds < 3600):
-      return `${Math.round(diffInSeconds / 60)} min. ago`
-    default:
-      // return date.toLocaleString().replaceAll('/', '.').replace(',', '').slice(0, -6);
-      // [day, month, year, hours, minutes] = [ 
-      //   date.getDate(), date.getMonth() + 1, date.getFullYear().slice(0, 3), date.getHours(), date.getMinutes()
-      // ]
-      return `${date.getDate() < 10 ? ('0' + date.getDate()): date.getDate()}.` +
-             `${(date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)): (date.getMonth() + 1)}.` +
-             `${String(date.getUTCFullYear()).slice(-2)} ` +
-             `${date.getHours() < 10 ? ('0' + date.getHours()): date.getHours()}:` +
-             `${date.getMinutes() < 10 ? ('0' + date.getMinutes()): date.getMinutes()}`
-  }
-}
+// function formatDate(date) {
+//   const now = new Date();
+//   const diffInSeconds = (now - date) / 1000;
+//   switch (true) {
+//     case diffInSeconds < 1:
+//       return `right now`
+//     case (diffInSeconds < 60):
+//       return `${Math.round(diffInSeconds)} sec. ago`
+//     case (diffInSeconds < 3600):
+//       return `${Math.round(diffInSeconds / 60)} min. ago`
+//     default:
+//       // return date.toLocaleString().replaceAll('/', '.').replace(',', '').slice(0, -6);
+//       // [day, month, year, hours, minutes] = [ 
+//       //   date.getDate(), date.getMonth() + 1, date.getFullYear().slice(0, 3), date.getHours(), date.getMinutes()
+//       // ]
+//       return `${date.getDate() < 10 ? ('0' + date.getDate()): date.getDate()}.` +
+//              `${(date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)): (date.getMonth() + 1)}.` +
+//              `${String(date.getUTCFullYear()).slice(-2)} ` +
+//              `${date.getHours() < 10 ? ('0' + date.getHours()): date.getHours()}:` +
+//              `${date.getMinutes() < 10 ? ('0' + date.getMinutes()): date.getMinutes()}`
+//   }
+// }
 
 
-function dirReduc(arr){
-  let vertical = '';
-  let horizontal = '';
-  const results = [];
-  for (const direction of arr) {
-    if (direction == 'NORTH' && vertical != 'SOUTH' && results[results.length -1] != 'SOUTH') {
-      vertical = 'NORTH'
-      results.push('NORTH');
-      horizontal = null;
-    } else if (direction == 'SOUTH' && vertical != 'NORTH' && results[results.length -1] != 'NORTH') {
-      vertical = 'SOUTH';
-      results.push('SOUTH');
-      horizontal = null;
-    } else if (direction == 'EAST' && horizontal != 'WEST' && results[results.length -1] != 'WEST') {
-      horizontal = 'EAST';
-      results.push('EAST');
-      vertical = null;
-    } else if (direction == 'WEST' && horizontal != 'EAST' && results[results.length -1] != 'EAST') {
-      horizontal = 'WEST';
-      results.push('WEST');
-      vertical = null;
-    } else {
-      results.pop();
-      if (direction == 'NORTH' || direction == 'SOUTH') vertical = null;
-      if (direction == 'EAST' || direction == 'WEST') horizontal = null;
+// function dirReduc(arr){
+//   let vertical = '';
+//   let horizontal = '';
+//   const results = [];
+//   for (const direction of arr) {
+//     if (direction == 'NORTH' && vertical != 'SOUTH' && results[results.length -1] != 'SOUTH') {
+//       vertical = 'NORTH'
+//       results.push('NORTH');
+//       horizontal = null;
+//     } else if (direction == 'SOUTH' && vertical != 'NORTH' && results[results.length -1] != 'NORTH') {
+//       vertical = 'SOUTH';
+//       results.push('SOUTH');
+//       horizontal = null;
+//     } else if (direction == 'EAST' && horizontal != 'WEST' && results[results.length -1] != 'WEST') {
+//       horizontal = 'EAST';
+//       results.push('EAST');
+//       vertical = null;
+//     } else if (direction == 'WEST' && horizontal != 'EAST' && results[results.length -1] != 'EAST') {
+//       horizontal = 'WEST';
+//       results.push('WEST');
+//       vertical = null;
+//     } else {
+//       results.pop();
+//       if (direction == 'NORTH' || direction == 'SOUTH') vertical = null;
+//       if (direction == 'EAST' || direction == 'WEST') horizontal = null;
       
-    }
-  }
-  return results;
-}
+//     }
+//   }
+//   return results;
+// }
 
-// cleaner solution
+// // cleaner solution
 
-function dirReduc(arr){
-  const dir = {
-    "NORTH": "SOUTH",
-    "EAST": "WEST",
-    "SOUTH": "NORTH",
-    "WEST": "EAST"
-  }
+// function dirReduc(arr){
+//   const dir = {
+//     "NORTH": "SOUTH",
+//     "EAST": "WEST",
+//     "SOUTH": "NORTH",
+//     "WEST": "EAST"
+//   }
   
-  const stack = []
-  for (let i = 0; i < arr.length; i++) {
-    if (stack[stack.length-1] === dir[arr[i]]) {
-      stack.pop()
-    } else {
-      stack.push(arr[i])
-    }
-  }
-  return stack
-}
+//   const stack = []
+//   for (let i = 0; i < arr.length; i++) {
+//     if (stack[stack.length-1] === dir[arr[i]]) {
+//       stack.pop()
+//     } else {
+//       stack.push(arr[i])
+//     }
+//   }
+//   return stack
+// }
 
-const maxSalaries = (salaries) => {
-  let max = 0;
-  let highest = '';
-  for ([person, salary] of Object.entries(salaries)) {
-      if (salary > max) {
-        max = salary;
-        highest = person;
-      }
-  }
-  return highest;
-}
-
-
-const rotLetter = (letter) => {
-  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-  const result = alphabet[(alphabet.indexOf(letter.toLowerCase()) + 13) % alphabet.length];
-  if (letter.toUpperCase() == letter) 
-    return result.toUpperCase()
-  else 
-    return result
-}
-const isLetter = (letter) => /[a-zA-Z]/.test(letter);
-
-function rot13(message) {
-  return message.split('').map((letter) => {
-    return !isLetter(letter) ? letter : rotLetter(letter)
-  }).join('')
-}
-
-const calc = (num1, num2, op) => {
-  switch (op) {
-    case '+':
-      return num1 + num2;
-    case '-':
-      return num1 - num2;
-    case '*':
-      return num1 * num2;
-    case '/':
-      return Math.floor(num1 / num2)
-    default:
-      alert('Invalid operand.')
-  }
-}
-
-const zero = ([op, num] = []) => op ? calc(0, num, op) : 0
-const one = ([op, num] = []) => op ? calc(1, num, op) : 1
-const two = ([op, num] = []) => op ? calc(2, num, op) : 2
-const three = ([op, num] = []) => op ? calc(3, num, op) : 3
-const four = ([op, num] = []) => op ? calc(4, num, op) : 4
-const five = ([op, num] = []) => op ? calc(5, num, op) : 5
-const six = ([op, num] = []) => op ? calc(6, num, op) : 6
-const seven = ([op, num] = []) => op ? calc(7, num, op) : 7
-const eight = ([op, num] = []) => op ? calc(8, num, op) : 8
-const nine = ([op, num] = []) => op ? calc(9, num, op) : 9
-
-const plus = (num) => ['+', num]
-const minus = (num) => ['-', num]
-const times = (num) => ['*', num]
-const dividedBy = (num) => ['/', num]
+// const maxSalaries = (salaries) => {
+//   let max = 0;
+//   let highest = '';
+//   for ([person, salary] of Object.entries(salaries)) {
+//       if (salary > max) {
+//         max = salary;
+//         highest = person;
+//       }
+//   }
+//   return highest;
+// }
 
 
+// const rotLetter = (letter) => {
+//   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+//   const result = alphabet[(alphabet.indexOf(letter.toLowerCase()) + 13) % alphabet.length];
+//   if (letter.toUpperCase() == letter) 
+//     return result.toUpperCase()
+//   else 
+//     return result
+// }
+// const isLetter = (letter) => /[a-zA-Z]/.test(letter);
 
+// function rot13(message) {
+//   return message.split('').map((letter) => {
+//     return !isLetter(letter) ? letter : rotLetter(letter)
+//   }).join('')
+// }
+
+// const calc = (num1, num2, op) => {
+//   switch (op) {
+//     case '+':
+//       return num1 + num2;
+//     case '-':
+//       return num1 - num2;
+//     case '*':
+//       return num1 * num2;
+//     case '/':
+//       return Math.floor(num1 / num2)
+//     default:
+//       alert('Invalid operand.')
+//   }
+// }
+
+// const zero = ([op, num] = []) => op ? calc(0, num, op) : 0
+// const one = ([op, num] = []) => op ? calc(1, num, op) : 1
+// const two = ([op, num] = []) => op ? calc(2, num, op) : 2
+// const three = ([op, num] = []) => op ? calc(3, num, op) : 3
+// const four = ([op, num] = []) => op ? calc(4, num, op) : 4
+// const five = ([op, num] = []) => op ? calc(5, num, op) : 5
+// const six = ([op, num] = []) => op ? calc(6, num, op) : 6
+// const seven = ([op, num] = []) => op ? calc(7, num, op) : 7
+// const eight = ([op, num] = []) => op ? calc(8, num, op) : 8
+// const nine = ([op, num] = []) => op ? calc(9, num, op) : 9
+
+// const plus = (num) => ['+', num]
+// const minus = (num) => ['-', num]
+// const times = (num) => ['*', num]
+// const dividedBy = (num) => ['/', num]
+
+// Description:
+// The marketing team is spending way too much time typing in hashtags.
+// Let's help them with our own Hashtag Generator!
+
+// Here's the deal:
+
+// It must start with a hashtag (#).
+// All words must have their first letter capitalized.
+// If the final result is longer than 140 chars it must return false.
+// If the input or the result is an empty string it must return false.
+
+// my solution:
+
+// function getWords(str) {
+//   let words = [];
+//   let i = 0;
+//   let word = '';
+//   while (i < str.length) {
+//       word = '';
+//       while (str[i] && str[i] != ' ') {
+//           word += str[i];
+//           i++;
+//       }
+//       if (word.length > 0) words.push(word.split('').join(''));
+//       i++;
+//   }
+//   return words;
+// }
+
+// function titleCase(arr){
+//   return arr.map((word) => {
+//     word = word.split('');
+//     word[0] = word[0].toUpperCase();
+//     return word.join('')
+//   })
+// }
+
+// function generateHashtag (str) {
+//   const finalWord = titleCase(getWords(str)).join('');
+//   return finalWord.length >= 140 || str.trim() == '' || str == '#' ? false : `#${finalWord}`
+// }
+
+// cleaner solution:
+
+// const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
+
+// const generateHashtag = (str) => {
+//   return str ? `#${str.split(' ').map(capitalize).join('')}` : false;
+// }
 
 
 
