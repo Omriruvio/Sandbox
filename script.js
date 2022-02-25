@@ -1464,6 +1464,37 @@
 
 
 
+// my solution
+function productFib(prod) {
+  let fib = [0, 1];
+  let i = 0;
+  while ((fib[i] * fib[i+1]) <= prod) {
+    fib[i+2] = fib[i] + fib[i+1];
+    i++;
+  }
+  const result = (fib[i-1] * fib[i] == prod);
+  return result ? [fib[i-1], fib[i], result] : [fib[i], fib[i+1], result]
+}
+
+// cleaned solution
+function productFib(prod){
+  let [a, b] = [0, 1];
+  while(a * b < prod) [a, b] = [b, a + b];
+  return [a, b, a * b === prod];
+}
+
+// tests
+productFib(4895)/* , [55, 89, true]) */
+productFib(5895)/* , [89, 144, false]) */
+productFib(74049690)/* , [6765, 10946, true]) */
+productFib(84049690)/* , [10946, 17711, false]) */
+productFib(193864606)/* , [10946, 17711, true]) */
+productFib(447577)/* , [610, 987, false]) */
+productFib(602070)/* , [610, 987, true]) */
+
+
+
+
 
 
 
