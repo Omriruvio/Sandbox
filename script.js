@@ -1462,38 +1462,67 @@
 // }
 
 
+// Given a number, say prod (for product), we search two Fibonacci numbers F(n) and F(n+1) verifying
 
+// F(n) * F(n+1) = prod.
 
-// my solution
-function productFib(prod) {
-  let fib = [0, 1];
-  let i = 0;
-  while ((fib[i] * fib[i+1]) <= prod) {
-    fib[i+2] = fib[i] + fib[i+1];
-    i++;
-  }
-  const result = (fib[i-1] * fib[i] == prod);
-  return result ? [fib[i-1], fib[i], result] : [fib[i], fib[i+1], result]
+// Your function productFib takes an integer (prod) and returns an array:
+
+// [F(n), F(n+1), true] or {F(n), F(n+1), 1} or (F(n), F(n+1), True)
+// depending on the language if F(n) * F(n+1) = prod.
+
+// If you don't find two consecutive F(n) verifying F(n) * F(n+1) = prodyou will return
+
+// [F(n), F(n+1), false] or {F(n), F(n+1), 0} or (F(n), F(n+1), False)
+// F(n) being the smallest one such as F(n) * F(n+1) > prod.
+
+// // my solution
+// function productFib(prod) {
+//   let fib = [0, 1];
+//   let i = 0;
+//   while ((fib[i] * fib[i+1]) <= prod) {
+//     fib[i+2] = fib[i] + fib[i+1];
+//     i++;
+//   }
+//   const result = (fib[i-1] * fib[i] == prod);
+//   return result ? [fib[i-1], fib[i], result] : [fib[i], fib[i+1], result]
+// }
+
+// // cleaned solution
+// function productFib(prod){
+//   let [a, b] = [0, 1];
+//   while(a * b < prod) [a, b] = [b, a + b];
+//   return [a, b, a * b === prod];
+// }
+
+// // tests
+// productFib(4895)/* , [55, 89, true]) */
+// productFib(5895)/* , [89, 144, false]) */
+// productFib(74049690)/* , [6765, 10946, true]) */
+// productFib(84049690)/* , [10946, 17711, false]) */
+// productFib(193864606)/* , [10946, 17711, true]) */
+// productFib(447577)/* , [610, 987, false]) */
+// productFib(602070)/* , [610, 987, true]) */
+
+// Object.values(' 0  22 12'.split(' ').reduce((obj, x) => {
+//   if (x != '') {
+//     obj[x] = (x.split('').reduce((a, b) => {return Number(a) + Number(b)}, 0))
+//   }
+//   return obj;
+// },{})).sort((a, b) => a - b)
+
+// This is the kata for below solution: https://www.codewars.com/kata/55c6126177c9441a570000cc
+
+function orderWeight(strng) {
+  const sumString = (str) => str.split('').reduce((a, b) => (Number(a) + Number(b)), 0);
+  return (strng.split(' ').reduce((arr, x) => {
+    if (x != '') arr.push([x, (sumString(x))])
+    return arr;
+  },[]))
+  .sort((a, b) => a[1] == b[1] ? String(a[0]) > String(b[0]) ? 1 : -1 : a[1] - b[1])
+  .map(x => x[0])
+  .join(' ')
 }
-
-// cleaned solution
-function productFib(prod){
-  let [a, b] = [0, 1];
-  while(a * b < prod) [a, b] = [b, a + b];
-  return [a, b, a * b === prod];
-}
-
-// tests
-productFib(4895)/* , [55, 89, true]) */
-productFib(5895)/* , [89, 144, false]) */
-productFib(74049690)/* , [6765, 10946, true]) */
-productFib(84049690)/* , [10946, 17711, false]) */
-productFib(193864606)/* , [10946, 17711, true]) */
-productFib(447577)/* , [610, 987, false]) */
-productFib(602070)/* , [610, 987, true]) */
-
-
-
 
 
 
