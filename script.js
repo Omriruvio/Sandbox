@@ -1512,24 +1512,82 @@
 // },{})).sort((a, b) => a - b)
 
 // This is the kata for below solution: https://www.codewars.com/kata/55c6126177c9441a570000cc
+// Solutions: https://www.codewars.com/kata/55c6126177c9441a570000cc/solutions/javascript
+// IMPORTANT
 
-function orderWeight(strng) {
-  const sumString = (str) => str.split('').reduce((a, b) => (Number(a) + Number(b)), 0);
-  return (strng.split(' ').reduce((arr, x) => {
-    if (x != '') arr.push([x, (sumString(x))])
-    return arr;
-  },[]))
-  .sort((a, b) => a[1] == b[1] ? String(a[0]) > String(b[0]) ? 1 : -1 : a[1] - b[1])
-  .map(x => x[0])
-  .join(' ')
+// function orderWeight(strng) {
+//   const sumString = (str) => str.split('').reduce((a, b) => (Number(a) + Number(b)), 0);
+//   return (strng.split(' ').reduce((arr, x) => {
+//     if (x != '') arr.push([x, (sumString(x))])
+//     return arr;
+//   },[]))
+//   .sort((a, b) => a[1] == b[1] ? String(a[0]) > String(b[0]) ? 1 : -1 : a[1] - b[1])
+//   .map(x => x[0])
+//   .join(' ')
+// }
+
+// function sumDigits(n) {
+//   const nArr = String(n).split('');
+//   return nArr.reduce((a, b) => a + b);
+// }
+
+function digital_root(n) {
+  return String(n).split('').length == 1 ? n : digital_root(String(n).split('').reduce((a, b)=> +a + +b))
+}
+
+function shiftedDiff(first,second){
+  function rotate(str) {
+    str = Array.isArray(str) ? str : str.split('')
+    str.unshift(str.pop())
+    return str;
+  }
+  if (first == second) return 0;
+  for (let i = 0; i < first.length; i++) {
+    first = rotate(first);
+    if (first.join('') == second) return i+1;
+  }
+  return -1;
 }
 
 
+function whatCentury(year)
+{
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const prefix = Number(year.slice(0, 2));
+  const that = (Number(String(prefix)[1]) + 1) % 10;
+  const suffix = prefix < 20 && prefix > 3 ? 'th' : suffixes[that] || 'th';
+  if (year % 1000 == 0) return prefix+'th'; 
+  return `${prefix + 1}${suffix}`;
+}
 
 
+// function toAndFrom(a, b, t) {
+//   if (a == b) return 0
+//   let forward = a < b;
+//   let low = a < b ? a : b;
+//   let high = a > b ? a : b;
+//   let i = forward ? low : high;
+//   while (t > 0) {
+//     forward = i == high ? false : i == low ? true : forward;
+//     i = forward ? ++i : --i;
+//     t--
+//   }
+//   return i;
+// }
 
+// A person is moving along a straight line. Initially he is at point A. He goes to point B from A with speed equal to 1 meter per second. Immediately after reaching B he turns around and heads to A from B with the same speed. After reaching point A he turns around once again and heads to B. etc.
 
+// We need an algorithm that identifies the location of the person at any given moment in time(argument t).
 
+function toAndFrom(a, b, t) {
+  const low = a < b ? a : b;
+  const high = a > b ? a : b;
+  const range = high - low;
+  let isForward = Math.floor(t / range) % 2 == 0;
+  if (b < a) isForward = !isForward
+  const diff = t % range 
+  return isForward ? low + diff : high -diff;
+}
 
 
 
