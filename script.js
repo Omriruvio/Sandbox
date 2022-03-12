@@ -1531,34 +1531,34 @@
 //   return nArr.reduce((a, b) => a + b);
 // }
 
-function digital_root(n) {
-  return String(n).split('').length == 1 ? n : digital_root(String(n).split('').reduce((a, b)=> +a + +b))
-}
+// function digital_root(n) {
+//   return String(n).split('').length == 1 ? n : digital_root(String(n).split('').reduce((a, b)=> +a + +b))
+// }
 
-function shiftedDiff(first,second){
-  function rotate(str) {
-    str = Array.isArray(str) ? str : str.split('')
-    str.unshift(str.pop())
-    return str;
-  }
-  if (first == second) return 0;
-  for (let i = 0; i < first.length; i++) {
-    first = rotate(first);
-    if (first.join('') == second) return i+1;
-  }
-  return -1;
-}
+// function shiftedDiff(first,second){
+//   function rotate(str) {
+//     str = Array.isArray(str) ? str : str.split('')
+//     str.unshift(str.pop())
+//     return str;
+//   }
+//   if (first == second) return 0;
+//   for (let i = 0; i < first.length; i++) {
+//     first = rotate(first);
+//     if (first.join('') == second) return i+1;
+//   }
+//   return -1;
+// }
 
 
-function whatCentury(year)
-{
-  const suffixes = ['th', 'st', 'nd', 'rd'];
-  const prefix = Number(year.slice(0, 2));
-  const that = (Number(String(prefix)[1]) + 1) % 10;
-  const suffix = prefix < 20 && prefix > 3 ? 'th' : suffixes[that] || 'th';
-  if (year % 1000 == 0) return prefix+'th'; 
-  return `${prefix + 1}${suffix}`;
-}
+// function whatCentury(year)
+// {
+//   const suffixes = ['th', 'st', 'nd', 'rd'];
+//   const prefix = Number(year.slice(0, 2));
+//   const that = (Number(String(prefix)[1]) + 1) % 10;
+//   const suffix = prefix < 20 && prefix > 3 ? 'th' : suffixes[that] || 'th';
+//   if (year % 1000 == 0) return prefix+'th'; 
+//   return `${prefix + 1}${suffix}`;
+// }
 
 
 // function toAndFrom(a, b, t) {
@@ -1579,18 +1579,24 @@ function whatCentury(year)
 
 // We need an algorithm that identifies the location of the person at any given moment in time(argument t).
 
-function toAndFrom(a, b, t) {
-  const low = a < b ? a : b;
-  const high = a > b ? a : b;
-  const range = high - low;
-  let isForward = Math.floor(t / range) % 2 == 0;
-  if (b < a) isForward = !isForward
-  const diff = t % range 
-  return isForward ? low + diff : high -diff;
+// function toAndFrom(a, b, t) {
+//   const low = a < b ? a : b;
+//   const high = a > b ? a : b;
+//   const range = high - low;
+//   let isForward = Math.floor(t / range) % 2 == 0;
+//   if (b < a) isForward = !isForward
+//   const diff = t % range 
+//   return isForward ? low + diff : high -diff;
+// }
+
+
+function deleteNth(arr,n){
+  const count = {};
+  return arr.filter(x => {
+    count[x] = count[x] ? ++count[x] : 1;
+    return count[x] <= n
+  })
 }
-
-
-
 
 
 
