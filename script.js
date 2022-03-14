@@ -1590,13 +1590,68 @@
 // }
 
 
-function deleteNth(arr,n){
-  const count = {};
-  return arr.filter(x => {
-    count[x] = count[x] ? ++count[x] : 1;
-    return count[x] <= n
+// function deleteNth(arr,n){
+//   const count = {};
+//   return arr.filter(x => {
+//     count[x] = count[x] ? ++count[x] : 1;
+//     return count[x] <= n
+//   })
+// }
+
+
+// const persistence = (num, count = 0) => num < 10 ? count : persistence(String(num).split('').reduce((a, b) => a * b), ++count)
+
+
+// debugger;
+
+// let exp =  '5 1 2 + 4 * + 3 -'.split(" ")
+
+// exp = exp.map(i =>  {return Number(i) ? Number(i) : i})
+
+// console.log(calculate(exp))
+
+// function calculate (exp) {
+//   let calc = {
+//     "+" : (a, b) => a + b,
+//     "-" : (a, b) => a - b,
+//     "*" : (a, b) => a * b,
+//     "/" : (a, b) => a / b
+//   }
+
+//   let stack = []
+  
+//   exp.forEach(op => {
+//     stack.push ( 
+//       calc[op] 
+//         ? calc[op](...stack.splice(-2))
+//         : op
+//       )
+//   });
+  
+//   return stack
+// }
+
+function calc(expr) {
+  const arr = expr.split(' ').map(x => Number(x) ? Number(x) : x);
+  const stack = [];
+  const calc = {
+    '+': (b, a) => a + b,
+    '-': (b, a) => a - b,
+    '*': (b, a) => a * b,
+    '/': (b, a) => a / b
+  }
+  
+  arr.forEach(x => {
+    stack.push(
+     calc[x] ? calc[x](stack.pop(), stack.pop()) : x 
+    )
   })
+  
+  return stack[0] || 0;
 }
+
+console.log(calc('5 1 2 + 4 * + 3 -')) // 14
+
 
 
 
