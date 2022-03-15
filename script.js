@@ -1631,27 +1631,34 @@
 //   return stack
 // }
 
-function calc(expr) {
-  const arr = expr.split(' ').map(x => Number(x) ? Number(x) : x);
-  const stack = [];
-  const calc = {
-    '+': (b, a) => a + b,
-    '-': (b, a) => a - b,
-    '*': (b, a) => a * b,
-    '/': (b, a) => a / b
-  }
+// function calc(expr) {
+//   const arr = expr.split(' ').map(x => Number(x) ? Number(x) : x);
+//   const stack = [];
+//   const calc = {
+//     '+': (b, a) => a + b,
+//     '-': (b, a) => a - b,
+//     '*': (b, a) => a * b,
+//     '/': (b, a) => a / b
+//   }
   
-  arr.forEach(x => {
-    stack.push(
-     calc[x] ? calc[x](stack.pop(), stack.pop()) : x 
-    )
-  })
+//   arr.forEach(x => {
+//     stack.push(
+//      calc[x] ? calc[x](stack.pop(), stack.pop()) : x 
+//     )
+//   })
   
-  return stack[0] || 0;
+//   return stack[0] || 0;
+// }
+
+// console.log(calc('5 1 2 + 4 * + 3 -')) // 14
+
+
+function duplicateCount(text){
+  return Object.values(text.toLowerCase().split('').reduce((acc, x) => {
+    acc[x] ? acc[x]++ : acc[x] = 1;
+    return acc;
+  }, {})).filter(x => x > 1).length
 }
-
-console.log(calc('5 1 2 + 4 * + 3 -')) // 14
-
 
 
 
