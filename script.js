@@ -1667,5 +1667,17 @@ function findOutlier(arr){
   return arr.find(x => isEven ? x % 2 != 0 : x % 2 == 0)
 }
 
+function convertNum (num) {
+  const isEven = x => x % 2 == 0;
+  return String(num).split('').reduce((acc, x) => {
+    const value = 
+          (acc.length == 0) ? x : 
+          (isEven(acc[acc.length-1]) && isEven(x)) ? ['-', x] : 
+          !(isEven(acc[acc.length-1]) || isEven(x)) ? ['*', x] : x;
+    acc = acc.concat(value);
+    return acc;
+  }, [])
+}
 
+console.log(convertNum(126879)) // [1, 2, -, 6, -, 8, 7, *, 9]
 
