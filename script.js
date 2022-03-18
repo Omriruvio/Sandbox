@@ -1078,12 +1078,12 @@
 
 // initiate new sentance
 // split input to words, for each word:
-  // move first letter to end + ay:
-  // let i = 0;
-  // while word[i] && word[i] includes punctuation
-    // i++
-  // const removed = word.split('').splice(i, 1);
-  // sentance += word.append(removed).join('') + 'ay';
+// move first letter to end + ay:
+// let i = 0;
+// while word[i] && word[i] includes punctuation
+// i++
+// const removed = word.split('').splice(i, 1);
+// sentance += word.append(removed).join('') + 'ay';
 
 // return sentance 
 
@@ -1172,8 +1172,8 @@
 // base condition: no possible path
 
 // if direction == right 
-  // if right exists set currentPosition to right, results.push(currentPosition)
-    // else snail(matrix, currentPosition, 'down', results)
+// if right exists set currentPosition to right, results.push(currentPosition)
+// else snail(matrix, currentPosition, 'down', results)
 
 
 
@@ -1212,7 +1212,7 @@
 //   var result = [];
 //   var top = 0, bottom = arr.length-1;
 //   var left = 0, right = arr[0].length-1;
-  
+
 //   do {
 //     for (var i = left; i <= right; i++){result.push(arr[top][i])} // top row
 //     for (var i = top+1; i <= bottom; i++){result.push(arr[i][right])} // right column
@@ -1220,7 +1220,7 @@
 //     for (var i = bottom-1; i > top; i--){result.push(arr[i][left])} // left column
 //     top++; bottom--; left++; right--;
 //   } while (top <= bottom);
-  
+
 //   return result;
 
 
@@ -1324,7 +1324,7 @@
 //       results.pop();
 //       if (direction == 'NORTH' || direction == 'SOUTH') vertical = null;
 //       if (direction == 'EAST' || direction == 'WEST') horizontal = null;
-      
+
 //     }
 //   }
 //   return results;
@@ -1339,7 +1339,7 @@
 //     "SOUTH": "NORTH",
 //     "WEST": "EAST"
 //   }
-  
+
 //   const stack = []
 //   for (let i = 0; i < arr.length; i++) {
 //     if (stack[stack.length-1] === dir[arr[i]]) {
@@ -1619,7 +1619,7 @@
 //   }
 
 //   let stack = []
-  
+
 //   exp.forEach(op => {
 //     stack.push ( 
 //       calc[op] 
@@ -1627,7 +1627,7 @@
 //         : op
 //       )
 //   });
-  
+
 //   return stack
 // }
 
@@ -1640,44 +1640,55 @@
 //     '*': (b, a) => a * b,
 //     '/': (b, a) => a / b
 //   }
-  
+
 //   arr.forEach(x => {
 //     stack.push(
 //      calc[x] ? calc[x](stack.pop(), stack.pop()) : x 
 //     )
 //   })
-  
+
 //   return stack[0] || 0;
 // }
 
 // console.log(calc('5 1 2 + 4 * + 3 -')) // 14
 
 
-function duplicateCount(text){
-  return Object.values(text.toLowerCase().split('').reduce((acc, x) => {
-    acc[x] ? acc[x]++ : acc[x] = 1;
-    return acc;
-  }, {})).filter(x => x > 1).length
+// function duplicateCount(text) {
+//   return Object.values(text.toLowerCase().split('').reduce((acc, x) => {
+//     acc[x] ? acc[x]++ : acc[x] = 1;
+//     return acc;
+//   }, {})).filter(x => x > 1).length
+// }
+
+// // You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N.
+
+// function findOutlier(arr) {
+//   const isEven = arr.slice(0, 3).filter(x => x % 2 == 0).length >= 2;
+//   return arr.find(x => isEven ? x % 2 != 0 : x % 2 == 0)
+// }
+
+// function convertNum(num) {
+//   const isEven = x => x % 2 == 0;
+//   return String(num).split('').reduce((acc, x) => {
+//     const value =
+//       (acc.length == 0) ? x :
+//         (isEven(acc[acc.length - 1]) && isEven(x)) ? ['-', x] :
+//           !(isEven(acc[acc.length - 1]) || isEven(x)) ? ['*', x] : x;
+//     acc = acc.concat(value);
+//     return acc;
+//   }, [])
+// }
+
+// console.log(convertNum(126879)) // [1, 2, -, 6, -, 8, 7, *, 9]
+
+function isValidWalk(walk) {
+  if (walk.length != 10) return false;
+  let sums = { 'n': 0, 's': 0, 'e': 0, 'w': 0 }
+  sums = walk.reduce((obj, x) => {
+    if (obj[x]) { obj[x]++ } else { obj[x] = 1 }
+    return obj
+  }, sums)
+  return sums['n'] - sums['s'] == 0 && sums['w'] - sums['e'] == 0
 }
 
-// You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N.
-
-function findOutlier(arr){
-  const isEven = arr.slice(0, 3).filter(x => x % 2 == 0).length >= 2;
-  return arr.find(x => isEven ? x % 2 != 0 : x % 2 == 0)
-}
-
-function convertNum (num) {
-  const isEven = x => x % 2 == 0;
-  return String(num).split('').reduce((acc, x) => {
-    const value = 
-          (acc.length == 0) ? x : 
-          (isEven(acc[acc.length-1]) && isEven(x)) ? ['-', x] : 
-          !(isEven(acc[acc.length-1]) || isEven(x)) ? ['*', x] : x;
-    acc = acc.concat(value);
-    return acc;
-  }, [])
-}
-
-console.log(convertNum(126879)) // [1, 2, -, 6, -, 8, 7, *, 9]
-
+console.log(!isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']))
