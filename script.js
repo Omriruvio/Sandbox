@@ -1692,3 +1692,25 @@ function isValidWalk(walk) {
 }
 
 console.log(!isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']))
+
+
+function getAlphabetArray (isLowerCase = true) {
+  const ASCII_TABLE_LOWERCASE_A_POSITION = 97
+  const ASCII_TABLE_UPPERCASE_A_POSITION = 65
+  const ALPHABET_LENGTH = 26
+  asciiPosition = isLowerCase ? ASCII_TABLE_LOWERCASE_A_POSITION : ASCII_TABLE_UPPERCASE_A_POSITION
+  return Array.from({length: ALPHABET_LENGTH}, (_, i) => String.fromCharCode(i + asciiPosition))
+  // ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+}
+
+function alphabetPosition(text) {
+  const abc = getAlphabetArray();
+  text = text.toLowerCase();
+  return text.split('').reduce((acc, x) => {
+    let result = abc.includes(x) ? abc.indexOf(x) + 1 : false
+    if (result) acc.push(result)
+    return acc
+  }, []).join(' ')
+}
+
+console.log(alphabetPosition("The sunset sets at twelve o' clock."))
