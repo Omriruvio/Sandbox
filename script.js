@@ -1714,3 +1714,13 @@ function alphabetPosition(text) {
 }
 
 console.log(alphabetPosition("The sunset sets at twelve o' clock."))
+
+function order(words){
+  return words.split(' ').reduce((res, x) => {
+    let pos = x.match(/[0-9]+/g)
+    res[pos-1] = x;
+    return res;
+  }, []).join(' ')
+}
+
+console.log(order("is2 Thi1s T4est 3a"))
