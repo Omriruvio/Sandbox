@@ -6,6 +6,11 @@ body {
   text-align: center;
 }
 
+.iframe-modal-content {
+  width: 100%;
+  height: 100vh;
+}
+
 .parent {
   width: 90vw;
   height: 90vw;

@@ -1735,5 +1735,28 @@ function findEvenIndex(arr){
 
 console.log(findEvenIndex([1,100,50,-51,1,1]))
 
+function formatDuration (seconds) {
+  const totalYears = Math.floor(seconds / 60 / 60 / 24 / 365);
+  const remainderDays = Math.floor(seconds / 60 / 60 / 24) % 365;
+  const remainderHours = Math.floor(seconds / 60 / 60) % 24;
+  const remainderMinutes = Math.floor(seconds / 60) % 60
+  const remainderSeconds = seconds % 60;
+
+  const format = (time, string) => time == 1 ? `${time} ${string.slice(0, -1)}` : time > 1 ? `${time} ${string}` : 0;
+
+  const results = [format(totalYears, 'years'),
+                   format(remainderDays, 'days'),
+                   format(remainderHours, 'hours'),
+                   format(remainderMinutes, 'minutes'),
+                   format(remainderSeconds, 'seconds')
+                  ].filter(x => x != 0)
+
+  return results.reverse().reduce((acc, x, i) => {
+    if (i == 0 && results.length > 1) {acc.push(x, ' and ')} else if (i != results.length -1) {acc.push(x, ', ')} else {acc.push(x)}
+    return acc;
+  }, []).reverse().join('');
+}
+
+console.log(formatDuration(3662))
 
 
