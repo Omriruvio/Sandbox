@@ -1724,3 +1724,16 @@ function order(words){
 }
 
 console.log(order("is2 Thi1s T4est 3a"))
+
+const sumArray = arr => arr.reduce((a, b) => a + b, 0);
+const sumOfSliceBefore = (arr, i) => sumArray(arr.slice(0, i));
+const sumOfSliceAfter = (arr, i) => sumArray(arr.slice(i+1));
+
+function findEvenIndex(arr){
+  return arr.findIndex((x, i, arr) => (sumOfSliceBefore(arr, i)) == sumOfSliceAfter(arr, i))
+}
+
+console.log(findEvenIndex([1,100,50,-51,1,1]))
+
+
+
