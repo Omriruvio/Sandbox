@@ -1681,82 +1681,92 @@
 
 // console.log(convertNum(126879)) // [1, 2, -, 6, -, 8, 7, *, 9]
 
-function isValidWalk(walk) {
-  if (walk.length != 10) return false;
-  let sums = { 'n': 0, 's': 0, 'e': 0, 'w': 0 }
-  sums = walk.reduce((obj, x) => {
-    if (obj[x]) { obj[x]++ } else { obj[x] = 1 }
-    return obj
-  }, sums)
-  return sums['n'] - sums['s'] == 0 && sums['w'] - sums['e'] == 0
-}
+// function isValidWalk(walk) {
+//   if (walk.length != 10) return false;
+//   let sums = { 'n': 0, 's': 0, 'e': 0, 'w': 0 }
+//   sums = walk.reduce((obj, x) => {
+//     if (obj[x]) { obj[x]++ } else { obj[x] = 1 }
+//     return obj
+//   }, sums)
+//   return sums['n'] - sums['s'] == 0 && sums['w'] - sums['e'] == 0
+// }
 
-console.log(!isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']))
+// console.log(!isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']))
 
 
-function getAlphabetArray (isLowerCase = true) {
-  const ASCII_TABLE_LOWERCASE_A_POSITION = 97
-  const ASCII_TABLE_UPPERCASE_A_POSITION = 65
-  const ALPHABET_LENGTH = 26
-  asciiPosition = isLowerCase ? ASCII_TABLE_LOWERCASE_A_POSITION : ASCII_TABLE_UPPERCASE_A_POSITION
-  return Array.from({length: ALPHABET_LENGTH}, (_, i) => String.fromCharCode(i + asciiPosition))
-  // ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-}
+// function getAlphabetArray (isLowerCase = true) {
+//   const ASCII_TABLE_LOWERCASE_A_POSITION = 97
+//   const ASCII_TABLE_UPPERCASE_A_POSITION = 65
+//   const ALPHABET_LENGTH = 26
+//   asciiPosition = isLowerCase ? ASCII_TABLE_LOWERCASE_A_POSITION : ASCII_TABLE_UPPERCASE_A_POSITION
+//   return Array.from({length: ALPHABET_LENGTH}, (_, i) => String.fromCharCode(i + asciiPosition))
+//   // ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+// }
 
-function alphabetPosition(text) {
-  const abc = getAlphabetArray();
-  text = text.toLowerCase();
-  return text.split('').reduce((acc, x) => {
-    let result = abc.includes(x) ? abc.indexOf(x) + 1 : false
-    if (result) acc.push(result)
-    return acc
-  }, []).join(' ')
-}
+// function alphabetPosition(text) {
+//   const abc = getAlphabetArray();
+//   text = text.toLowerCase();
+//   return text.split('').reduce((acc, x) => {
+//     let result = abc.includes(x) ? abc.indexOf(x) + 1 : false
+//     if (result) acc.push(result)
+//     return acc
+//   }, []).join(' ')
+// }
 
-console.log(alphabetPosition("The sunset sets at twelve o' clock."))
+// console.log(alphabetPosition("The sunset sets at twelve o' clock."))
 
-function order(words){
-  return words.split(' ').reduce((res, x) => {
-    let pos = x.match(/[0-9]+/g)
-    res[pos-1] = x;
-    return res;
-  }, []).join(' ')
-}
+// function order(words){
+//   return words.split(' ').reduce((res, x) => {
+//     let pos = x.match(/[0-9]+/g)
+//     res[pos-1] = x;
+//     return res;
+//   }, []).join(' ')
+// }
 
-console.log(order("is2 Thi1s T4est 3a"))
+// console.log(order("is2 Thi1s T4est 3a"))
 
-const sumArray = arr => arr.reduce((a, b) => a + b, 0);
-const sumOfSliceBefore = (arr, i) => sumArray(arr.slice(0, i));
-const sumOfSliceAfter = (arr, i) => sumArray(arr.slice(i+1));
+// const sumArray = arr => arr.reduce((a, b) => a + b, 0);
+// const sumOfSliceBefore = (arr, i) => sumArray(arr.slice(0, i));
+// const sumOfSliceAfter = (arr, i) => sumArray(arr.slice(i+1));
 
-function findEvenIndex(arr){
-  return arr.findIndex((x, i, arr) => (sumOfSliceBefore(arr, i)) == sumOfSliceAfter(arr, i))
-}
+// function findEvenIndex(arr){
+//   return arr.findIndex((x, i, arr) => (sumOfSliceBefore(arr, i)) == sumOfSliceAfter(arr, i))
+// }
 
-console.log(findEvenIndex([1,100,50,-51,1,1]))
+// console.log(findEvenIndex([1,100,50,-51,1,1]))
 
-function formatDuration (seconds) {
-  const totalYears = Math.floor(seconds / 60 / 60 / 24 / 365);
-  const remainderDays = Math.floor(seconds / 60 / 60 / 24) % 365;
-  const remainderHours = Math.floor(seconds / 60 / 60) % 24;
-  const remainderMinutes = Math.floor(seconds / 60) % 60
-  const remainderSeconds = seconds % 60;
+// function formatDuration (seconds) {
+//   const totalYears = Math.floor(seconds / 60 / 60 / 24 / 365);
+//   const remainderDays = Math.floor(seconds / 60 / 60 / 24) % 365;
+//   const remainderHours = Math.floor(seconds / 60 / 60) % 24;
+//   const remainderMinutes = Math.floor(seconds / 60) % 60
+//   const remainderSeconds = seconds % 60;
 
-  const format = (time, string) => time == 1 ? `${time} ${string.slice(0, -1)}` : time > 1 ? `${time} ${string}` : 0;
+//   const format = (time, string) => time == 1 ? `${time} ${string.slice(0, -1)}` : time > 1 ? `${time} ${string}` : 0;
 
-  const results = [format(totalYears, 'years'),
-                   format(remainderDays, 'days'),
-                   format(remainderHours, 'hours'),
-                   format(remainderMinutes, 'minutes'),
-                   format(remainderSeconds, 'seconds')
-                  ].filter(x => x != 0)
+//   const results = [format(totalYears, 'years'),
+//                    format(remainderDays, 'days'),
+//                    format(remainderHours, 'hours'),
+//                    format(remainderMinutes, 'minutes'),
+//                    format(remainderSeconds, 'seconds')
+//                   ].filter(x => x != 0)
 
-  return results.reverse().reduce((acc, x, i) => {
-    if (i == 0 && results.length > 1) {acc.push(x, ' and ')} else if (i != results.length -1) {acc.push(x, ', ')} else {acc.push(x)}
-    return acc;
-  }, []).reverse().join('');
-}
+//   return results.reverse().reduce((acc, x, i) => {
+//     if (i == 0 && results.length > 1) {acc.push(x, ' and ')} else if (i != results.length -1) {acc.push(x, ', ')} else {acc.push(x)}
+//     return acc;
+//   }, []).reverse().join('') || 'now';
+// }
 
-console.log(formatDuration(3662))
+// console.log(formatDuration(3662))
+
+// function amountOfPages(summary){
+//   let pages = 1;
+//   let sum = 0;
+//   while (sum < summary) {
+//     sum += String(pages++).length;
+//   }
+//   return pages - 1;
+// }
+
 
 
