@@ -1768,25 +1768,44 @@
 //   return pages - 1;
 // }
 
-function domainName(url){
-  const split = url.slice(0, 4) == 'http' ? url.split('//')[1].split('.') : url.split('.');
-  return split[0] == 'www' ? split[1] : split[0]
+// function domainName(url){
+//   const split = url.slice(0, 4) == 'http' ? url.split('//')[1].split('.') : url.split('.');
+//   return split[0] == 'www' ? split[1] : split[0]
+// }
+
+// function domainName(url){
+//   url = url.replace("https://", '');
+//   url = url.replace("http://", '');
+//   url = url.replace("www.", '');
+//   return url.split('.')[0];
+// };
+
+// console.log(domainName("http://github.com/carbonfive/raygun"))
+// console.log(domainName("http://www.zombie-bites.com"))
+// console.log(domainName("https://www.cnet.com"))
+// console.log(domainName("http://google.com"))
+// console.log(domainName("http://google.co.jp"))
+// console.log(domainName("www.xakep.ru"))
+// console.log(domainName("https://youtube.com"))
+
+function cakes(recipe, available) {
+  const results = {}
+  for (const [ing, amount] of Object.entries(recipe)) {
+    if (available[ing]) {
+      results[ing] = Math.floor(available[ing] / amount)
+    }
+  }
+  return (Object.keys(results).length == Object.keys(recipe).length) ? (Math.min(...Object.values(results))) : 0
 }
 
-function domainName(url){
-  url = url.replace("https://", '');
-  url = url.replace("http://", '');
-  url = url.replace("www.", '');
-  return url.split('.')[0];
-};
+// function cakes(recipe, available) {
+//   return Object.keys(recipe).reduce(function(val, ingredient) {
+//     return Math.min(Math.floor(available[ingredient] / recipe[ingredient] || 0), val)
+//   }, Infinity)  
+// }
 
-console.log(domainName("http://github.com/carbonfive/raygun"))
-console.log(domainName("http://www.zombie-bites.com"))
-console.log(domainName("https://www.cnet.com"))
-console.log(domainName("http://google.com"))
-console.log(domainName("http://google.co.jp"))
-console.log(domainName("www.xakep.ru"))
-console.log(domainName("https://youtube.com"))
-
+console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
+console.log(cakes({cream: 1, flour: 3, sugar: 1, milk: 1, oil: 1, eggs: 1}, {sugar: 1, eggs: 1, flour: 3, cream: 1, oil: 1, milk: 1}))
+console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
 
 
