@@ -1788,15 +1788,15 @@
 // console.log(domainName("www.xakep.ru"))
 // console.log(domainName("https://youtube.com"))
 
-function cakes(recipe, available) {
-  const results = {}
-  for (const [ing, amount] of Object.entries(recipe)) {
-    if (available[ing]) {
-      results[ing] = Math.floor(available[ing] / amount)
-    }
-  }
-  return (Object.keys(results).length == Object.keys(recipe).length) ? (Math.min(...Object.values(results))) : 0
-}
+// function cakes(recipe, available) {
+//   const results = {}
+//   for (const [ing, amount] of Object.entries(recipe)) {
+//     if (available[ing]) {
+//       results[ing] = Math.floor(available[ing] / amount)
+//     }
+//   }
+//   return (Object.keys(results).length == Object.keys(recipe).length) ? (Math.min(...Object.values(results))) : 0
+// }
 
 // function cakes(recipe, available) {
 //   return Object.keys(recipe).reduce(function(val, ingredient) {
@@ -1804,8 +1804,22 @@ function cakes(recipe, available) {
 //   }, Infinity)  
 // }
 
-console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
-console.log(cakes({cream: 1, flour: 3, sugar: 1, milk: 1, oil: 1, eggs: 1}, {sugar: 1, eggs: 1, flour: 3, cream: 1, oil: 1, milk: 1}))
-console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
+// console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
+// console.log(cakes({cream: 1, flour: 3, sugar: 1, milk: 1, oil: 1, eggs: 1}, {sugar: 1, eggs: 1, flour: 3, cream: 1, oil: 1, milk: 1}))
+// console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
 
+
+function twoSum(numbers, target) {
+  debugger;
+  const result = [];
+  for (let i = 0; i < numbers.length; i++ ) {
+    for (let j = 0; j < numbers.length; j++) {
+      if (i != j && numbers[i] + numbers[j] == target) 
+        return [j, i]
+    }
+  }
+}
+
+
+console.log(twoSum([1234,5678,9012], 14690))
 
