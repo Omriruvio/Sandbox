@@ -18,7 +18,7 @@
 // const words = require("random-words");
 
 // const { list } = require("mocha/lib/reporters");
-// 
+//
 // function babyShark() {
 //   const sharks = ['Baby', 'Mommy', 'Daddy', 'Grandma', 'Grandpa'];
 //   const doo = ' doo'.repeat(6);
@@ -32,7 +32,6 @@
 //     return dooChunk + lastLine;
 //   }).join('\n') + '\n' + letsGoHuntChunk + finale);
 // }
-
 
 // const person = {
 //     firstName: 'Omri',
@@ -178,7 +177,6 @@
 
 // whichIsLarger=(f,g)=>f()==g()?'neither':f()>g()?'f':'g'
 
-
 // // username validation funciton
 // function usernameValidation(str) {
 //     if (str.length<4 || str.length>25) throw new Error ('Username must be between 4 and 25 characters long.')
@@ -195,10 +193,8 @@
 // const omri = 'aa_';
 // console.log(usernameValidation(omri));
 
-
-
 // // function takes a sorted array and an integer, checks if integer exists in array and returns its position or -1 if does not exist.
-// const binarySearch = function (a, x) {  
+// const binarySearch = function (a, x) {
 //     let low = 0;
 //     let high = a.length - 1;
 //     while (low<=high) {
@@ -242,7 +238,6 @@
 
 // recursiveSearchSorted(array, x);
 
-
 // let userInput = prompt('H, Q or 9? What is your requirement?');
 // let bottleSong = '99 bottles of beer on the wall, 99 bottles of beer. \nTake one down and pass it around, 98 bottles of beer on the wall.\n98 bottles of beer on the wall, 98 bottles of beer.\nTake one down and pass it around, 97 bottles of beer on the wall.\n97 bottles of beer on the wall, 97 bottles of beer.\nTake one down and pass it around, 96 bottles of beer on the wall.\n...\n...\n...\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n1 bottle of beer on the wall, 1 bottle of beer.\nTake one down and pass it around, no more bottles of beer on the wall.\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.';
 
@@ -256,14 +251,14 @@
 //     let songBody = '';
 //     let i = 99;
 //     while (i >= 3) {
-//       let currentChunk = `${i} bottles of beer on the wall, ${i} bottles of beer.\nTake one down and pass it around, ${(i-1)} bottles of beer on the wall.\n`;      
+//       let currentChunk = `${i} bottles of beer on the wall, ${i} bottles of beer.\nTake one down and pass it around, ${(i-1)} bottles of beer on the wall.\n`;
 //       i--;
 //       songBody += currentChunk;
 //     }
 //     while (i >= 0) {
 //       currentChunk = `${i == 0 ? 'No more' : i} ${i == 1 ? 'bottle' : 'bottles'} of beer on the wall, ${i==0 ? 'no more' : i} ${i==1 ? 'bottle' : 'bottles'} of beer.\n`
 //       currentChunk += `${i == 0 ? 'Go to the store and buy some more, 99 bottles of beer on the wall.' : ''}`;
-//       if (i != 0) { 
+//       if (i != 0) {
 //         currentChunk +=  `Take one down and pass it around, ${(i == 2) ? '1 bottle' : (i == 1) ? 'no more bottles' : ''} of beer on the wall.\n`
 //       }
 
@@ -279,7 +274,7 @@
 // console.log(HQ9('9'));
 
 // // my way
-// function closeCompare (a, b, margin) { 
+// function closeCompare (a, b, margin) {
 //   // margin = (margin ?? 0);
 //   let distance;
 //   if (margin === null || margin === undefined) margin = 0;
@@ -322,7 +317,6 @@
 // // recursive short
 // const numberToPower = (number,power) => power > 0 ? number * numberToPower(number,power-1) : 1;
 
-
 // // take an array and make an object containing items and number of recursions of each item as key:value
 
 // function occurenceCount(array) {
@@ -336,7 +330,6 @@
 
 // const fruits = ["apple", "banana", "orange", "banana", "apple", "banana"];
 // console.log(occurenceCount(fruits));
-
 
 // const chessChampions = [
 // 	"Wilhelm Steinitz",
@@ -365,7 +358,6 @@
 
 // console.log(chessChampions);
 
-
 // // printPrimes is a function that takes n and prints all prime numbers up to and including n
 // // my way
 // function checkPrime(number) {
@@ -387,7 +379,7 @@
 //   for (let i = 2; i <= n; i++) {
 //     for (let j = 2; j < i; j++) {
 //       if (i % j == 0) continue nextPrime;
-//     } 
+//     }
 //     console.log(i);
 //   }
 // }
@@ -398,8 +390,6 @@
 // console.log(arr.reduce((prev, current, i) => {
 //   return prev+current;
 // }, ))
-
-
 
 // const array = ["apple", "banana", "orange", "banana", "apple", "banana"];
 
@@ -434,20 +424,20 @@
 //   if (!word) return '';
 //   const array = word.toLowerCase().split('');
 //   const counts = {};
-//   // map each character in array 
+//   // map each character in array
 //   return array.map(char => {
 //     if (!counts[char]) {
-//       // if doesnt exist in object, iterate over array and 
+//       // if doesnt exist in object, iterate over array and
 //       counts[char] = 0;
 //       array.forEach(x => { if (x == char) { ++counts[char] } })
 //       //      update counts with character: count
 
-//       //      check if character count is > 1 then 
+//       //      check if character count is > 1 then
 //       if (counts[char] > 1) { return ')' } else { return '(' }
 //       //          splice with either ( or )
 //     } else {
 //       // if already exists in object
-//       //      splice with with )  
+//       //      splice with with )
 //       return ')'
 //     }
 //   }).join('');
@@ -479,10 +469,9 @@
 //   return `${h < 10 ? `0${h}` : h}:${m < 10 ? `0${m}` : m}:${s < 10 ? `0${s}` : s}`;
 // }
 
-// // get hours 
+// // get hours
 // // get minutes = hours / 60
 // // get seconds = minutes / 60 + hours % 60
-
 
 // const maxSequence = function (arr) {
 //   let biggestS = 0;
@@ -505,8 +494,6 @@
 //   }
 //   return (biggestS);
 // }
-
-
 
 // function bouncingBall(h, bounce, window) {
 //   if (!(h > 0 && bounce > 0 && bounce < 1 && h > window)) return -1;
@@ -534,12 +521,11 @@
 // abcdefuvwxyz ("      12)  concatenation of strarr[4] and strarr[5]
 
 // Two strings are the longest: "folingtrashy" and "abcdefuvwxyz".
-// The first that came is "folingtrashy" so 
+// The first that came is "folingtrashy" so
 // longest_consec(strarr, 2) should return "folingtrashy".
 
 // In the same way:
 // longest_consec(["zone", "abigail", "theta", "form", "libe", "zas", "theta", "abigail"], 2) --> "abigailtheta"
-
 
 // my solution:
 // function longestConsec(strarr, k) {
@@ -596,8 +582,6 @@
 // const sort = (string) => string.split('').sort().join('');
 // const anagrams = (word, words) => words.filter((_, i) => sort(word) == sort(words[i]));
 
-
-
 // let result = [];
 // for word in origin
 //  for i in temparray
@@ -605,9 +589,8 @@
 // result.push(origin[word]);
 // return result;
 
-
 // word = input.split('');
-// for each letter in word 
+// for each letter in word
 //   if word.indexOf(letter.toLowerCase()) == word.lastIndexOf(letter.toLowerCase()) return letter
 
 // return 'None';
@@ -708,7 +691,6 @@
 //   return results;
 // }
 
-
 // function scramble(str1, str2) {
 //   const dataArray = str1.split('').sort();
 //   const searchStringArray = str2.split('').sort();
@@ -716,7 +698,7 @@
 //     const searchLetterOccurrences = getOccurrences(letter, searchStringArray);
 //     const dataLetterOccurences =  getOccurrences(letter, dataArray);
 //     return (dataLetterOccurences >= searchLetterOccurrences);
-//   }); 
+//   });
 
 //   function getOccurrences(letter, array) {
 //     const first = array.indexOf(letter);
@@ -725,8 +707,6 @@
 //     return occurences;
 //   }
 //  }
-
-
 
 // function scramble(str1, str2) {
 //   const dataDict = {};
@@ -743,8 +723,6 @@
 //   }
 //   return true;
 // }
-
-
 
 // const stringPermutations = str => {
 //   if (str.length <= 2) return str.length === 2 ? [str, str[1] + str[0]] : [str];
@@ -775,8 +753,6 @@
 //   return letters.join('');
 // }
 
-
-
 // function permutations (str, current = [], results = []) {
 //   str = !(Array.isArray(str)) ? str.split('') : str;
 //   if (str.length == 0) results.push(current.join(''));
@@ -790,7 +766,6 @@
 
 //   return [...new Set(results)];
 // }
-
 
 // function factorialize(num) {
 //   if (num == 0) return 1;
@@ -810,7 +785,6 @@
 //   })
 //   return results;
 // }
-
 
 // function Calculator() {
 //   this.read = function () {
@@ -837,8 +811,7 @@
 //   return num_pill == 1 ? 0 : ((num_pill - 1) * dist * 100 + (num_pill - 2) * width);
 // }
 
-
-// // Given two integers a and b, which can be positive or negative, 
+// // Given two integers a and b, which can be positive or negative,
 // // find the sum of all the integers between
 // //  and including them and return it. If the two numbers are equal return a or b.
 // // Note: a and b are not ordered!
@@ -898,10 +871,9 @@
 //       let num = parseInt(prompt('Number to sum?'));
 //       if (Number.isNaN(num)) {return sum};
 //       sum += num;
-//    } 
-//   return sum;        
+//    }
+//   return sum;
 // }
-
 
 // // manually sort an array (without using array.sort(sortFunction))
 
@@ -939,7 +911,6 @@
 // 1->5->7->8         => 21
 // 1->5->7->10->12    => 35 (maximum path)
 
-
 // my original solution
 
 // function maxSumPath(arr1,arr2){
@@ -950,7 +921,7 @@
 //     if (arr2.includes(b)) junctions[b] = [currentSum];
 //     return currentSum;
 //   }, 0)
-//   const arr2Sum = arr2.reduce((a, b)=>{ 
+//   const arr2Sum = arr2.reduce((a, b)=>{
 //     let currentSum = a+b;
 //     if (b in junctions) junctions[b][1] = currentSum;
 //     return currentSum;
@@ -968,7 +939,7 @@
 
 // function maxSumPath(arr1, arr2) {
 //   let i = 0;
-//   let j = 0; 
+//   let j = 0;
 //   let max1 = 0;
 //   let max2 = 0;
 //   while ((i < arr1.length) && (j < arr2.length)) {
@@ -998,7 +969,6 @@
 //   return Math.max(max1, max2)
 // }
 
-
 // If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
 
 // Finish the solution so that it returns the sum of all the multiples of 3 or 5 below the number passed in. Additionally, if the number is negative, return 0 (for languages that do have them).
@@ -1009,7 +979,7 @@
 //   for (let i = 3; i < num; i++) {
 //     if (i % 3 == 0 || i % 5 == 0) {
 //       sum += i;
-//     } 
+//     }
 //   }
 //   return sum;
 // }
@@ -1020,9 +990,8 @@
 // Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"
 
 // function spinWords(string){
-//   return string.split(' ').map((word) => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ');  
+//   return string.split(' ').map((word) => (word.length > 4) ? word.split('').reverse().join('') : word).join(' ');
 // }
-
 
 // Translate border-left-width to borderLeftWidth
 // importance: 5
@@ -1041,7 +1010,6 @@
 //       return (i != 0) ? x = x[0].toUpperCase() + x.slice(1) : x;
 //       }).join('')
 // }
-
 
 // function Calculator() {
 //   this.methods = {
@@ -1075,7 +1043,6 @@
 //   return format;
 // }
 
-
 // initiate new sentance
 // split input to words, for each word:
 // move first letter to end + ay:
@@ -1085,8 +1052,7 @@
 // const removed = word.split('').splice(i, 1);
 // sentance += word.append(removed).join('') + 'ay';
 
-// return sentance 
-
+// return sentance
 
 // function pigIt (str) {
 //   let sentance = '';
@@ -1117,7 +1083,6 @@
 // }
 // console.log(createUserDB(users));
 
-
 // const moveZeros = function (arr) {
 //   const newArr = [];
 //   const zeroes = [];
@@ -1127,9 +1092,8 @@
 //   return newArr.concat([...zeroes])
 // }
 
-
-// Write a function that takes a string of parentheses, and determines if the order 
-// of the parentheses is valid. The function should return true if the string is valid, 
+// Write a function that takes a string of parentheses, and determines if the order
+// of the parentheses is valid. The function should return true if the string is valid,
 // and false if it's invalid.
 
 // my solution
@@ -1142,7 +1106,7 @@
 //     if (splitParens[i] === '(') a++;
 //     if (splitParens[i] === ')' && !open) return false;
 //     if (splitParens[i] === ')') b++;
-//     open = a == b ? false : true; 
+//     open = a == b ? false : true;
 //   };
 //   if (a == b && !open) return true;
 //   return false;
@@ -1156,7 +1120,6 @@
 //   return !parens.length;
 // }
 
-
 // get starting point (x, y)
 // if starting point is falsey return []
 // push starting point
@@ -1166,16 +1129,13 @@
 // go up until no more up  (if up  move up, results.push[currentX][currentY], falsey it) ELSE => starting point right
 // pass the next starting point
 
-
 // function snail(matrix, position = [0, 0], direction = 'right', results)
 
 // base condition: no possible path
 
-// if direction == right 
+// if direction == right
 // if right exists set currentPosition to right, results.push(currentPosition)
 // else snail(matrix, currentPosition, 'down', results)
-
-
 
 // basic solution
 
@@ -1222,7 +1182,6 @@
 //   } while (top <= bottom);
 
 //   return result;
-
 
 // function aclean(arr) {
 //   let results = new Map;
@@ -1287,7 +1246,7 @@
 //       return `${Math.round(diffInSeconds / 60)} min. ago`
 //     default:
 //       // return date.toLocaleString().replaceAll('/', '.').replace(',', '').slice(0, -6);
-//       // [day, month, year, hours, minutes] = [ 
+//       // [day, month, year, hours, minutes] = [
 //       //   date.getDate(), date.getMonth() + 1, date.getFullYear().slice(0, 3), date.getHours(), date.getMinutes()
 //       // ]
 //       return `${date.getDate() < 10 ? ('0' + date.getDate()): date.getDate()}.` +
@@ -1297,7 +1256,6 @@
 //              `${date.getMinutes() < 10 ? ('0' + date.getMinutes()): date.getMinutes()}`
 //   }
 // }
-
 
 // function dirReduc(arr){
 //   let vertical = '';
@@ -1363,13 +1321,12 @@
 //   return highest;
 // }
 
-
 // const rotLetter = (letter) => {
 //   const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 //   const result = alphabet[(alphabet.indexOf(letter.toLowerCase()) + 13) % alphabet.length];
-//   if (letter.toUpperCase() == letter) 
+//   if (letter.toUpperCase() == letter)
 //     return result.toUpperCase()
-//   else 
+//   else
 //     return result
 // }
 // const isLetter = (letter) => /[a-zA-Z]/.test(letter);
@@ -1461,7 +1418,6 @@
 //   return str ? `#${str.split(' ').map(capitalize).join('')}` : false;
 // }
 
-
 // Given a number, say prod (for product), we search two Fibonacci numbers F(n) and F(n+1) verifying
 
 // F(n) * F(n+1) = prod.
@@ -1549,17 +1505,15 @@
 //   return -1;
 // }
 
-
 // function whatCentury(year)
 // {
 //   const suffixes = ['th', 'st', 'nd', 'rd'];
 //   const prefix = Number(year.slice(0, 2));
 //   const that = (Number(String(prefix)[1]) + 1) % 10;
 //   const suffix = prefix < 20 && prefix > 3 ? 'th' : suffixes[that] || 'th';
-//   if (year % 1000 == 0) return prefix+'th'; 
+//   if (year % 1000 == 0) return prefix+'th';
 //   return `${prefix + 1}${suffix}`;
 // }
-
 
 // function toAndFrom(a, b, t) {
 //   if (a == b) return 0
@@ -1585,10 +1539,9 @@
 //   const range = high - low;
 //   let isForward = Math.floor(t / range) % 2 == 0;
 //   if (b < a) isForward = !isForward
-//   const diff = t % range 
+//   const diff = t % range
 //   return isForward ? low + diff : high -diff;
 // }
-
 
 // function deleteNth(arr,n){
 //   const count = {};
@@ -1598,9 +1551,7 @@
 //   })
 // }
 
-
 // const persistence = (num, count = 0) => num < 10 ? count : persistence(String(num).split('').reduce((a, b) => a * b), ++count)
-
 
 // debugger;
 
@@ -1621,8 +1572,8 @@
 //   let stack = []
 
 //   exp.forEach(op => {
-//     stack.push ( 
-//       calc[op] 
+//     stack.push (
+//       calc[op]
 //         ? calc[op](...stack.splice(-2))
 //         : op
 //       )
@@ -1643,7 +1594,7 @@
 
 //   arr.forEach(x => {
 //     stack.push(
-//      calc[x] ? calc[x](stack.pop(), stack.pop()) : x 
+//      calc[x] ? calc[x](stack.pop(), stack.pop()) : x
 //     )
 //   })
 
@@ -1651,7 +1602,6 @@
 // }
 
 // console.log(calc('5 1 2 + 4 * + 3 -')) // 14
-
 
 // function duplicateCount(text) {
 //   return Object.values(text.toLowerCase().split('').reduce((acc, x) => {
@@ -1692,7 +1642,6 @@
 // }
 
 // console.log(!isValidWalk(['w','e','w','e','w','e','w','e','w','e','w','e']))
-
 
 // function getAlphabetArray (isLowerCase = true) {
 //   const ASCII_TABLE_LOWERCASE_A_POSITION = 97
@@ -1801,25 +1750,34 @@
 // function cakes(recipe, available) {
 //   return Object.keys(recipe).reduce(function(val, ingredient) {
 //     return Math.min(Math.floor(available[ingredient] / recipe[ingredient] || 0), val)
-//   }, Infinity)  
+//   }, Infinity)
 // }
 
 // console.log(cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000}))
 // console.log(cakes({cream: 1, flour: 3, sugar: 1, milk: 1, oil: 1, eggs: 1}, {sugar: 1, eggs: 1, flour: 3, cream: 1, oil: 1, milk: 1}))
 // console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
 
+// function twoSum(numbers, target) {
+//   debugger;
+//   const result = [];
+//   for (let i = 0; i < numbers.length; i++) {
+//     for (let j = 0; j < numbers.length; j++) {
+//       if (i != j && numbers[i] + numbers[j] == target) return [j, i];
+//     }
+//   }
+// }
 
-function twoSum(numbers, target) {
-  debugger;
-  const result = [];
-  for (let i = 0; i < numbers.length; i++ ) {
-    for (let j = 0; j < numbers.length; j++) {
-      if (i != j && numbers[i] + numbers[j] == target) 
-        return [j, i]
-    }
+// console.log(twoSum([1234, 5678, 9012], 14690));
+
+// returns a Xibonnaci sequence according to the provided signature and required length
+// kata - https://www.codewars.com/kata/556e0fccc392c527f20000c5
+function fibX(sig, n) {
+  const result = [...sig];
+  if (n < sig.length) return sig.slice(0, n);
+  for (let i = 0; i < n - sig.length; i++) {
+    result.push(result.slice(i, i + sig.length).reduce((a, b) => a + b));
   }
+  return result;
 }
 
-
-console.log(twoSum([1234,5678,9012], 14690))
-
+console.log(fibX([0, 0, 0, 0, 1], 15));
