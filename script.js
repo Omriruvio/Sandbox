@@ -1769,6 +1769,14 @@
 
 // console.log(twoSum([1234, 5678, 9012], 14690));
 
+function tribonacci(sig, n) {
+  const result = [...sig];
+  if (n < 3) return sig.slice(0, n);
+  for (let i = 0; i < n - 3; i++) {
+    result.push(result.slice(i, i + 3).reduce((a, b) => a + b));
+  }
+  return result;
+}
 // returns a Xibonnaci sequence according to the provided signature and required length
 // kata - https://www.codewars.com/kata/556e0fccc392c527f20000c5
 function fibX(sig, n) {
