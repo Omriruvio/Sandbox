@@ -1789,3 +1789,17 @@ function fibX(sig, n) {
 }
 
 console.log(fibX([0, 0, 0, 0, 1], 15));
+
+// kata - https://www.codewars.com/kata/5287e858c6b5a9678200083c
+
+function narcissistic(value) {
+  return (
+    String(value)
+      .split('')
+      .reduce((acc, x) => {
+        acc = Number(acc) + x ** String(value).length;
+        return acc;
+      }, 0) === value
+  );
+}
+console.log(narcissistic(371));
