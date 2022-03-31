@@ -1806,13 +1806,38 @@
 
 // kata - https://www.codewars.com/kata/545cedaa9943f7fe7b000048
 
-function isPangram(string) {
-  return 'abcdefghijklmnopqrstuvwxyz'.split('').every((x) => string.toLowerCase().includes(x));
+// function isPangram(string) {
+//   return 'abcdefghijklmnopqrstuvwxyz'.split('').every((x) => string.toLowerCase().includes(x));
+// }
+
+// function isPangram(string) {
+//   return new Set(string.toLowerCase().replace(/[^\a-z]+/g, '')).size === 26;
+// }
+
+// console.log(isPangram('The quick brown fox jumps over the lazy dog.'), true);
+// console.log(isPangram('This is not a pangram.'), false);
+
+// kata - https://www.codewars.com/kata/515de9ae9dcfc28eb6000001
+
+function solution(str) {
+  const arr = str.split('');
+  const result = [];
+  const isEven = arr.length % 2 == 0;
+  if (!isEven) result.push(`${arr.pop()}_`);
+  while (arr.length > 1) {
+    result.push(`${arr.pop()}${arr.pop()}`.split('').reverse().join(''));
+  }
+  return result.reverse();
 }
 
-function isPangram(string) {
-  return new Set(string.toLowerCase().replace(/[^\a-z]+/g, '')).size === 26;
+function solution(str) {
+  arr = [];
+  for (let i = 0; i < str.length; i += 2) {
+    second = str[i + 1] || '_';
+    arr.push(str[i] + second);
+  }
+  return arr;
 }
 
-console.log(isPangram('The quick brown fox jumps over the lazy dog.'), true);
-console.log(isPangram('This is not a pangram.'), false);
+console.log(solution('abcdef'), ['ab', 'cd', 'ef']);
+console.log(solution('abcdefg'), ['ab', 'cd', 'ef', 'g_']);
