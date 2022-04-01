@@ -1819,25 +1819,36 @@
 
 // kata - https://www.codewars.com/kata/515de9ae9dcfc28eb6000001
 
-function solution(str) {
-  const arr = str.split('');
-  const result = [];
-  const isEven = arr.length % 2 == 0;
-  if (!isEven) result.push(`${arr.pop()}_`);
-  while (arr.length > 1) {
-    result.push(`${arr.pop()}${arr.pop()}`.split('').reverse().join(''));
-  }
-  return result.reverse();
+// function solution(str) {
+//   const arr = str.split('');
+//   const result = [];
+//   const isEven = arr.length % 2 == 0;
+//   if (!isEven) result.push(`${arr.pop()}_`);
+//   while (arr.length > 1) {
+//     result.push(`${arr.pop()}${arr.pop()}`.split('').reverse().join(''));
+//   }
+//   return result.reverse();
+// }
+
+// function solution(str) {
+//   arr = [];
+//   for (let i = 0; i < str.length; i += 2) {
+//     second = str[i + 1] || '_';
+//     arr.push(str[i] + second);
+//   }
+//   return arr;
+// }
+
+// console.log(solution('abcdef'), ['ab', 'cd', 'ef']);
+// console.log(solution('abcdefg'), ['ab', 'cd', 'ef', 'g_']);
+
+// kata - https://www.codewars.com/kata/585d7d5adb20cf33cb000235
+
+function findUniq(arr) {
+  const newArr = arr.filter((x) => x != arr[0]);
+  return newArr.length == 1 ? newArr[0] : arr[0];
 }
 
-function solution(str) {
-  arr = [];
-  for (let i = 0; i < str.length; i += 2) {
-    second = str[i + 1] || '_';
-    arr.push(str[i] + second);
-  }
-  return arr;
+function findUniq(arr) {
+  return arr.find((n) => arr.indexOf(n) === arr.lastIndexOf(n));
 }
-
-console.log(solution('abcdef'), ['ab', 'cd', 'ef']);
-console.log(solution('abcdefg'), ['ab', 'cd', 'ef', 'g_']);
