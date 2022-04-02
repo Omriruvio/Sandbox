@@ -1553,8 +1553,6 @@
 
 // const persistence = (num, count = 0) => num < 10 ? count : persistence(String(num).split('').reduce((a, b) => a * b), ++count)
 
-// debugger;
-
 // let exp =  '5 1 2 + 4 * + 3 -'.split(" ")
 
 // exp = exp.map(i =>  {return Number(i) ? Number(i) : i})
@@ -1758,7 +1756,6 @@
 // console.log(cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200}))
 
 // function twoSum(numbers, target) {
-//   debugger;
 //   const result = [];
 //   for (let i = 0; i < numbers.length; i++) {
 //     for (let j = 0; j < numbers.length; j++) {
@@ -1844,11 +1841,77 @@
 
 // kata - https://www.codewars.com/kata/585d7d5adb20cf33cb000235
 
-function findUniq(arr) {
-  const newArr = arr.filter((x) => x != arr[0]);
-  return newArr.length == 1 ? newArr[0] : arr[0];
-}
+// function findUniq(arr) {
+//   const newArr = arr.filter((x) => x != arr[0]);
+//   return newArr.length == 1 ? newArr[0] : arr[0];
+// }
 
-function findUniq(arr) {
-  return arr.find((n) => arr.indexOf(n) === arr.lastIndexOf(n));
-}
+// function findUniq(arr) {
+//   return arr.find((n) => arr.indexOf(n) === arr.lastIndexOf(n));
+// }
+
+// takes a string such as '1hr20min' or '1 hour 20 min 30seconds'
+// returns an array with separate time types and values:
+// below solution is not optimal, would be better to:
+//  join the string into a single piece and parse by slicing between numbers
+const parseToNumbersAndWords = (str) => {
+  const result = [];
+  str = str.split(' ');
+  while (str.length > 0) {
+    if (!Number.isNaN(Number(str[0]))) {
+      //if array item is integer shift and push
+      result.push(str.shift());
+    } else if (!Number.isNaN(Number(str[0][0]))) {
+      // if first character is integer remove it and push then get the word, remove it and push
+      let num = parseInt(str[0], 10);
+      let length = String(num).length;
+      let slice = str[0].slice(0, length);
+      str[0] = str[0].slice(length);
+      result.push(slice);
+
+      // result.push(str.shift()); // unneccesary?
+
+      // number is removed now remove the word
+      const firstDigit = str[0].match(/\d/);
+      const firstDigitIndex = str[0].indexOf(firstDigit);
+      if (firstDigitIndex === -1) {
+        result.push(str.shift());
+        continue;
+      }
+
+      let stringSlice = str[0].slice(0, firstDigitIndex);
+      str[0] = str[0].slice(firstDigitIndex);
+      result.push(stringSlice);
+    } else {
+      // if the array item starts with a word, get the word, remove and push it
+      const firstDigit = str[0].match(/\d/); // Gives the first digit in the string
+      const firstDigitIndex = str[0].indexOf(firstDigit);
+      if (firstDigitIndex === -1) {
+        result.push(str.shift());
+        continue;
+      }
+      if (Array.isArray(str)) {
+        result.push(str[0].splice(0, firstDigitIndex - 1));
+      } else {
+        result.push(
+          str
+            .split('')
+            .splice(0, firstDigitIndex - 1)
+            .join('')
+        );
+      }
+    }
+  }
+  return result;
+};
+
+console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
+console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
+console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
+console.log(parseToNumbersAndWords('1hr20mins 30s')); // ['1', 'hr', '20', 'mins', '30', 's']
+console.log(parseToNumbersAndWords('1h20m90s')); // ['1', 'h', '20', 'm', '90', 's']
+console.log(parseToNumbersAndWords('0h2m40s')); // ['0', 'h', '2', 'm', '40', 's']
+console.log(parseToNumbersAndWords('0h0m0s')); // ['0', 'h', '0', 'm', '0', 's']
+console.log(parseToNumbersAndWords('25h0m0s')); // ['25', 'h', '0', 'm', '0', 's']
+console.log(parseToNumbersAndWords('1h')); // ['1', 'h']
+console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
