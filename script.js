@@ -1850,68 +1850,76 @@
 //   return arr.find((n) => arr.indexOf(n) === arr.lastIndexOf(n));
 // }
 
-// takes a string such as '1hr20min' or '1 hour 20 min 30seconds'
-// returns an array with separate time types and values:
-// below solution is not optimal, would be better to:
-//  join the string into a single piece and parse by slicing between numbers
-const parseToNumbersAndWords = (str) => {
-  const result = [];
-  str = str.split(' ');
-  while (str.length > 0) {
-    if (!Number.isNaN(Number(str[0]))) {
-      //if array item is integer shift and push
-      result.push(str.shift());
-    } else if (!Number.isNaN(Number(str[0][0]))) {
-      // if first character is integer remove it and push then get the word, remove it and push
-      let num = parseInt(str[0], 10);
-      let length = String(num).length;
-      let slice = str[0].slice(0, length);
-      str[0] = str[0].slice(length);
-      result.push(slice);
+// // takes a string such as '1hr20min' or '1 hour 20 min 30seconds'
+// // returns an array with separate time types and values:
+// // below solution is not optimal, would be better to:
+// //  join the string into a single piece and parse by slicing between numbers
+// const parseToNumbersAndWords = (str) => {
+//   const result = [];
+//   str = str.split(' ');
+//   while (str.length > 0) {
+//     if (!Number.isNaN(Number(str[0]))) {
+//       //if array item is integer shift and push
+//       result.push(str.shift());
+//     } else if (!Number.isNaN(Number(str[0][0]))) {
+//       // if first character is integer remove it and push then get the word, remove it and push
+//       let num = parseInt(str[0], 10);
+//       let length = String(num).length;
+//       let slice = str[0].slice(0, length);
+//       str[0] = str[0].slice(length);
+//       result.push(slice);
 
-      // result.push(str.shift()); // unneccesary?
+//       // result.push(str.shift()); // unneccesary?
 
-      // number is removed now remove the word
-      const firstDigit = str[0].match(/\d/);
-      const firstDigitIndex = str[0].indexOf(firstDigit);
-      if (firstDigitIndex === -1) {
-        result.push(str.shift());
-        continue;
-      }
+//       // number is removed now remove the word
+//       const firstDigit = str[0].match(/\d/);
+//       const firstDigitIndex = str[0].indexOf(firstDigit);
+//       if (firstDigitIndex === -1) {
+//         result.push(str.shift());
+//         continue;
+//       }
 
-      let stringSlice = str[0].slice(0, firstDigitIndex);
-      str[0] = str[0].slice(firstDigitIndex);
-      result.push(stringSlice);
-    } else {
-      // if the array item starts with a word, get the word, remove and push it
-      const firstDigit = str[0].match(/\d/); // Gives the first digit in the string
-      const firstDigitIndex = str[0].indexOf(firstDigit);
-      if (firstDigitIndex === -1) {
-        result.push(str.shift());
-        continue;
-      }
-      if (Array.isArray(str)) {
-        result.push(str[0].splice(0, firstDigitIndex - 1));
-      } else {
-        result.push(
-          str
-            .split('')
-            .splice(0, firstDigitIndex - 1)
-            .join('')
-        );
-      }
-    }
+//       let stringSlice = str[0].slice(0, firstDigitIndex);
+//       str[0] = str[0].slice(firstDigitIndex);
+//       result.push(stringSlice);
+//     } else {
+//       // if the array item starts with a word, get the word, remove and push it
+//       const firstDigit = str[0].match(/\d/); // Gives the first digit in the string
+//       const firstDigitIndex = str[0].indexOf(firstDigit);
+//       if (firstDigitIndex === -1) {
+//         result.push(str.shift());
+//         continue;
+//       }
+//       if (Array.isArray(str)) {
+//         result.push(str[0].splice(0, firstDigitIndex - 1));
+//       } else {
+//         result.push(
+//           str
+//             .split('')
+//             .splice(0, firstDigitIndex - 1)
+//             .join('')
+//         );
+//       }
+//     }
+//   }
+//   return result;
+// };
+
+// console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
+// console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
+// console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
+// console.log(parseToNumbersAndWords('1hr20mins 30s')); // ['1', 'hr', '20', 'mins', '30', 's']
+// console.log(parseToNumbersAndWords('1h20m90s')); // ['1', 'h', '20', 'm', '90', 's']
+// console.log(parseToNumbersAndWords('0h2m40s')); // ['0', 'h', '2', 'm', '40', 's']
+// console.log(parseToNumbersAndWords('0h0m0s')); // ['0', 'h', '0', 'm', '0', 's']
+// console.log(parseToNumbersAndWords('25h0m0s')); // ['25', 'h', '0', 'm', '0', 's']
+// console.log(parseToNumbersAndWords('1h')); // ['1', 'h']
+// console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
+
+function isPrime(num) {
+  if (num < 2) return false;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
   }
-  return result;
-};
-
-console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
-console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
-console.log(parseToNumbersAndWords('1hr20min')); // ['1', 'hr', '20', 'min']
-console.log(parseToNumbersAndWords('1hr20mins 30s')); // ['1', 'hr', '20', 'mins', '30', 's']
-console.log(parseToNumbersAndWords('1h20m90s')); // ['1', 'h', '20', 'm', '90', 's']
-console.log(parseToNumbersAndWords('0h2m40s')); // ['0', 'h', '2', 'm', '40', 's']
-console.log(parseToNumbersAndWords('0h0m0s')); // ['0', 'h', '0', 'm', '0', 's']
-console.log(parseToNumbersAndWords('25h0m0s')); // ['25', 'h', '0', 'm', '0', 's']
-console.log(parseToNumbersAndWords('1h')); // ['1', 'h']
-console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
+  return true;
+}
