@@ -1916,10 +1916,27 @@
 // console.log(parseToNumbersAndWords('1h')); // ['1', 'h']
 // console.log(parseToNumbersAndWords('1 hour 20 min 30seconds')); // ['1', 'hour', '20', 'min', '30', 'seconds']
 
-function isPrime(num) {
-  if (num < 2) return false;
-  for (let i = 2; i <= Math.sqrt(num); i++) {
-    if (num % i === 0) return false;
-  }
-  return true;
+// function isPrime(num) {
+//   if (num < 2) return false;
+//   for (let i = 2; i <= Math.sqrt(num); i++) {
+//     if (num % i === 0) return false;
+//   }
+//   return true;
+// }
+
+// kata - https://www.codewars.com/kata/550498447451fbbd7600041c
+
+function comp(a, b) {
+  if (!a || !b) return false;
+  return a.every((x) => {
+    let index = b.indexOf(Math.pow(x, 2));
+    if (index !== -1) {
+      b.splice(index, 1);
+      return true;
+    } else return false;
+  });
 }
+
+const arr1 = [121, 144, 19, 161, 19, 144, 19, 11];
+const arr2 = [11 * 11, 121 * 121, 144 * 144, 19 * 19, 161 * 161, 19 * 19, 144 * 144, 19 * 19];
+console.log(comp(arr1, arr2));
