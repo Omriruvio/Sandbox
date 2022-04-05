@@ -1926,17 +1926,33 @@
 
 // kata - https://www.codewars.com/kata/550498447451fbbd7600041c
 
-function comp(a, b) {
-  if (!a || !b) return false;
-  return a.every((x) => {
-    let index = b.indexOf(Math.pow(x, 2));
-    if (index !== -1) {
-      b.splice(index, 1);
-      return true;
-    } else return false;
-  });
-}
+// function comp(a, b) {
+//   if (!a || !b) return false;
+//   return a.every((x) => {
+//     let index = b.indexOf(Math.pow(x, 2));
+//     if (index !== -1) {
+//       b.splice(index, 1);
+//       return true;
+//     } else return false;
+//   });
+// }
 
-const arr1 = [121, 144, 19, 161, 19, 144, 19, 11];
-const arr2 = [11 * 11, 121 * 121, 144 * 144, 19 * 19, 161 * 161, 19 * 19, 144 * 144, 19 * 19];
-console.log(comp(arr1, arr2));
+// const arr1 = [121, 144, 19, 161, 19, 144, 19, 11];
+// const arr2 = [11 * 11, 121 * 121, 144 * 144, 19 * 19, 161 * 161, 19 * 19, 144 * 144, 19 * 19];
+// console.log(comp(arr1, arr2));
+
+// kata - https://www.codewars.com/kata/5839edaa6754d6fec10000a2
+
+function findMissingLetter(array) {
+  let found;
+  array.forEach((x, i) => {
+    if (i !== 0) {
+      const previous = array[i - 1].charCodeAt(0) + 1;
+      const current = array[i].charCodeAt(0);
+      if (current !== previous) {
+        found = String.fromCharCode(previous);
+      }
+    }
+  });
+  return found || 0;
+}
