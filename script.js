@@ -1943,16 +1943,62 @@
 
 // kata - https://www.codewars.com/kata/5839edaa6754d6fec10000a2
 
-function findMissingLetter(array) {
-  let found;
-  array.forEach((x, i) => {
-    if (i !== 0) {
-      const previous = array[i - 1].charCodeAt(0) + 1;
-      const current = array[i].charCodeAt(0);
-      if (current !== previous) {
-        found = String.fromCharCode(previous);
-      }
-    }
-  });
-  return found || 0;
+// function findMissingLetter(array) {
+//   let found;
+//   array.forEach((x, i) => {
+//     if (i !== 0) {
+//       const previous = array[i - 1].charCodeAt(0) + 1;
+//       const current = array[i].charCodeAt(0);
+//       if (current !== previous) {
+//         found = String.fromCharCode(previous);
+//       }
+//     }
+//   });
+//   return found || 0;
+// }
+
+// P - Params: String representing time: "10:10"
+// R - Returns: "Mirrored" time
+// E -
+// P - Pseudo code:
+// Convert string to workable value
+// chunk = Convert time to minutes
+// substract chunk from minuts in 12 hours (720?)
+// convert chunk back to HH:MM ->
+// (hours) - Math.floor of divide by 60 - if 12 then 00
+// (minutes) - modulo 60
+// return string of HH:MM
+
+// kata - https://www.codewars.com/kata/56548dad6dae7b8756000037
+
+function WhatIsTheTime(str) {
+  let hours = Number(str.split(':')[0]);
+  hours = hours === 12 ? 0 : hours;
+  const minutes = Number(str.split(':')[1]);
+  const totalMinutes = hours * 60 + minutes;
+  const diff = 720 - totalMinutes;
+  let resultHours = String(Math.floor(diff / 60));
+  resultHours = resultHours === '0' ? '12' : resultHours;
+  resultHours = resultHours.length < 2 ? resultHours.padStart(2, 0) : resultHours;
+  let resultMinutes = String(diff % 60);
+  resultMinutes = resultMinutes.length < 2 ? resultMinutes.padStart(2, 0) : resultMinutes;
+  return [resultHours, resultMinutes].join(':');
 }
+
+Number.prototype.mod = function (n) {
+  return ((this % n) + n) % n;
+};
+
+function whatIsTheTime(mirrored) {
+  const [mh, mm] = mirrored.split(':').map(Number);
+  const m = (-mm).mod(60);
+  const h = (-mh - (m && 1)).mod(12) || 12;
+  return [h, m].map((n) => ('0' + n).slice(-2)).join(':');
+}
+
+console.log(WhatIsTheTime('12:02'), '11:58');
+console.log(WhatIsTheTime('01:50'), '10:10');
+console.log(WhatIsTheTime('11:58'), '12:02');
+
+// padding:
+// console.log(String(Math.floor(395/60)).length < 2 ? String(Math.floor(395/60)).padStart(2, 0) : String(Math.floor(395/60)))
