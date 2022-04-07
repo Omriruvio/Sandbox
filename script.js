@@ -2000,34 +2000,65 @@
 // console.log(WhatIsTheTime('01:50'), '10:10');
 // console.log(WhatIsTheTime('11:58'), '12:02');
 
-const fridayTheThirteenths = (startYear, endYear = startYear) => {
-  const getFirstFriday = (year) => {
-    const isFriday = (date) => date.getDay() === 5;
-    let thisDate = new Date(year, 0, 1);
-    while (!isFriday(thisDate)) {
-      thisDate = new Date(thisDate.getFullYear(), thisDate.getMonth(), thisDate.getDate() + 1);
-    }
-    return thisDate;
-  };
+// kata - https://www.codewars.com/kata/540954232a3259755d000039
 
-  const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+// const fridayTheThirteenths = (startYear, endYear = startYear) => {
+//   const getFirstFriday = (year) => {
+//     const isFriday = (date) => date.getDay() === 5;
+//     let thisDate = new Date(year, 0, 1);
+//     while (!isFriday(thisDate)) {
+//       thisDate = new Date(thisDate.getFullYear(), thisDate.getMonth(), thisDate.getDate() + 1);
+//     }
+//     return thisDate;
+//   };
 
-  const startDate = new Date(startYear, 0, 1);
-  const endDate = new Date(endYear + 1, 0, 0);
-  let currentFriday = getFirstFriday(startDate.getFullYear());
-  const results = [];
-  while (currentFriday.getFullYear() <= endDate.getFullYear()) {
-    if (currentFriday.getDate() === 13) results.push(formatDate(currentFriday));
-    currentFriday = new Date(currentFriday.getFullYear(), currentFriday.getMonth(), currentFriday.getDate() + 7);
-  }
+//   const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
-  return results.join(' ');
+//   const startDate = new Date(startYear, 0, 1);
+//   const endDate = new Date(endYear + 1, 0, 0);
+//   let currentFriday = getFirstFriday(startDate.getFullYear());
+//   const results = [];
+//   while (currentFriday.getFullYear() <= endDate.getFullYear()) {
+//     if (currentFriday.getDate() === 13) results.push(formatDate(currentFriday));
+//     currentFriday = new Date(currentFriday.getFullYear(), currentFriday.getMonth(), currentFriday.getDate() + 7);
+//   }
+
+//   return results.join(' ');
+// };
+
+// const otherFridayTheThirteenths = (start, end = start) =>
+//   [...Array((end - start + 1) * 12).keys()]
+//     .filter((val) => new Date(start, val, 13).getDay() === 5)
+//     .map((val) => `${(val % 12) + 1}/13/${(start + val / 12) ^ 0}`)
+//     .join(` `);
+
+// console.log(fridayTheThirteenths(2005));
+
+let company = {
+  // the same object, compressed for brevity
+  sales: [
+    { name: 'John', salary: 1000 },
+    { name: 'Alice', salary: 1600 },
+  ],
+  development: {
+    sites: [
+      { name: 'Peter', salary: 2000 },
+      { name: 'Alex', salary: 1800 },
+    ],
+    internals: [{ name: 'Jack', salary: 1300 }],
+  },
 };
 
-const otherFridayTheThirteenths = (start, end = start) =>
-  [...Array((end - start + 1) * 12).keys()]
-    .filter((val) => new Date(start, val, 13).getDay() === 5)
-    .map((val) => `${(val % 12) + 1}/13/${(start + val / 12) ^ 0}`)
-    .join(` `);
+function sumDept(dept) {
+  if (Array.isArray(dept)) {
+    return dept.reduce((a, b) => a + b.salary, 0);
+  } else {
+    let sum = 0;
+    for (const subDept in dept) {
+      sum += sumDept(dept[subDept]);
+    }
+    return sum;
+  }
+}
 
-console.log(fridayTheThirteenths(2005));
+console.log(sumDept(company));
