@@ -1971,34 +1971,63 @@
 
 // kata - https://www.codewars.com/kata/56548dad6dae7b8756000037
 
-function WhatIsTheTime(str) {
-  let hours = Number(str.split(':')[0]);
-  hours = hours === 12 ? 0 : hours;
-  const minutes = Number(str.split(':')[1]);
-  const totalMinutes = hours * 60 + minutes;
-  const diff = 720 - totalMinutes;
-  let resultHours = String(Math.floor(diff / 60));
-  resultHours = resultHours === '0' ? '12' : resultHours;
-  resultHours = resultHours.length < 2 ? resultHours.padStart(2, 0) : resultHours;
-  let resultMinutes = String(diff % 60);
-  resultMinutes = resultMinutes.length < 2 ? resultMinutes.padStart(2, 0) : resultMinutes;
-  return [resultHours, resultMinutes].join(':');
-}
+// function WhatIsTheTime(str) {
+//   let hours = Number(str.split(':')[0]);
+//   hours = hours === 12 ? 0 : hours;
+//   const minutes = Number(str.split(':')[1]);
+//   const totalMinutes = hours * 60 + minutes;
+//   const diff = 720 - totalMinutes;
+//   let resultHours = String(Math.floor(diff / 60));
+//   resultHours = resultHours === '0' ? '12' : resultHours;
+//   resultHours = resultHours.length < 2 ? resultHours.padStart(2, 0) : resultHours;
+//   let resultMinutes = String(diff % 60);
+//   resultMinutes = resultMinutes.length < 2 ? resultMinutes.padStart(2, 0) : resultMinutes;
+//   return [resultHours, resultMinutes].join(':');
+// }
 
-Number.prototype.mod = function (n) {
-  return ((this % n) + n) % n;
+// Number.prototype.mod = function (n) {
+//   return ((this % n) + n) % n;
+// };
+
+// function whatIsTheTime(mirrored) {
+//   const [mh, mm] = mirrored.split(':').map(Number);
+//   const m = (-mm).mod(60);
+//   const h = (-mh - (m && 1)).mod(12) || 12;
+//   return [h, m].map((n) => ('0' + n).slice(-2)).join(':');
+// }
+
+// console.log(WhatIsTheTime('12:02'), '11:58');
+// console.log(WhatIsTheTime('01:50'), '10:10');
+// console.log(WhatIsTheTime('11:58'), '12:02');
+
+const fridayTheThirteenths = (startYear, endYear = startYear) => {
+  const getFirstFriday = (year) => {
+    const isFriday = (date) => date.getDay() === 5;
+    let thisDate = new Date(year, 0, 1);
+    while (!isFriday(thisDate)) {
+      thisDate = new Date(thisDate.getFullYear(), thisDate.getMonth(), thisDate.getDate() + 1);
+    }
+    return thisDate;
+  };
+
+  const formatDate = (date) => `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+
+  const startDate = new Date(startYear, 0, 1);
+  const endDate = new Date(endYear + 1, 0, 0);
+  let currentFriday = getFirstFriday(startDate.getFullYear());
+  const results = [];
+  while (currentFriday.getFullYear() <= endDate.getFullYear()) {
+    if (currentFriday.getDate() === 13) results.push(formatDate(currentFriday));
+    currentFriday = new Date(currentFriday.getFullYear(), currentFriday.getMonth(), currentFriday.getDate() + 7);
+  }
+
+  return results.join(' ');
 };
 
-function whatIsTheTime(mirrored) {
-  const [mh, mm] = mirrored.split(':').map(Number);
-  const m = (-mm).mod(60);
-  const h = (-mh - (m && 1)).mod(12) || 12;
-  return [h, m].map((n) => ('0' + n).slice(-2)).join(':');
-}
+const otherFridayTheThirteenths = (start, end = start) =>
+  [...Array((end - start + 1) * 12).keys()]
+    .filter((val) => new Date(start, val, 13).getDay() === 5)
+    .map((val) => `${(val % 12) + 1}/13/${(start + val / 12) ^ 0}`)
+    .join(` `);
 
-console.log(WhatIsTheTime('12:02'), '11:58');
-console.log(WhatIsTheTime('01:50'), '10:10');
-console.log(WhatIsTheTime('11:58'), '12:02');
-
-// padding:
-// console.log(String(Math.floor(395/60)).length < 2 ? String(Math.floor(395/60)).padStart(2, 0) : String(Math.floor(395/60)))
+console.log(fridayTheThirteenths(2005));
