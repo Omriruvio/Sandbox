@@ -2091,3 +2091,23 @@ function sortArrayBetter(array) {
 console.log(sortArray([5, 3, 2, 8, 1, 4]), [1, 3, 2, 8, 5, 4]);
 console.log(sortArray([5, 3, 1, 8, 0]), [1, 3, 5, 8, 0]);
 console.log(sortArray([]), []);
+
+// recursive sum to n
+function sumTo(n) {
+  return n < 1 ? n : sumTo(n - 1) + n;
+}
+
+// iterative sum to n
+function iterativeSumTo(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+// arithmetic sum to n
+function arithmeticSum(n) {
+  // n(a1 + an)/2
+  return ((1 + n) * n) / 2;
+}
