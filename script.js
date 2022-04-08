@@ -2111,3 +2111,51 @@ function arithmeticSum(n) {
   // n(a1 + an)/2
   return ((1 + n) * n) / 2;
 }
+
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null,
+      },
+    },
+  },
+};
+
+// recursive
+function printList(list) {
+  console.log(list.value);
+  if (list.next) printList(list.next);
+}
+
+// iterative
+function iterativePrintList(list) {
+  let tmp = list;
+  while (tmp) {
+    console.log(tmp.value);
+    tmp = tmp.next;
+  }
+}
+
+// reverse recursive
+function reverseRecursive(list) {
+  if (list.next) reverseRecursive(list.next);
+  console.log(list.value);
+}
+
+// reverse iterative
+function reverseIterative(list) {
+  const cache = [];
+  let tmp = list;
+  while (tmp) {
+    cache.push(tmp.value);
+    tmp = tmp.next;
+  }
+  for (let i = cache.length - 1; i >= 0; i--) {
+    console.log(cache[i]);
+  }
+}
