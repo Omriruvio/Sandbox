@@ -2034,31 +2034,60 @@
 
 // console.log(fridayTheThirteenths(2005));
 
-let company = {
-  // the same object, compressed for brevity
-  sales: [
-    { name: 'John', salary: 1000 },
-    { name: 'Alice', salary: 1600 },
-  ],
-  development: {
-    sites: [
-      { name: 'Peter', salary: 2000 },
-      { name: 'Alex', salary: 1800 },
-    ],
-    internals: [{ name: 'Jack', salary: 1300 }],
-  },
-};
+// let company = {
+//   // the same object, compressed for brevity
+//   sales: [
+//     { name: 'John', salary: 1000 },
+//     { name: 'Alice', salary: 1600 },
+//   ],
+//   development: {
+//     sites: [
+//       { name: 'Peter', salary: 2000 },
+//       { name: 'Alex', salary: 1800 },
+//     ],
+//     internals: [{ name: 'Jack', salary: 1300 }],
+//   },
+// };
 
-function sumDept(dept) {
-  if (Array.isArray(dept)) {
-    return dept.reduce((a, b) => a + b.salary, 0);
-  } else {
-    let sum = 0;
-    for (const subDept in dept) {
-      sum += sumDept(dept[subDept]);
+// function sumDept(dept) {
+//   if (Array.isArray(dept)) {
+//     return dept.reduce((a, b) => a + b.salary, 0);
+//   } else {
+//     let sum = 0;
+//     for (const subDept in dept) {
+//       sum += sumDept(dept[subDept]);
+//     }
+//     return sum;
+//   }
+// }
+
+// console.log(sumDept(company));
+
+// kata - https://www.codewars.com/kata/578aa45ee9fd15ff4600090d
+//You will be given an array of numbers. You have to sort the odd
+//numbers in ascending order while leaving the even numbers
+//at their original positions.
+
+function sortArray(arr) {
+  const cache = [];
+  arr.forEach((element, i) => {
+    if (element % 2 !== 0) {
+      cache.push(element);
+      arr[i] = '_';
     }
-    return sum;
-  }
+  });
+  cache.sort((a, b) => a - b);
+  arr.forEach((x, i) => {
+    if (x === '_') arr[i] = cache.shift();
+  });
+  return arr;
 }
 
-console.log(sumDept(company));
+function sortArrayBetter(array) {
+  const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
+  return array.map((x) => (x % 2 ? odd.shift() : x));
+}
+
+console.log(sortArray([5, 3, 2, 8, 1, 4]), [1, 3, 2, 8, 5, 4]);
+console.log(sortArray([5, 3, 1, 8, 0]), [1, 3, 5, 8, 0]);
+console.log(sortArray([]), []);
