@@ -2068,94 +2068,120 @@
 //numbers in ascending order while leaving the even numbers
 //at their original positions.
 
-function sortArray(arr) {
-  const cache = [];
-  arr.forEach((element, i) => {
-    if (element % 2 !== 0) {
-      cache.push(element);
-      arr[i] = '_';
-    }
-  });
-  cache.sort((a, b) => a - b);
-  arr.forEach((x, i) => {
-    if (x === '_') arr[i] = cache.shift();
-  });
-  return arr;
-}
+// function sortArray(arr) {
+//   const cache = [];
+//   arr.forEach((element, i) => {
+//     if (element % 2 !== 0) {
+//       cache.push(element);
+//       arr[i] = '_';
+//     }
+//   });
+//   cache.sort((a, b) => a - b);
+//   arr.forEach((x, i) => {
+//     if (x === '_') arr[i] = cache.shift();
+//   });
+//   return arr;
+// }
 
-function sortArrayBetter(array) {
-  const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
-  return array.map((x) => (x % 2 ? odd.shift() : x));
-}
+// function sortArrayBetter(array) {
+//   const odd = array.filter((x) => x % 2).sort((a, b) => a - b);
+//   return array.map((x) => (x % 2 ? odd.shift() : x));
+// }
 
-console.log(sortArray([5, 3, 2, 8, 1, 4]), [1, 3, 2, 8, 5, 4]);
-console.log(sortArray([5, 3, 1, 8, 0]), [1, 3, 5, 8, 0]);
-console.log(sortArray([]), []);
+// console.log(sortArray([5, 3, 2, 8, 1, 4]), [1, 3, 2, 8, 5, 4]);
+// console.log(sortArray([5, 3, 1, 8, 0]), [1, 3, 5, 8, 0]);
+// console.log(sortArray([]), []);
 
-// recursive sum to n
-function sumTo(n) {
-  return n < 1 ? n : sumTo(n - 1) + n;
-}
+// // recursive sum to n
+// function sumTo(n) {
+//   return n < 1 ? n : sumTo(n - 1) + n;
+// }
 
-// iterative sum to n
-function iterativeSumTo(n) {
+// // iterative sum to n
+// function iterativeSumTo(n) {
+//   let sum = 0;
+//   for (let i = 1; i <= n; i++) {
+//     sum += i;
+//   }
+//   return sum;
+// }
+
+// // arithmetic sum to n
+// function arithmeticSum(n) {
+//   // n(a1 + an)/2
+//   return ((1 + n) * n) / 2;
+// }
+
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null,
+//       },
+//     },
+//   },
+// };
+
+// // recursive
+// function printList(list) {
+//   console.log(list.value);
+//   if (list.next) printList(list.next);
+// }
+
+// // iterative
+// function iterativePrintList(list) {
+//   let tmp = list;
+//   while (tmp) {
+//     console.log(tmp.value);
+//     tmp = tmp.next;
+//   }
+// }
+
+// // reverse recursive
+// function reverseRecursive(list) {
+//   if (list.next) reverseRecursive(list.next);
+//   console.log(list.value);
+// }
+
+// // reverse iterative
+// function reverseIterative(list) {
+//   const cache = [];
+//   let tmp = list;
+//   while (tmp) {
+//     cache.push(tmp.value);
+//     tmp = tmp.next;
+//   }
+//   for (let i = cache.length - 1; i >= 0; i--) {
+//     console.log(cache[i]);
+//   }
+// }
+
+// kata - https://www.codewars.com/kata/5270d0d18625160ada0000e4
+function score(dice) {
   let sum = 0;
-  for (let i = 1; i <= n; i++) {
-    sum += i;
-  }
+
+  const subSum = (dig, single = 0, multi = 100) => {
+    let tmpSum = 0;
+    let tmp = [...dice].filter((x) => x === dig);
+    let count = tmp.length;
+    // handle multi
+    if (count >= 3) {
+      tmpSum += dig * multi;
+      count -= 3;
+    }
+    // handle single
+    if (count > 0) tmpSum += dig * single * count;
+    sum += tmpSum;
+  };
+  subSum(1, 100, 1000);
+  subSum(5, 10, 100);
+  subSum(2);
+  subSum(3);
+  subSum(4);
+  subSum(6);
   return sum;
-}
-
-// arithmetic sum to n
-function arithmeticSum(n) {
-  // n(a1 + an)/2
-  return ((1 + n) * n) / 2;
-}
-
-let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null,
-      },
-    },
-  },
-};
-
-// recursive
-function printList(list) {
-  console.log(list.value);
-  if (list.next) printList(list.next);
-}
-
-// iterative
-function iterativePrintList(list) {
-  let tmp = list;
-  while (tmp) {
-    console.log(tmp.value);
-    tmp = tmp.next;
-  }
-}
-
-// reverse recursive
-function reverseRecursive(list) {
-  if (list.next) reverseRecursive(list.next);
-  console.log(list.value);
-}
-
-// reverse iterative
-function reverseIterative(list) {
-  const cache = [];
-  let tmp = list;
-  while (tmp) {
-    cache.push(tmp.value);
-    tmp = tmp.next;
-  }
-  for (let i = cache.length - 1; i >= 0; i--) {
-    console.log(cache[i]);
-  }
 }
