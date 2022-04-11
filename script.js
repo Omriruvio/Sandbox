@@ -2161,27 +2161,52 @@
 // }
 
 // kata - https://www.codewars.com/kata/5270d0d18625160ada0000e4
-function score(dice) {
-  let sum = 0;
+// function score(dice) {
+//   let sum = 0;
 
-  const subSum = (dig, single = 0, multi = 100) => {
-    let tmpSum = 0;
-    let tmp = [...dice].filter((x) => x === dig);
-    let count = tmp.length;
-    // handle multi
-    if (count >= 3) {
-      tmpSum += dig * multi;
-      count -= 3;
-    }
-    // handle single
-    if (count > 0) tmpSum += dig * single * count;
-    sum += tmpSum;
-  };
-  subSum(1, 100, 1000);
-  subSum(5, 10, 100);
-  subSum(2);
-  subSum(3);
-  subSum(4);
-  subSum(6);
-  return sum;
+//   const subSum = (dig, single = 0, multi = 100) => {
+//     let tmpSum = 0;
+//     let tmp = [...dice].filter((x) => x === dig);
+//     let count = tmp.length;
+//     // handle multi
+//     if (count >= 3) {
+//       tmpSum += dig * multi;
+//       count -= 3;
+//     }
+//     // handle single
+//     if (count > 0) tmpSum += dig * single * count;
+//     sum += tmpSum;
+//   };
+//   subSum(1, 100, 1000);
+//   subSum(5, 10, 100);
+//   subSum(2);
+//   subSum(3);
+//   subSum(4);
+//   subSum(6);
+//   return sum;
+// }
+
+function getProperty(obj, path) {
+  let temp = obj;
+  const paths = path.split('.');
+
+  for (let i = 0; i < paths.length; i++) {
+    temp = temp[paths[i]];
+  }
+
+  console.log(temp);
 }
+
+const object = {
+  one: 1,
+  two: {
+    three: 3,
+    five: {
+      six: 6,
+    },
+  },
+  four: 4,
+};
+
+getProperty(object, 'one'); // 1
+getProperty(object, 'two.five.six'); // 3
