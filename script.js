@@ -2186,27 +2186,67 @@
 //   return sum;
 // }
 
-function getProperty(obj, path) {
-  let temp = obj;
-  const paths = path.split('.');
+// function getProperty(obj, path) {
+//   let temp = obj;
+//   const paths = path.split('.');
 
-  for (let i = 0; i < paths.length; i++) {
-    temp = temp[paths[i]];
+//   for (let i = 0; i < paths.length; i++) {
+//     temp = temp[paths[i]];
+//   }
+
+//   console.log(temp);
+// }
+
+// const object = {
+//   one: 1,
+//   two: {
+//     three: 3,
+//     five: {
+//       six: 6,
+//     },
+//   },
+//   four: 4,
+// };
+
+// getProperty(object, 'one'); // 1
+// getProperty(object, 'two.five.six'); // 6
+
+// function getPropertyBetter(obj, path) {
+//   return path.split('.').reduce(function (res, key) {
+//     if (res === undefined || res === null) {
+//       console.log('There is no such property');
+//       return undefined;
+//     }
+
+//     return res[key];
+//   }, obj);
+// }
+
+// kata - https://www.codewars.com/kata/576757b1df89ecf5bd00073b
+
+function towerBuilder(nFloors) {
+  const structure = [];
+  const result = [];
+  let i = 1;
+  while (structure.length < nFloors) {
+    structure.push(i <= 1 ? 1 : i);
+    i += 2;
   }
-
-  console.log(temp);
+  let padding = 0;
+  for (let i = nFloors - 1; i >= 0; i--) {
+    result.push(`${' '.repeat(padding / 2)}${'*'.repeat(structure[i])}${' '.repeat(padding / 2)}`);
+    padding += 2;
+  }
+  return result.reverse();
 }
 
-const object = {
-  one: 1,
-  two: {
-    three: 3,
-    five: {
-      six: 6,
-    },
-  },
-  four: 4,
-};
+function towerBuilderBetter(n) {
+  return Array.from({ length: n }, function (v, k) {
+    const spaces = ' '.repeat(n - k - 1);
+    return spaces + '*'.repeat(k + k + 1) + spaces;
+  });
+}
 
-getProperty(object, 'one'); // 1
-getProperty(object, 'two.five.six'); // 3
+console.log(towerBuilder(1), ['*']);
+console.log(towerBuilder(2), [' * ', '***']);
+console.log(towerBuilder(3), ['  *  ', ' *** ', '*****']);
