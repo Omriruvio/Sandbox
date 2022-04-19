@@ -2258,59 +2258,83 @@
 
 // kata - https://www.codewars.com/kata/622a6a822494ab004b2c68d2
 
-function slicesToName(n) {
-  let result = '';
-  if (n <= 1 || !n || Number.isNaN(Number(n))) return null;
-  if (n % 2 === 0) {
-    result += 'sandwich '.repeat(n / 2);
-  } else if (n >= 3) {
-    result = 'bread sandwich ';
-    n -= 3;
-    while (n > 0) {
-      result += 'sandwich ';
-      n -= 2;
-    }
-  }
-  return result.trim();
-}
+// function slicesToName(n) {
+//   let result = '';
+//   if (n <= 1 || !n || Number.isNaN(Number(n))) return null;
+//   if (n % 2 === 0) {
+//     result += 'sandwich '.repeat(n / 2);
+//   } else if (n >= 3) {
+//     result = 'bread sandwich ';
+//     n -= 3;
+//     while (n > 0) {
+//       result += 'sandwich ';
+//       n -= 2;
+//     }
+//   }
+//   return result.trim();
+// }
 
-// console.log(slicesToName(false), null)
-// console.log(slicesToName(1), null)
-// console.log(slicesToName(-2), null)
-// console.log(slicesToName('bread'), null)
-// console.log(slicesToName(2), 'sandwich')
-// console.log(slicesToName(3), 'bread sandwich')
-// console.log(slicesToName(11),'bread sandwich sandwich sandwich sandwich sandwich')
-// console.log(slicesToName(8), 'sandwich sandwich sandwich sandwich')
+// // console.log(slicesToName(false), null)
+// // console.log(slicesToName(1), null)
+// // console.log(slicesToName(-2), null)
+// // console.log(slicesToName('bread'), null)
+// // console.log(slicesToName(2), 'sandwich')
+// // console.log(slicesToName(3), 'bread sandwich')
+// // console.log(slicesToName(11),'bread sandwich sandwich sandwich sandwich sandwich')
+// // console.log(slicesToName(8), 'sandwich sandwich sandwich sandwich')
+
+// // P R E P
+// // Params - String with bread sandwich / sandwich
+// // Return - Number of bread slices
+
+// function nameToSlices(name) {
+//   let numberOfSlices = 0;
+//   let error = false;
+//   if (!name || Number.isInteger(name)) return null;
+//   const arr = name.split(' ');
+//   if (arr[0] === 'bread' && arr[1] === 'sandwich') {
+//     numberOfSlices += 3;
+//     arr.splice(0, 2);
+//   }
+//   numberOfSlices += arr.reduce((sum, x) => {
+//     if (x !== 'sandwich') error = true;
+//     sum += 2;
+//     return sum;
+//   }, 0);
+
+//   return !error ? numberOfSlices : null;
+// }
+
+// // console.log(nameToSlices(12), null)
+// // console.log(nameToSlices(""), null);
+// // console.log(nameToSlices("sandwich sandwich bread sandwich"), null);
+// // console.log(nameToSlices('sand wich'), null)
+// // console.log(nameToSlices('bread sandwich'), 3)
+// // console.log(nameToSlices('sandwich sandwich sandwich sandwich'), 8)
+// // console.log(nameToSlices('bread'), null)
+// // console.log(nameToSlices('bread sandwich sandwich sandwich'), 7)
+// // console.log(nameToSlices('bread sandwich bread sandwich'), null)
 
 // P R E P
-// Params - String with bread sandwich / sandwich
-// Return - Number of bread slices
+// Parameters - string containing words separated by whitespace
+// Return - highest scoring word according to alphabetical value
 
-function nameToSlices(name) {
-  let numberOfSlices = 0;
-  let error = false;
-  if (!name || Number.isInteger(name)) return null;
-  const arr = name.split(' ');
-  if (arr[0] === 'bread' && arr[1] === 'sandwich') {
-    numberOfSlices += 3;
-    arr.splice(0, 2);
-  }
-  numberOfSlices += arr.reduce((sum, x) => {
-    if (x !== 'sandwich') error = true;
-    sum += 2;
-    return sum;
-  }, 0);
-
-  return !error ? numberOfSlices : null;
+function high(x) {
+  return x.split(' ').reduce(
+    (highest, word) => {
+      let sum = [...word].reduce((sum, letter) => sum + letter.charCodeAt(0) - 96, 0);
+      if (sum > highest[1]) highest = [word, sum];
+      return highest;
+    },
+    ['', 0]
+  )[0];
 }
 
-// console.log(nameToSlices(12), null)
-// console.log(nameToSlices(""), null);
-// console.log(nameToSlices("sandwich sandwich bread sandwich"), null);
-// console.log(nameToSlices('sand wich'), null)
-// console.log(nameToSlices('bread sandwich'), 3)
-// console.log(nameToSlices('sandwich sandwich sandwich sandwich'), 8)
-// console.log(nameToSlices('bread'), null)
-// console.log(nameToSlices('bread sandwich sandwich sandwich'), 7)
-// console.log(nameToSlices('bread sandwich bread sandwich'), null)
+console.log(high('man i need a taxi up to ubud'), 'taxi');
+console.log(high('what time are we climbing up the volcano'), 'volcano');
+console.log(high('take me to semynak'), 'semynak');
+console.log(high('aa b'), 'aa');
+console.log(high('b aa'), 'b');
+console.log(high('bb d'), 'bb');
+console.log(high('d bb'), 'd');
+console.log(high('aaa b'), 'aaa');
