@@ -2319,22 +2319,54 @@
 // Parameters - string containing words separated by whitespace
 // Return - highest scoring word according to alphabetical value
 
-function high(x) {
-  return x.split(' ').reduce(
-    (highest, word) => {
-      let sum = [...word].reduce((sum, letter) => sum + letter.charCodeAt(0) - 96, 0);
-      if (sum > highest[1]) highest = [word, sum];
-      return highest;
-    },
-    ['', 0]
-  )[0];
+// function high(x) {
+//   return x.split(' ').reduce(
+//     (highest, word) => {
+//       let sum = [...word].reduce((sum, letter) => sum + letter.charCodeAt(0) - 96, 0);
+//       if (sum > highest[1]) highest = [word, sum];
+//       return highest;
+//     },
+//     ['', 0]
+//   )[0];
+// }
+
+// console.log(high('man i need a taxi up to ubud'), 'taxi');
+// console.log(high('what time are we climbing up the volcano'), 'volcano');
+// console.log(high('take me to semynak'), 'semynak');
+// console.log(high('aa b'), 'aa');
+// console.log(high('b aa'), 'b');
+// console.log(high('bb d'), 'bb');
+// console.log(high('d bb'), 'd');
+// console.log(high('aaa b'), 'aaa');
+
+// kata - https://www.codewars.com/kata/583203e6eb35d7980400002a
+
+// P - receives array of strings representing smilies
+// R - Returns number of valid smilies
+
+function countSmileys(arr) {
+  const isSmiley = (smiley) => {
+    const eyes = [':', ';'];
+    const nose = ['-', '~'];
+    const mouth = [')', 'D'];
+    const spread = [...smiley];
+    if (eyes.includes(spread.shift()) && mouth.includes(spread.pop())) {
+      if (spread.length > 0 && !nose.includes(spread[0])) return false;
+      return true;
+    } else return false;
+  };
+  return arr.reduce((sum, smiley) => (isSmiley(smiley) ? ++sum : sum), 0);
 }
 
-console.log(high('man i need a taxi up to ubud'), 'taxi');
-console.log(high('what time are we climbing up the volcano'), 'volcano');
-console.log(high('take me to semynak'), 'semynak');
-console.log(high('aa b'), 'aa');
-console.log(high('b aa'), 'b');
-console.log(high('bb d'), 'bb');
-console.log(high('d bb'), 'd');
-console.log(high('aaa b'), 'aaa');
+// const faces = new Set()
+// for (let eyes of [':',';'])
+//     for (let nose of ['-','~',''])
+//         for (let mouth of [')','D'])
+//             faces.add(eyes+nose+mouth)
+
+// const countSmileysCooler =(arr)=> arr.filter(x => faces.has(x)).length
+
+console.log(countSmileys([]), 0);
+console.log(countSmileys([':D', ':~)', ';~D', ':)']), 4);
+console.log(countSmileys([':)', ':(', ':D', ':O', ':;']), 2);
+console.log(countSmileys([';]', ':[', ';*', ':$', ';-D']), 1);
