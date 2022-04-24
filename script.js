@@ -2344,29 +2344,57 @@
 // P - receives array of strings representing smilies
 // R - Returns number of valid smilies
 
-function countSmileys(arr) {
-  const isSmiley = (smiley) => {
-    const eyes = [':', ';'];
-    const nose = ['-', '~'];
-    const mouth = [')', 'D'];
-    const spread = [...smiley];
-    if (eyes.includes(spread.shift()) && mouth.includes(spread.pop())) {
-      if (spread.length > 0 && !nose.includes(spread[0])) return false;
-      return true;
-    } else return false;
-  };
-  return arr.reduce((sum, smiley) => (isSmiley(smiley) ? ++sum : sum), 0);
-}
+// function countSmileys(arr) {
+//   const isSmiley = (smiley) => {
+//     const eyes = [':', ';'];
+//     const nose = ['-', '~'];
+//     const mouth = [')', 'D'];
+//     const spread = [...smiley];
+//     if (eyes.includes(spread.shift()) && mouth.includes(spread.pop())) {
+//       if (spread.length > 0 && !nose.includes(spread[0])) return false;
+//       return true;
+//     } else return false;
+//   };
+//   return arr.reduce((sum, smiley) => (isSmiley(smiley) ? ++sum : sum), 0);
+// }
 
-// const faces = new Set()
-// for (let eyes of [':',';'])
-//     for (let nose of ['-','~',''])
-//         for (let mouth of [')','D'])
-//             faces.add(eyes+nose+mouth)
+// // const faces = new Set()
+// // for (let eyes of [':',';'])
+// //     for (let nose of ['-','~',''])
+// //         for (let mouth of [')','D'])
+// //             faces.add(eyes+nose+mouth)
 
-// const countSmileysCooler =(arr)=> arr.filter(x => faces.has(x)).length
+// // const countSmileysCooler =(arr)=> arr.filter(x => faces.has(x)).length
 
-console.log(countSmileys([]), 0);
-console.log(countSmileys([':D', ':~)', ';~D', ':)']), 4);
-console.log(countSmileys([':)', ':(', ':D', ':O', ':;']), 2);
-console.log(countSmileys([';]', ':[', ';*', ':$', ';-D']), 1);
+// console.log(countSmileys([]), 0);
+// console.log(countSmileys([':D', ':~)', ';~D', ':)']), 4);
+// console.log(countSmileys([':)', ':(', ':D', ':O', ':;']), 2);
+// console.log(countSmileys([';]', ':[', ';*', ':$', ';-D']), 1);
+
+// Kata - https://www.codewars.com/kata/5208f99aee097e6552000148/
+// P receives joined string of camel case words
+// R return a string separated by white space between each came cased word
+
+const solution = (str) => {
+  const findNextCamel = (str) => str.findIndex((x, i) => x.toUpperCase() === x && i !== 0);
+  str = str.split('');
+  let result = '';
+  let nextCamel = findNextCamel(str);
+  while (str.length > 0 && nextCamel >= 1) {
+    result += str.splice(0, nextCamel).join('') + ' ';
+    nextCamel = findNextCamel(str);
+  }
+  return result + str.join('').trim();
+};
+
+const solutionBetter = (string) => {
+  return [...string]
+    .map((char) => {
+      return char === char.toUpperCase() ? ` ${char}` : char;
+    })
+    .join('');
+};
+
+console.log(solution('camelCasing'), 'camel Casing');
+console.log(solution('camelCasingTest'), 'camel Casing Test');
+console.log(solution('WhoLetTheDogsOut'), 'Who Let The Dogs Out');
