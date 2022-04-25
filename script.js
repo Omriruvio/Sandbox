@@ -2375,26 +2375,69 @@
 // P receives joined string of camel case words
 // R return a string separated by white space between each came cased word
 
-const solution = (str) => {
-  const findNextCamel = (str) => str.findIndex((x, i) => x.toUpperCase() === x && i !== 0);
-  str = str.split('');
-  let result = '';
-  let nextCamel = findNextCamel(str);
-  while (str.length > 0 && nextCamel >= 1) {
-    result += str.splice(0, nextCamel).join('') + ' ';
-    nextCamel = findNextCamel(str);
+// const solution = (str) => {
+//   const findNextCamel = (str) => str.findIndex((x, i) => x.toUpperCase() === x && i !== 0);
+//   str = str.split('');
+//   let result = '';
+//   let nextCamel = findNextCamel(str);
+//   while (str.length > 0 && nextCamel >= 1) {
+//     result += str.splice(0, nextCamel).join('') + ' ';
+//     nextCamel = findNextCamel(str);
+//   }
+//   return result + str.join('').trim();
+// };
+
+// const solutionBetter = (string) => {
+//   return [...string]
+//     .map((char) => {
+//       return char === char.toUpperCase() ? ` ${char}` : char;
+//     })
+//     .join('');
+// };
+
+// console.log(solution('camelCasing'), 'camel Casing');
+// console.log(solution('camelCasingTest'), 'camel Casing Test');
+// console.log(solution('WhoLetTheDogsOut'), 'Who Let The Dogs Out');
+
+// kata - https://www.codewars.com/kata/5277c8a221e209d3f6000b56
+
+// receive string of brackets
+// return true/false according to the validity of the brackets
+
+function validBraces(braces) {
+  // helper function that gets corresponding opener for closer
+  const getOpener = (bracket) => openers[closers.indexOf(bracket)];
+  const openers = '({[';
+  const closers = ')}]';
+  const cache = [];
+  for (const bracket of [...braces]) {
+    if (openers.includes(bracket)) {
+      //if bracket is an opener
+      cache.push(bracket);
+    } else if (closers.includes(bracket)) {
+      // if bracket is a closer
+      if (cache[cache.length - 1] === getOpener(bracket)) {
+        cache.pop();
+      } else return false;
+    }
   }
-  return result + str.join('').trim();
-};
+  return cache.length === 0 ? true : false;
+}
 
-const solutionBetter = (string) => {
-  return [...string]
-    .map((char) => {
-      return char === char.toUpperCase() ? ` ${char}` : char;
-    })
-    .join('');
-};
+console.log(validBraces('()))'), false);
+console.log(validBraces('()'), true);
+console.log(validBraces('[]'), true);
+console.log(validBraces('{}'), true);
+console.log(validBraces('(){}[]'), true);
+console.log(validBraces('([{}])'), true);
+console.log(validBraces('(}'), false);
 
-console.log(solution('camelCasing'), 'camel Casing');
-console.log(solution('camelCasingTest'), 'camel Casing Test');
-console.log(solution('WhoLetTheDogsOut'), 'Who Let The Dogs Out');
+console.log(validBraces('[(])'), false);
+console.log(validBraces('({})[({})]'), true);
+console.log(validBraces('(})'), false);
+console.log(validBraces('(({{[[]]}}))'), true);
+console.log(validBraces('{}({})[]'), true);
+console.log(validBraces(')(}{]['), false);
+console.log(validBraces('())({}}{()][]['), false);
+console.log(validBraces('(((({{'), false);
+console.log(validBraces('}}]]))}])'), false);
