@@ -2404,40 +2404,61 @@
 // receive string of brackets
 // return true/false according to the validity of the brackets
 
-function validBraces(braces) {
-  // helper function that gets corresponding opener for closer
-  const getOpener = (bracket) => openers[closers.indexOf(bracket)];
-  const openers = '({[';
-  const closers = ')}]';
-  const cache = [];
-  for (const bracket of [...braces]) {
-    if (openers.includes(bracket)) {
-      //if bracket is an opener
-      cache.push(bracket);
-    } else if (closers.includes(bracket)) {
-      // if bracket is a closer
-      if (cache[cache.length - 1] === getOpener(bracket)) {
-        cache.pop();
-      } else return false;
-    }
-  }
-  return cache.length === 0 ? true : false;
-}
+// function validBraces(braces) {
+//   // helper function that gets corresponding opener for closer
+//   const getOpener = (bracket) => openers[closers.indexOf(bracket)];
+//   const openers = '({[';
+//   const closers = ')}]';
+//   const cache = [];
+//   for (const bracket of [...braces]) {
+//     if (openers.includes(bracket)) {
+//       //if bracket is an opener
+//       cache.push(bracket);
+//     } else if (closers.includes(bracket)) {
+//       // if bracket is a closer
+//       if (cache[cache.length - 1] === getOpener(bracket)) {
+//         cache.pop();
+//       } else return false;
+//     }
+//   }
+//   return cache.length === 0 ? true : false;
+// }
 
-console.log(validBraces('()))'), false);
-console.log(validBraces('()'), true);
-console.log(validBraces('[]'), true);
-console.log(validBraces('{}'), true);
-console.log(validBraces('(){}[]'), true);
-console.log(validBraces('([{}])'), true);
-console.log(validBraces('(}'), false);
+// console.log(validBraces('()))'), false);
+// console.log(validBraces('()'), true);
+// console.log(validBraces('[]'), true);
+// console.log(validBraces('{}'), true);
+// console.log(validBraces('(){}[]'), true);
+// console.log(validBraces('([{}])'), true);
+// console.log(validBraces('(}'), false);
 
-console.log(validBraces('[(])'), false);
-console.log(validBraces('({})[({})]'), true);
-console.log(validBraces('(})'), false);
-console.log(validBraces('(({{[[]]}}))'), true);
-console.log(validBraces('{}({})[]'), true);
-console.log(validBraces(')(}{]['), false);
-console.log(validBraces('())({}}{()][]['), false);
-console.log(validBraces('(((({{'), false);
-console.log(validBraces('}}]]))}])'), false);
+// console.log(validBraces('[(])'), false);
+// console.log(validBraces('({})[({})]'), true);
+// console.log(validBraces('(})'), false);
+// console.log(validBraces('(({{[[]]}}))'), true);
+// console.log(validBraces('{}({})[]'), true);
+// console.log(validBraces(')(}{]['), false);
+// console.log(validBraces('())({}}{()][]['), false);
+// console.log(validBraces('(((({{'), false);
+// console.log(validBraces('}}]]))}])'), false);
+
+// kata - https://www.codewars.com/kata/550554fd08b86f84fe000a58/train/javascript
+
+// Receives two arrays of strings
+// Returns a new array with items from array 1 that appear as a part or as a whole in array 2
+
+const inArray = (a1, a2) =>
+  [
+    ...new Set(
+      a1.reduce((result, x) => {
+        if (a2.find((y) => y.includes(x))) result.push(x);
+        return result;
+      }, [])
+    ),
+  ].sort();
+
+// console.log(...new Set(['a', 'b', 'a']))
+
+console.log(inArray(['xyz', 'live', 'strong'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['live', 'strong']);
+console.log(inArray(['live', 'strong', 'arp'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['arp', 'live', 'strong']);
+console.log(inArray(['tarp', 'mice', 'bull'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), []);
