@@ -2447,18 +2447,33 @@
 // Receives two arrays of strings
 // Returns a new array with items from array 1 that appear as a part or as a whole in array 2
 
-const inArray = (a1, a2) =>
-  [
-    ...new Set(
-      a1.reduce((result, x) => {
-        if (a2.find((y) => y.includes(x))) result.push(x);
-        return result;
-      }, [])
-    ),
-  ].sort();
+// const inArray = (a1, a2) =>
+//   [
+//     ...new Set(
+//       a1.reduce((result, x) => {
+//         if (a2.find((y) => y.includes(x))) result.push(x);
+//         return result;
+//       }, [])
+//     ),
+//   ].sort();
 
-// console.log(...new Set(['a', 'b', 'a']))
+// // console.log(...new Set(['a', 'b', 'a']))
 
-console.log(inArray(['xyz', 'live', 'strong'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['live', 'strong']);
-console.log(inArray(['live', 'strong', 'arp'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['arp', 'live', 'strong']);
-console.log(inArray(['tarp', 'mice', 'bull'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), []);
+// console.log(inArray(['xyz', 'live', 'strong'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['live', 'strong']);
+// console.log(inArray(['live', 'strong', 'arp'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['arp', 'live', 'strong']);
+// console.log(inArray(['tarp', 'mice', 'bull'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), []);
+
+const sum = (a) => {
+  let currentSum = a;
+  const next = (b) => {
+    currentSum += b;
+    return next;
+  };
+  next.toString = () => currentSum;
+  return next;
+};
+
+console.log(sum(1)(2).toString()); // 3
+console.log(sum(5)(-1)(2).toString()); // 6
+console.log(sum(6)(-1)(-2)(-3).toString()); // 0
+console.log(sum(0)(1)(2)(3)(4)(5).toString()); // 15
