@@ -2463,17 +2463,36 @@
 // console.log(inArray(['live', 'strong', 'arp'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), ['arp', 'live', 'strong']);
 // console.log(inArray(['tarp', 'mice', 'bull'], ['lively', 'alive', 'harp', 'sharp', 'armstrong']), []);
 
-const sum = (a) => {
-  let currentSum = a;
-  const next = (b) => {
-    currentSum += b;
-    return next;
-  };
-  next.toString = () => currentSum;
-  return next;
+// const sum = (a) => {
+//   let currentSum = a;
+//   const next = (b) => {
+//     currentSum += b;
+//     return next;
+//   };
+//   next.toString = () => currentSum;
+//   return next;
+// };
+
+// console.log(sum(1)(2).toString()); // 3
+// console.log(sum(5)(-1)(2).toString()); // 6
+// console.log(sum(6)(-1)(-2)(-3).toString()); // 0
+// console.log(sum(0)(1)(2)(3)(4)(5).toString()); // 15
+
+// kata - https://www.codewars.com/kata/57b06f90e298a7b53d000a86
+
+// P - Receives customers: array of integers representing time at till
+//          n: integer representing amount of tills
+// R - Returns integer representing amount of time to clear all customers
+
+const queueTime = (customers, n) => {
+  const queues = Array.from({ length: n }, (x) => 0);
+  for (const customer of customers) {
+    queues[queues.indexOf(Math.min(...queues))] += customer;
+  }
+  return Math.max(...queues);
 };
 
-console.log(sum(1)(2).toString()); // 3
-console.log(sum(5)(-1)(2).toString()); // 6
-console.log(sum(6)(-1)(-2)(-3).toString()); // 0
-console.log(sum(0)(1)(2)(3)(4)(5).toString()); // 15
+console.log(queueTime([], 1), 0);
+console.log(queueTime([1, 2, 3, 4], 1), 10);
+console.log(queueTime([2, 2, 3, 3, 4, 4], 2), 9);
+console.log(queueTime([1, 2, 3, 4, 5], 100), 5);
