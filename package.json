@@ -1,0 +1,23 @@
+{
+  "name": "sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omriruvio/Sandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Omriruvio/Sandbox/issues"
+  },
+  "homepage": "https://github.com/Omriruvio/Sandbox#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

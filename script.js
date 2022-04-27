@@ -2484,15 +2484,40 @@
 //          n: integer representing amount of tills
 // R - Returns integer representing amount of time to clear all customers
 
-const queueTime = (customers, n) => {
-  const queues = Array.from({ length: n }, (x) => 0);
-  for (const customer of customers) {
-    queues[queues.indexOf(Math.min(...queues))] += customer;
-  }
-  return Math.max(...queues);
+// const queueTime = (customers, n) => {
+//   const queues = Array.from({ length: n }, (x) => 0);
+//   for (const customer of customers) {
+//     queues[queues.indexOf(Math.min(...queues))] += customer;
+//   }
+//   return Math.max(...queues);
+// };
+
+// console.log(queueTime([], 1), 0);
+// console.log(queueTime([1, 2, 3, 4], 1), 10);
+// console.log(queueTime([2, 2, 3, 3, 4, 4], 2), 9);
+// console.log(queueTime([1, 2, 3, 4, 5], 100), 5);
+
+// Write a function printNumbers(from, to) that outputs a number every second, starting from from and ending with to.
+
+// Make two variants of the solution.
+
+// Using setInterval.
+// Using nested setTimeout.
+
+// const printNumbers = (from, to) => {
+//   let count = from;
+//   const interval = setInterval(() => {
+//     if (count >= to) clearInterval(interval);
+//     console.log(count++);
+//   }, 1000);
+// };
+
+const printNumbers = (from, to) => {
+  let count = from;
+  let timer = setTimeout(function go() {
+    console.log(count++);
+    count <= to && (timer = setTimeout(go, 1000));
+  }, 1000);
 };
 
-console.log(queueTime([], 1), 0);
-console.log(queueTime([1, 2, 3, 4], 1), 10);
-console.log(queueTime([2, 2, 3, 3, 4, 4], 2), 9);
-console.log(queueTime([1, 2, 3, 4, 5], 100), 5);
+printNumbers(1, 10);
