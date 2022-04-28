@@ -2512,12 +2512,31 @@
 //   }, 1000);
 // };
 
-const printNumbers = (from, to) => {
-  let count = from;
-  let timer = setTimeout(function go() {
-    console.log(count++);
-    count <= to && (timer = setTimeout(go, 1000));
-  }, 1000);
-};
+// const printNumbers = (from, to) => {
+//   let count = from;
+//   let timer = setTimeout(function go() {
+//     console.log(count++);
+//     count <= to && (timer = setTimeout(go, 1000));
+//   }, 1000);
+// };
 
-printNumbers(1, 10);
+// printNumbers(1, 10);
+
+// kata - https://www.codewars.com/kata/5842df8ccbd22792a4000245/train/javascript
+
+// P - Receives number
+// R - Returns expanded form number
+
+const expandedForm = (num) =>
+  [...String(num)]
+    .reverse()
+    .reduce((result, x, i) => {
+      if (Number(x) !== 0) result.push(x.padEnd(i + 1, 0));
+      return result;
+    }, [])
+    .reverse()
+    .join(' + ');
+
+console.log(expandedForm(12), '10 + 2');
+console.log(expandedForm(42), '40 + 2');
+console.log(expandedForm(70304), '70000 + 300 + 4');
