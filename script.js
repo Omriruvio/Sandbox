@@ -2541,32 +2541,41 @@
 // console.log(expandedForm(42), '40 + 2');
 // console.log(expandedForm(70304), '70000 + 300 + 4');
 
-const solution = (number) => {
-  let result = '';
-  const latin = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
-  for (const [roman, value] of Object.entries(latin)) {
-    while (number >= value) {
-      number -= value;
-      result += roman;
-    }
-  }
-  return result;
-};
+// kata - https://www.codewars.com/kata/51b62bf6a9c58071c600001b
 
-console.log(solution(1), 'I', '1 should, "I"');
-console.log(solution(2), 'II', '2 should, "II"');
-console.log(solution(3), 'III', '3 should, "III"');
-console.log(solution(4), 'IV', '4 should, "IV"');
-console.log(solution(5), 'V', '5 should, "V"');
-console.log(solution(9), 'IX', '9 should, "IX"');
-console.log(solution(10), 'X', '10 should, "X"');
-console.log(solution(11), 'XI');
-console.log(solution(19), 'XIX');
-console.log(solution(22), 'XXII');
-console.log(solution(15), 'XV');
+// const solution = (number) => {
+//   let result = '';
+//   const latin = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
+//   for (const [roman, value] of Object.entries(latin)) {
+//     while (number >= value) {
+//       number -= value;
+//       result += roman;
+//     }
+//   }
+//   return result;
+// };
 
-console.log(solution(1000), 'M', '1000 should, "M"');
-console.log(solution(1001), 'MI', '1001 should, "MI"');
-console.log(solution(1990), 'MCMXC', '1990 should, "MCMXC"');
-console.log(solution(2007), 'MMVII', '2007 should, "MMVII"');
-console.log(solution(2008), 'MMVIII', '2008 should, "MMVIII"');
+// console.log(solution(1), 'I', '1 should, "I"');
+// console.log(solution(2), 'II', '2 should, "II"');
+// console.log(solution(3), 'III', '3 should, "III"');
+// console.log(solution(4), 'IV', '4 should, "IV"');
+// console.log(solution(5), 'V', '5 should, "V"');
+// console.log(solution(9), 'IX', '9 should, "IX"');
+// console.log(solution(10), 'X', '10 should, "X"');
+// console.log(solution(11), 'XI');
+// console.log(solution(19), 'XIX');
+// console.log(solution(22), 'XXII');
+// console.log(solution(15), 'XV');
+
+// console.log(solution(1000), 'M', '1000 should, "M"');
+// console.log(solution(1001), 'MI', '1001 should, "MI"');
+// console.log(solution(1990), 'MCMXC', '1990 should, "MCMXC"');
+// console.log(solution(2007), 'MMVII', '2007 should, "MMVII"');
+// console.log(solution(2008), 'MMVIII', '2008 should, "MMVIII"');
+
+// kata - https://www.codewars.com/kata/54ff3102c1bad923760001f3
+
+function getCount(str) {
+  const vowles = 'aeiou';
+  return [...str].filter((x) => vowles.includes(x)).length;
+}
