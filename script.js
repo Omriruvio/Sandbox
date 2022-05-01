@@ -2575,7 +2575,15 @@
 
 // kata - https://www.codewars.com/kata/54ff3102c1bad923760001f3
 
-function getCount(str) {
-  const vowles = 'aeiou';
-  return [...str].filter((x) => vowles.includes(x)).length;
-}
+// function getCount(str) {
+//   const vowles = 'aeiou';
+//   return [...str].filter((x) => vowles.includes(x)).length;
+// }
+
+// kata - https://www.codewars.com/kata/546e2562b03326a88e000020
+
+const squareDigits = (num) => parseInt([...String(num)].map((x) => Math.pow(x, 2)).join(''));
+
+console.log(squareDigits(3212), 9414);
+console.log(squareDigits(2112), 4114);
+console.log(squareDigits(0), 0);
