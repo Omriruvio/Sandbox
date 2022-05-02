@@ -2582,8 +2582,15 @@
 
 // kata - https://www.codewars.com/kata/546e2562b03326a88e000020
 
-const squareDigits = (num) => parseInt([...String(num)].map((x) => Math.pow(x, 2)).join(''));
+// const squareDigits = (num) => parseInt([...String(num)].map((x) => Math.pow(x, 2)).join(''));
 
-console.log(squareDigits(3212), 9414);
-console.log(squareDigits(2112), 4114);
-console.log(squareDigits(0), 0);
+// console.log(squareDigits(3212), 9414);
+// console.log(squareDigits(2112), 4114);
+// console.log(squareDigits(0), 0);
+
+// kata - https://www.codewars.com/kata/52fba66badcd10859f00097e/train/javascript
+
+function disemvowel(str) {
+  const vowels = 'aeiouAEIOU';
+  return [...str].filter((x) => !vowels.includes(x)).join('');
+}
