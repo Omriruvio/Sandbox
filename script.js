@@ -2608,22 +2608,35 @@
 // console.log(highAndLow('8 3 -5 42 -1 0 0 -9 4 7 4 -4'), '42 -9');
 // console.log(highAndLow('1 2 3'), '3 1');
 
-// kata - https://www.codewars.com/kata/5467e4d82edf8bbf40000155
+// // kata - https://www.codewars.com/kata/5467e4d82edf8bbf40000155
 
-// P - Receive any non negative integer
-// R - Return descending order integer
+// // P - Receive any non negative integer
+// // R - Return descending order integer
 
-const descendingOrder = (n) => {
-  return +n
-    .toString()
-    .split('')
-    .sort((a, b) => b - a)
-    .join('');
-};
+// const descendingOrder = (n) => {
+//   return +n
+//     .toString()
+//     .split('')
+//     .sort((a, b) => b - a)
+//     .join('');
+// };
 
-console.log(descendingOrder(0), 0);
-console.log(descendingOrder(1), 1);
-console.log(descendingOrder(111), 111);
-console.log(descendingOrder(15), 51);
-console.log(descendingOrder(1021), 2110);
-console.log(descendingOrder(123456789), 987654321);
+// console.log(descendingOrder(0), 0);
+// console.log(descendingOrder(1), 1);
+// console.log(descendingOrder(111), 111);
+// console.log(descendingOrder(15), 51);
+// console.log(descendingOrder(1021), 2110);
+// console.log(descendingOrder(123456789), 987654321);
+
+// kata - https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
+
+// P - string with a-z A-Z letters
+// R - input seperated with dashes, first letter of each part captilized and repeated i number of times
+
+const accum = (s) => [...s].map((x, i) => x.toUpperCase() + x.repeat(i).toLowerCase()).join('-');
+
+console.log(accum('ZpglnRxqenU'), 'Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu');
+console.log(accum('NyffsGeyylB'), 'N-Yy-Fff-Ffff-Sssss-Gggggg-Eeeeeee-Yyyyyyyy-Yyyyyyyyy-Llllllllll-Bbbbbbbbbbb');
+console.log(accum('MjtkuBovqrU'), 'M-Jj-Ttt-Kkkk-Uuuuu-Bbbbbb-Ooooooo-Vvvvvvvv-Qqqqqqqqq-Rrrrrrrrrr-Uuuuuuuuuuu');
+console.log(accum('EvidjUnokmM'), 'E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm');
+console.log(accum('HbideVbxncC'), 'H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc');
