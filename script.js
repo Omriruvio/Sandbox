@@ -2595,15 +2595,35 @@
 //   return [...str].filter((x) => !vowels.includes(x)).join('');
 // }
 
-// - https://www.codewars.com/kata/554b4ac871d6813a03000035
+// // kata - https://www.codewars.com/kata/554b4ac871d6813a03000035
 
-// Receive space sparated string of numbers
-// return string "highest lowest"
+// // Receive space sparated string of numbers
+// // return string "highest lowest"
 
-const highAndLow = (str) => {
-  const arr = str.split(' ');
-  return `${Math.max(...arr)} ${Math.min(...arr)}`;
+// const highAndLow = (str) => {
+//   const arr = str.split(' ');
+//   return `${Math.max(...arr)} ${Math.min(...arr)}`;
+// };
+
+// console.log(highAndLow('8 3 -5 42 -1 0 0 -9 4 7 4 -4'), '42 -9');
+// console.log(highAndLow('1 2 3'), '3 1');
+
+// kata - https://www.codewars.com/kata/5467e4d82edf8bbf40000155
+
+// P - Receive any non negative integer
+// R - Return descending order integer
+
+const descendingOrder = (n) => {
+  return +n
+    .toString()
+    .split('')
+    .sort((a, b) => b - a)
+    .join('');
 };
 
-console.log(highAndLow('8 3 -5 42 -1 0 0 -9 4 7 4 -4'), '42 -9');
-console.log(highAndLow('1 2 3'), '3 1');
+console.log(descendingOrder(0), 0);
+console.log(descendingOrder(1), 1);
+console.log(descendingOrder(111), 111);
+console.log(descendingOrder(15), 51);
+console.log(descendingOrder(1021), 2110);
+console.log(descendingOrder(123456789), 987654321);
