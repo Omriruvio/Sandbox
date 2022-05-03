@@ -2590,7 +2590,20 @@
 
 // kata - https://www.codewars.com/kata/52fba66badcd10859f00097e/train/javascript
 
-function disemvowel(str) {
-  const vowels = 'aeiouAEIOU';
-  return [...str].filter((x) => !vowels.includes(x)).join('');
-}
+// function disemvowel(str) {
+//   const vowels = 'aeiouAEIOU';
+//   return [...str].filter((x) => !vowels.includes(x)).join('');
+// }
+
+// - https://www.codewars.com/kata/554b4ac871d6813a03000035
+
+// Receive space sparated string of numbers
+// return string "highest lowest"
+
+const highAndLow = (str) => {
+  const arr = str.split(' ');
+  return `${Math.max(...arr)} ${Math.min(...arr)}`;
+};
+
+console.log(highAndLow('8 3 -5 42 -1 0 0 -9 4 7 4 -4'), '42 -9');
+console.log(highAndLow('1 2 3'), '3 1');
