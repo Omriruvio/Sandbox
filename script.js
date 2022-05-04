@@ -2641,18 +2641,26 @@
 // console.log(accum('EvidjUnokmM'), 'E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm');
 // console.log(accum('HbideVbxncC'), 'H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc');
 
-// kata - https://www.codewars.com/kata/56747fd5cb988479af000028
+// // kata - https://www.codewars.com/kata/56747fd5cb988479af000028
 
-// P - Receive string
-// R - Return middle character or 2 middle characters for even length string
+// // P - Receive string
+// // R - Return middle character or 2 middle characters for even length string
 
-const getMiddle = (s) => {
-  const length = s.length;
-  const isEven = s.length % 2 === 0;
-  return isEven ? s[length / 2 - 1] + s[length / 2] : s[Math.floor(length / 2)];
-};
+// const getMiddle = (s) => {
+//   const length = s.length;
+//   const isEven = s.length % 2 === 0;
+//   return isEven ? s[length / 2 - 1] + s[length / 2] : s[Math.floor(length / 2)];
+// };
 
-console.log(getMiddle('test'), 'es');
-console.log(getMiddle('testing'), 't');
-console.log(getMiddle('middle'), 'dd');
-console.log(getMiddle('A'), 'A');
+// console.log(getMiddle('test'), 'es');
+// console.log(getMiddle('testing'), 't');
+// console.log(getMiddle('middle'), 'dd');
+// console.log(getMiddle('A'), 'A');
+
+// // kata - https://www.codewars.com/kata/55908aad6620c066bc00002a
+
+// const XO = (str) => {
+//   const os = [...str].filter((x) => x === 'o' || x === 'O');
+//   const xs = [...str].filter((x) => x === 'x' || x === 'X');
+//   return os.length === xs.length;
+// };
