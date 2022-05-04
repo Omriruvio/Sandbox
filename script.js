@@ -2628,15 +2628,31 @@
 // console.log(descendingOrder(1021), 2110);
 // console.log(descendingOrder(123456789), 987654321);
 
-// kata - https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
+// // kata - https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
 
-// P - string with a-z A-Z letters
-// R - input seperated with dashes, first letter of each part captilized and repeated i number of times
+// // P - string with a-z A-Z letters
+// // R - input seperated with dashes, first letter of each part captilized and repeated i number of times
 
-const accum = (s) => [...s].map((x, i) => x.toUpperCase() + x.repeat(i).toLowerCase()).join('-');
+// const accum = (s) => [...s].map((x, i) => x.toUpperCase() + x.repeat(i).toLowerCase()).join('-');
 
-console.log(accum('ZpglnRxqenU'), 'Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu');
-console.log(accum('NyffsGeyylB'), 'N-Yy-Fff-Ffff-Sssss-Gggggg-Eeeeeee-Yyyyyyyy-Yyyyyyyyy-Llllllllll-Bbbbbbbbbbb');
-console.log(accum('MjtkuBovqrU'), 'M-Jj-Ttt-Kkkk-Uuuuu-Bbbbbb-Ooooooo-Vvvvvvvv-Qqqqqqqqq-Rrrrrrrrrr-Uuuuuuuuuuu');
-console.log(accum('EvidjUnokmM'), 'E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm');
-console.log(accum('HbideVbxncC'), 'H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc');
+// console.log(accum('ZpglnRxqenU'), 'Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu');
+// console.log(accum('NyffsGeyylB'), 'N-Yy-Fff-Ffff-Sssss-Gggggg-Eeeeeee-Yyyyyyyy-Yyyyyyyyy-Llllllllll-Bbbbbbbbbbb');
+// console.log(accum('MjtkuBovqrU'), 'M-Jj-Ttt-Kkkk-Uuuuu-Bbbbbb-Ooooooo-Vvvvvvvv-Qqqqqqqqq-Rrrrrrrrrr-Uuuuuuuuuuu');
+// console.log(accum('EvidjUnokmM'), 'E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm');
+// console.log(accum('HbideVbxncC'), 'H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc');
+
+// kata - https://www.codewars.com/kata/56747fd5cb988479af000028
+
+// P - Receive string
+// R - Return middle character or 2 middle characters for even length string
+
+const getMiddle = (s) => {
+  const length = s.length;
+  const isEven = s.length % 2 === 0;
+  return isEven ? s[length / 2 - 1] + s[length / 2] : s[Math.floor(length / 2)];
+};
+
+console.log(getMiddle('test'), 'es');
+console.log(getMiddle('testing'), 't');
+console.log(getMiddle('middle'), 'dd');
+console.log(getMiddle('A'), 'A');
