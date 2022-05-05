@@ -2664,3 +2664,27 @@
 //   const xs = [...str].filter((x) => x === 'x' || x === 'X');
 //   return os.length === xs.length;
 // };
+
+// // kata - https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9
+
+// const findShortest = (str) => Math.min.apply(null, str.split(' ').map((x) => x.length));
+
+// console.log(findShortest('bitcoin take over the world maybe who knows perhaps', 3));
+
+// kata - https://www.codewars.com/kata/5390bac347d09b7da40006f6
+
+// String.prototype.toJadenCase = function () {
+//   return this.split(' ')
+//     .map((x) => x[0].toUpperCase() + x.slice(1))
+//     .join(' ');
+// };
+
+// let str = "How can mirrors be real if our eyes aren't real";
+// console.log(str.toJadenCase(), "How Can Mirrors Be Real If Our Eyes Aren't Real");
+
+// kata - https://www.codewars.com/kata/554e4a2f232cdd87d9000038
+
+function DNAStrand(dna) {
+  const replace = { A: 'T', T: 'A', C: 'G', G: 'C' };
+  return [...dna].map((x) => replace[x]).join('');
+}
