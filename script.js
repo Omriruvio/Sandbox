@@ -2738,18 +2738,30 @@
 // console.log(digPow(92, 1), -1);
 // console.log(digPow(46288, 3), 51);
 
-// kata - https://www.codewars.com/kata/5592e3bd57b64d00f3000047
+// // kata - https://www.codewars.com/kata/5592e3bd57b64d00f3000047
 
-const findNb = (m) => {
-  let current = 0;
-  let cubes = 0;
-  while (m > current) {
-    current += Math.pow(++cubes, 3);
-  }
-  return current === m ? cubes : -1;
+// const findNb = (m) => {
+//   let current = 0;
+//   let cubes = 0;
+//   while (m > current) {
+//     current += Math.pow(++cubes, 3);
+//   }
+//   return current === m ? cubes : -1;
+// };
+
+// console.log(findNb(4183059834009), 2022);
+// console.log(findNb(24723578342962), -1);
+// console.log(findNb(135440716410000), 4824);
+// console.log(findNb(40539911473216), 3568);
+
+const wave = (str) => {
+  return [...str]
+    .map((_, i, arr) => {
+      if (arr[i] !== ' ') {
+        return arr.slice(0, i).join('') + arr[i].toUpperCase() + arr.slice(i + 1).join('');
+      }
+    })
+    .filter((x) => x !== undefined);
 };
 
-console.log(findNb(4183059834009), 2022);
-console.log(findNb(24723578342962), -1);
-console.log(findNb(135440716410000), 4824);
-console.log(findNb(40539911473216), 3568);
+console.log(wave('two words'));
