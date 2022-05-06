@@ -2824,18 +2824,68 @@
 // console.log(solution('MMVIII'), 2008);
 // console.log(solution('MDCLXVI'), 1666);
 
-// kata - https://www.codewars.com/kata/52efefcbcdf57161d4000091
+// // kata - https://www.codewars.com/kata/52efefcbcdf57161d4000091
 
-// P - receive string
-// R - return object with characters and count of characters as key/value pairs
+// // P - receive string
+// // R - return object with characters and count of characters as key/value pairs
 
-function count(string) {
-  const result = {};
-  for (const char of string) {
-    result[char] = result[char] ? ++result[char] : 1;
+// function count(string) {
+//   const result = {};
+//   for (const char of string) {
+//     result[char] = result[char] ? ++result[char] : 1;
+//   }
+//   return result;
+// }
+
+// console.log(count('aba'), { a: 2, b: 1 });
+// console.log(count(''), {});
+
+// kata - https://www.codewars.com/kata/57814d79a56c88e3e0000786
+
+// P - Receives string of numbers and n amounts to shuffle
+// R - Return shuffled odd + even indexed string n amount of times
+
+function encrypt(text, n) {
+  if (text === '') return '';
+  if (!text) return null;
+  let result = [...text];
+  for (let i = 0; i < n; i++) {
+    const odds = [...result].filter((x, i) => i % 2 !== 0);
+    const evens = [...result].filter((x, i) => i % 2 === 0);
+    result = [...odds, ...evens];
   }
-  return result;
+
+  return result.join('');
 }
 
-console.log(count('aba'), { a: 2, b: 1 });
-console.log(count(''), {});
+console.log(encrypt('This is a test!', 0), 'This is a test!');
+console.log(encrypt('This is a test!', 1), 'hsi  etTi sats!');
+console.log(encrypt('This is a test!', 2), 's eT ashi tist!');
+console.log(encrypt('This is a test!', 3), ' Tah itse sits!');
+console.log(encrypt('This is a test!', 4), 'This is a test!');
+console.log(encrypt('This is a test!', -1), 'This is a test!');
+console.log(encrypt('This kata is very interesting!', 1), 'hskt svr neetn!Ti aai eyitrsig');
+
+function decrypt(encryptedText, n) {
+  if (encryptedText === '') return '';
+  if (!encryptedText) return null;
+  let result = [...encryptedText];
+  const middleIndex = result.length % 2 === 0 ? Math.max(result.length / 2) : Math.min(result.length / 2);
+  for (let i = 0; i < n; i++) {
+    const odds = result.slice(0, middleIndex);
+    const evens = result.slice(middleIndex);
+    result = [];
+    for (let j = 0; j < encryptedText.length / 2; j++) {
+      result.push(evens[j], odds[j]);
+    }
+  }
+  return result.join('');
+}
+
+console.log(decrypt('This is a test!', 0), 'This is a test!');
+console.log(decrypt('hsi  etTi sats!', 1), 'This is a test!');
+console.log(decrypt('s eT ashi tist!', 2), 'This is a test!');
+console.log(decrypt(' Tah itse sits!', 3), 'This is a test!');
+console.log(decrypt('This is a test!', 4), 'This is a test!');
+console.log(decrypt('This is a test!', -1), 'This is a test!');
+console.log(decrypt('hskt svr neetn!Ti aai eyitrsig', 1), 'This kata is very interesting!');
