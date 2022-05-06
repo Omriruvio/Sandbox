@@ -15,6 +15,8 @@
 // newArray = [...pentagon.getSides()] // [1,2,3,4,5]
 // console.log(newArray);
 
+const { createInvalidPluginDefinitionError } = require('mocha/lib/errors');
+
 // const words = require("random-words");
 
 // const { list } = require("mocha/lib/reporters");
@@ -2682,9 +2684,43 @@
 // let str = "How can mirrors be real if our eyes aren't real";
 // console.log(str.toJadenCase(), "How Can Mirrors Be Real If Our Eyes Aren't Real");
 
-// kata - https://www.codewars.com/kata/554e4a2f232cdd87d9000038
+// // kata - https://www.codewars.com/kata/554e4a2f232cdd87d9000038
 
-function DNAStrand(dna) {
-  const replace = { A: 'T', T: 'A', C: 'G', G: 'C' };
-  return [...dna].map((x) => replace[x]).join('');
+// function DNAStrand(dna) {
+//   const replace = { A: 'T', T: 'A', C: 'G', G: 'C' };
+//   return [...dna].map((x) => replace[x]).join('');
+// }
+
+// // kata https://www.codewars.com/kata/558fc85d8fd1938afb000014
+
+// // P - receive array of positive integers
+// // R - return sum of two lowest integers
+
+// const sumTwoSmallestNumbers = (arr) => {
+//   const temp = [Infinity, Infinity];
+//   outer: for (const x of arr) {
+//     for (let i = 0; i < temp.length; i++) {
+//       const highestIndex = temp.indexOf(Math.max(...temp));
+//       if (x < temp[highestIndex]) {
+//         temp[highestIndex] = x;
+//         continue outer;
+//       }
+//     }
+//   }
+
+//   return temp;
+// };
+
+// console.log(sumTwoSmallestNumbers([5, 8, 12, 19, 22]), 13, 'Sum should be 13');
+// console.log(sumTwoSmallestNumbers([15, 28, 4, 2, 43]), 6, 'Sum should be 6');
+// console.log(sumTwoSmallestNumbers([3, 87, 45, 12, 7]), 10, 'Sum should be 10');
+// console.log(sumTwoSmallestNumbers([23, 71, 33, 82, 1]), 24, 'Sum should be 24');
+// console.log(sumTwoSmallestNumbers([52, 76, 14, 12, 4]), 16, 'Sum should be 16');
+
+function longest(s1, s2) {
+  return [...new Set(s1 + s2)].sort().join('');
 }
+
+console.log(longest('aretheyhere', 'yestheyarehere'), 'aehrsty');
+console.log(longest('loopingisfunbutdangerous', 'lessdangerousthancoding'), 'abcdefghilnoprstu');
+console.log(longest('inmanylanguages', 'theresapairoffunctions'), 'acefghilmnoprstuy');
