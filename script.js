@@ -2766,25 +2766,76 @@
 
 // console.log(wave('two words'));
 
-// kata - https://www.codewars.com/kata/5626b561280a42ecc50000d1
+// // kata - https://www.codewars.com/kata/5626b561280a42ecc50000d1
 
-// P - receive a, b representing a range to scan for numbers that the sum of
-// their digits raised by consecutive pwoer is euqal to the number itself
-// R - array that fulfills the property above
+// // P - receive a, b representing a range to scan for numbers that the sum of
+// // their digits raised by consecutive pwoer is euqal to the number itself
+// // R - array that fulfills the property above
 
-const sumDigPow = (a, b) => {
-  const results = [];
-  for (let i = a; i <= b; i++) {
-    let pow = 1;
-    let currentSum = 0;
-    const currentNumStringed = String(i);
-    for (let j = 0; j < currentNumStringed.length; j++) {
-      currentSum += Math.pow(currentNumStringed[j], pow++);
-    }
-    if (currentSum === i) results.push(i);
+// const sumDigPow = (a, b) => {
+//   const results = [];
+//   for (let i = a; i <= b; i++) {
+//     let pow = 1;
+//     let currentSum = 0;
+//     const currentNumStringed = String(i);
+//     for (let j = 0; j < currentNumStringed.length; j++) {
+//       currentSum += Math.pow(currentNumStringed[j], pow++);
+//     }
+//     if (currentSum === i) results.push(i);
+//   }
+//   return results;
+// };
+
+// console.log(sumDigPow(1, 10), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+// console.log(sumDigPow(1, 100), [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]);
+
+// // kata - https://www.codewars.com/kata/51b6249c4612257ac0000005
+
+// // P - receive string of roman characters
+// // R - return decimal value integer
+
+// const solution = (roman) => {
+//   const massage = {
+//     IV: 'IIII',
+//     IX: 'VIIII',
+//     XL: 'XXXX',
+//     XC: 'LXXXX',
+//     CD: 'CCCC',
+//     CM: 'DCCCC',
+//   };
+//   const convert = {
+//     M: 1000,
+//     D: 500,
+//     C: 100,
+//     L: 50,
+//     X: 10,
+//     V: 5,
+//     I: 1,
+//   };
+//   for (const [key, value] of Object.entries(massage)) {
+//     roman = roman.replace(key, value);
+//   }
+//   return [...roman].reduce((acc, x) => (acc += convert[x]), 0);
+// };
+
+// console.log(solution('XXI'), 21);
+// console.log(solution('I'), 1);
+// console.log(solution('IV'), 4);
+// console.log(solution('MMVIII'), 2008);
+// console.log(solution('MDCLXVI'), 1666);
+
+// kata - https://www.codewars.com/kata/52efefcbcdf57161d4000091
+
+// P - receive string
+// R - return object with characters and count of characters as key/value pairs
+
+function count(string) {
+  const result = {};
+  for (const char of string) {
+    result[char] = result[char] ? ++result[char] : 1;
   }
-  return results;
-};
+  return result;
+}
 
-console.log(sumDigPow(1, 10), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
-console.log(sumDigPow(1, 100), [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]);
+console.log(count('aba'), { a: 2, b: 1 });
+console.log(count(''), {});
