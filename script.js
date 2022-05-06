@@ -2723,17 +2723,33 @@
 // console.log(longest('loopingisfunbutdangerous', 'lessdangerousthancoding'), 'abcdefghilnoprstu');
 // console.log(longest('inmanylanguages', 'theresapairoffunctions'), 'acefghilmnoprstuy');
 
-// Kata - https://www.codewars.com/kata/5552101f47fc5178b1000050
+// // Kata - https://www.codewars.com/kata/5552101f47fc5178b1000050
 
-// P - receive n - number p - power
-// return - is there a number k that n * k equal to successive powers of the digits
+// // P - receive n - number p - power
+// // return - is there a number k that n * k equal to successive powers of the digits
 
-const digPow = (n, p) => {
-  const sumPowers = [...n.toString()].reduce((acc, x) => (acc += Math.pow(x, p++)), 0);
-  const k = sumPowers / n;
-  return Number.isInteger(k) ? k : -1;
+// const digPow = (n, p) => {
+//   const sumPowers = [...n.toString()].reduce((acc, x) => (acc += Math.pow(x, p++)), 0);
+//   const k = sumPowers / n;
+//   return Number.isInteger(k) ? k : -1;
+// };
+
+// console.log(digPow(89, 1), 1);
+// console.log(digPow(92, 1), -1);
+// console.log(digPow(46288, 3), 51);
+
+// kata - https://www.codewars.com/kata/5592e3bd57b64d00f3000047
+
+const findNb = (m) => {
+  let current = 0;
+  let cubes = 0;
+  while (m > current) {
+    current += Math.pow(++cubes, 3);
+  }
+  return current === m ? cubes : -1;
 };
 
-console.log(digPow(89, 1), 1);
-console.log(digPow(92, 1), -1);
-console.log(digPow(46288, 3), 51);
+console.log(findNb(4183059834009), 2022);
+console.log(findNb(24723578342962), -1);
+console.log(findNb(135440716410000), 4824);
+console.log(findNb(40539911473216), 3568);
