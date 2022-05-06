@@ -15,8 +15,6 @@
 // newArray = [...pentagon.getSides()] // [1,2,3,4,5]
 // console.log(newArray);
 
-const { createInvalidPluginDefinitionError } = require('mocha/lib/errors');
-
 // const words = require("random-words");
 
 // const { list } = require("mocha/lib/reporters");
@@ -2717,10 +2715,25 @@ const { createInvalidPluginDefinitionError } = require('mocha/lib/errors');
 // console.log(sumTwoSmallestNumbers([23, 71, 33, 82, 1]), 24, 'Sum should be 24');
 // console.log(sumTwoSmallestNumbers([52, 76, 14, 12, 4]), 16, 'Sum should be 16');
 
-function longest(s1, s2) {
-  return [...new Set(s1 + s2)].sort().join('');
-}
+// function longest(s1, s2) {
+//   return [...new Set(s1 + s2)].sort().join('');
+// }
 
-console.log(longest('aretheyhere', 'yestheyarehere'), 'aehrsty');
-console.log(longest('loopingisfunbutdangerous', 'lessdangerousthancoding'), 'abcdefghilnoprstu');
-console.log(longest('inmanylanguages', 'theresapairoffunctions'), 'acefghilmnoprstuy');
+// console.log(longest('aretheyhere', 'yestheyarehere'), 'aehrsty');
+// console.log(longest('loopingisfunbutdangerous', 'lessdangerousthancoding'), 'abcdefghilnoprstu');
+// console.log(longest('inmanylanguages', 'theresapairoffunctions'), 'acefghilmnoprstuy');
+
+// Kata - https://www.codewars.com/kata/5552101f47fc5178b1000050
+
+// P - receive n - number p - power
+// return - is there a number k that n * k equal to successive powers of the digits
+
+const digPow = (n, p) => {
+  const sumPowers = [...n.toString()].reduce((acc, x) => (acc += Math.pow(x, p++)), 0);
+  const k = sumPowers / n;
+  return Number.isInteger(k) ? k : -1;
+};
+
+console.log(digPow(89, 1), 1);
+console.log(digPow(92, 1), -1);
+console.log(digPow(46288, 3), 51);
