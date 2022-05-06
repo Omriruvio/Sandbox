@@ -2754,14 +2754,37 @@
 // console.log(findNb(135440716410000), 4824);
 // console.log(findNb(40539911473216), 3568);
 
-const wave = (str) => {
-  return [...str]
-    .map((_, i, arr) => {
-      if (arr[i] !== ' ') {
-        return arr.slice(0, i).join('') + arr[i].toUpperCase() + arr.slice(i + 1).join('');
-      }
-    })
-    .filter((x) => x !== undefined);
+// const wave = (str) => {
+//   return [...str]
+//     .map((_, i, arr) => {
+//       if (arr[i] !== ' ') {
+//         return arr.slice(0, i).join('') + arr[i].toUpperCase() + arr.slice(i + 1).join('');
+//       }
+//     })
+//     .filter((x) => x !== undefined);
+// };
+
+// console.log(wave('two words'));
+
+// kata - https://www.codewars.com/kata/5626b561280a42ecc50000d1
+
+// P - receive a, b representing a range to scan for numbers that the sum of
+// their digits raised by consecutive pwoer is euqal to the number itself
+// R - array that fulfills the property above
+
+const sumDigPow = (a, b) => {
+  const results = [];
+  for (let i = a; i <= b; i++) {
+    let pow = 1;
+    let currentSum = 0;
+    const currentNumStringed = String(i);
+    for (let j = 0; j < currentNumStringed.length; j++) {
+      currentSum += Math.pow(currentNumStringed[j], pow++);
+    }
+    if (currentSum === i) results.push(i);
+  }
+  return results;
 };
 
-console.log(wave('two words'));
+console.log(sumDigPow(1, 10), [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+console.log(sumDigPow(1, 100), [1, 2, 3, 4, 5, 6, 7, 8, 9, 89]);
