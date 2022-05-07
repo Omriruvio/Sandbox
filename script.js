@@ -2901,16 +2901,50 @@
 // console.log(nbYear(1500000, 2.5, 10000, 2000000), 10);
 // console.log(nbYear(1500000, 0.25, 1000, 2000000), 94);
 
-// kata - https://www.codewars.com/kata/587731fda577b3d1b0001196
+// // kata - https://www.codewars.com/kata/587731fda577b3d1b0001196
 
-String.prototype.camelCase = function () {
-  return this.split(' ')
-    .map((x) => (x ? x[0].toUpperCase() + x.slice(1) : x))
-    .join('');
+// String.prototype.camelCase = function () {
+//   return this.split(' ')
+//     .map((x) => (x ? x[0].toUpperCase() + x.slice(1) : x))
+//     .join('');
+// };
+
+// console.log('test case'.camelCase(), 'TestCase');
+// console.log('camel case method'.camelCase(), 'CamelCaseMethod');
+// console.log('say hello '.camelCase(), 'SayHello');
+// console.log(' camel case word'.camelCase(), 'CamelCaseWord');
+// console.log(''.camelCase(), '');
+
+// kata - https://www.codewars.com/kata/55466989aeecab5aac00003e
+// recursion
+// P - Receive length and width integers
+// R - Return array with possible squares in the rectangle, return null if already a square
+
+const sqInRect = (len, wid) => {
+  if (len === wid) return null;
+  const results = [];
+  const getLargestSquare = (x, y) => {
+    if (x === 0 || y === 0) return;
+    const low = Math.min(x, y);
+    const high = Math.max(x, y);
+    results.push(low);
+    getLargestSquare(low, high - low);
+  };
+  getLargestSquare(len, wid);
+  return results;
 };
 
-console.log('test case'.camelCase(), 'TestCase');
-console.log('camel case method'.camelCase(), 'CamelCaseMethod');
-console.log('say hello '.camelCase(), 'SayHello');
-console.log(' camel case word'.camelCase(), 'CamelCaseWord');
-console.log(''.camelCase(), '');
+// function sqInRectCleaner(a, b, initial = true) {
+//   if (a === b) {
+//     return initial ? null : [a];
+//   }
+//   const min = Math.min(a, b);
+//   const max = Math.max(a, b);
+
+//   return [min, ...sqInRect(max - min, min, false)];
+// }
+
+console.log(sqInRect(5, 5), null);
+console.log(sqInRect(5, 3), [3, 2, 1, 1]);
+console.log(sqInRect(3, 5), [3, 2, 1, 1]);
+console.log(sqInRect(20, 14), [14, 6, 6, 2, 2, 2]);
