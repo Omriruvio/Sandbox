@@ -2915,36 +2915,143 @@
 // console.log(' camel case word'.camelCase(), 'CamelCaseWord');
 // console.log(''.camelCase(), '');
 
-// kata - https://www.codewars.com/kata/55466989aeecab5aac00003e
-// recursion
-// P - Receive length and width integers
-// R - Return array with possible squares in the rectangle, return null if already a square
+// // kata - https://www.codewars.com/kata/55466989aeecab5aac00003e
+// // recursion
+// // P - Receive length and width integers
+// // R - Return array with possible squares in the rectangle, return null if already a square
 
-const sqInRect = (len, wid) => {
-  if (len === wid) return null;
-  const results = [];
-  const getLargestSquare = (x, y) => {
-    if (x === 0 || y === 0) return;
-    const low = Math.min(x, y);
-    const high = Math.max(x, y);
-    results.push(low);
-    getLargestSquare(low, high - low);
-  };
-  getLargestSquare(len, wid);
-  return results;
-};
+// const sqInRect = (len, wid) => {
+//   if (len === wid) return null;
+//   const results = [];
+//   const getLargestSquare = (x, y) => {
+//     if (x === 0 || y === 0) return;
+//     const low = Math.min(x, y);
+//     const high = Math.max(x, y);
+//     results.push(low);
+//     getLargestSquare(low, high - low);
+//   };
+//   getLargestSquare(len, wid);
+//   return results;
+// };
 
-// function sqInRectCleaner(a, b, initial = true) {
-//   if (a === b) {
-//     return initial ? null : [a];
+// // function sqInRectCleaner(a, b, initial = true) {
+// //   if (a === b) {
+// //     return initial ? null : [a];
+// //   }
+// //   const min = Math.min(a, b);
+// //   const max = Math.max(a, b);
+
+// //   return [min, ...sqInRect(max - min, min, false)];
+// // }
+
+// console.log(sqInRect(5, 5), null);
+// console.log(sqInRect(5, 3), [3, 2, 1, 1]);
+// console.log(sqInRect(3, 5), [3, 2, 1, 1]);
+// console.log(sqInRect(20, 14), [14, 6, 6, 2, 2, 2]);
+
+// // kata - https://www.codewars.com/kata/52b757663a95b11b3d00062d
+
+// // P - receive string of words
+// // R - return WeIrD CaSeD SeNtAnC
+
+// const toWeirdCase = (str) => {
+//   return str
+//     .split(' ')
+//     .map((x) => [...x].map((x, i) => (i % 2 === 0 ? x.toUpperCase() : x.toLowerCase())).join(''))
+//     .join(' ');
+// };
+
+// console.log(toWeirdCase('This is a test'), 'ThIs Is A TeSt');
+// console.log(toWeirdCase('This'), 'ThIs');
+// console.log(toWeirdCase('is'), 'Is');
+
+// // kata - https://www.codewars.com/kata/5503013e34137eeeaa001648
+
+// // P - receive integer representing diamond size
+// // R - null if even int, return diamond made by astersks and \n newlines
+
+// const diamond = (n) => {
+//   if (n % 2 === 0 || n <= 0) return null;
+//   const result = [];
+//   for (let i = 1; i <= n; i += 2) {
+//     const side = ' '.repeat(Math.floor((n - i) / 2));
+//     result.push(`${side}${'*'.repeat(i)}${side}\n`);
 //   }
-//   const min = Math.min(a, b);
-//   const max = Math.max(a, b);
+//   const bottom = result.slice(0, result.length - 1).reverse();
+//   return [...result, ...bottom].join('');
+// };
 
-//   return [min, ...sqInRect(max - min, min, false)];
+// console.log(diamond(15));
+
+// // kata - https://www.codewars.com/kata/515decfd9dcfc23bb6000006
+
+// // P - Receive string
+// // R - Return true/false according to validity of IP
+
+// const isValidIP = (str) => {
+//   const newStr = str
+//     .trim()
+//     .split('.')
+//     .filter((x) => Number.isInteger(Number(x)) && x >= 0 && x <= 255 && String(parseInt(x)).length == String(x).length);
+
+//   return newStr.length === 4 && str !== '' && str.length === newStr.join('.').length;
+// };
+
+// function isValidIPCleaner(str) {
+//   const octets = str.split('.'); // Split into octets
+//   return (
+//     octets.length === 4 && // Ensure str has exactly 4 octets
+//     octets.reduce(
+//       (
+//         acc,
+//         octet // Check all octets
+//       ) =>
+//         acc === true && // Ensure prior octets okay
+//         String(Number(octet)) === octet && // Ensure octet has nothing funky like spaces, leading 0's, ...
+//         Number(octet) >= 0 && // Ensure octet is 0 or more
+//         Number(octet) <= 255, // Ensure octet is 255 or less
+//       true
+//     )
+//   );
 // }
 
-console.log(sqInRect(5, 5), null);
-console.log(sqInRect(5, 3), [3, 2, 1, 1]);
-console.log(sqInRect(3, 5), [3, 2, 1, 1]);
-console.log(sqInRect(20, 14), [14, 6, 6, 2, 2, 2]);
+// console.log(isValidIP(''), false);
+// console.log(isValidIP('abc.def.ghi.jkl'), false);
+// console.log(isValidIP('123.456.789.0'), false);
+// console.log(isValidIP('12.34.56'), false);
+// console.log(isValidIP('256.1.2.3'), false);
+// console.log(isValidIP('1.2.3.4.5'), false);
+// console.log(isValidIP('123,45,67,89'), false);
+// console.log(isValidIP('12.34.56.-7'), false);
+// console.log(isValidIP('01.02.03.04'), false);
+// console.log(isValidIP('1e0.1e1.1e2.2e2'), false);
+// console.log(isValidIP('0.0.0.0'), true);
+// console.log(isValidIP('12.255.56.1'), true);
+// console.log(isValidIP('137.255.156.100'), true);
+// console.log(isValidIP(' 1.2.3.4'), false);
+// console.log(isValidIP('1.2.3.4 '), false);
+// console.log(isValidIP('1.2.3.4\n'), false);
+// console.log(isValidIP('\n1.2.3.4'), false);
+
+// kata - https://www.codewars.com/kata/5202ef17a402dd033c000009
+
+// P - Receive title and minorWords strings
+// R - Return title cased string, first word letter always capped, the rest according to specs.
+
+const titleCase = (title, exceptions) => {
+  if (exceptions) exceptions = exceptions.toLowerCase().split(' ');
+  if (!title) return '';
+  title = title.toLowerCase();
+  title = title
+    .split(' ')
+    .map((word) => {
+      return exceptions ? (!exceptions.includes(word) ? word[0].toUpperCase() + word.slice(1) : word) : word[0].toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+  return title[0].toUpperCase() + title.slice(1);
+};
+
+console.log(titleCase(''), '');
+console.log(titleCase('a clash of KINGS', 'a an the of'), 'A Clash of Kings');
+console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'), 'The Wind in the Willows');
+console.log(titleCase('the quick brown fox'), 'The Quick Brown Fox');
