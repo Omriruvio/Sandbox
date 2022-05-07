@@ -2890,13 +2890,27 @@
 // console.log(decrypt('This is a test!', -1), 'This is a test!');
 // console.log(decrypt('hskt svr neetn!Ti aai eyitrsig', 1), 'This kata is very interesting!');
 
-// kata - https://www.codewars.com/kata/563b662a59afc2b5120000c6
-// recursion
+// // kata - https://www.codewars.com/kata/563b662a59afc2b5120000c6
+// // recursion
 
-const nbYear = (p0, percent, aug, p, count = 0) => {
-  return p0 >= p ? count : nbYear(p0 + Math.floor((p0 * percent) / 100) + aug, percent, aug, p, ++count);
+// const nbYear = (p0, percent, aug, p, count = 0) => {
+//   return p0 >= p ? count : nbYear(p0 + Math.floor((p0 * percent) / 100) + aug, percent, aug, p, ++count);
+// };
+
+// console.log(nbYear(1500, 5, 100, 5000), 15);
+// console.log(nbYear(1500000, 2.5, 10000, 2000000), 10);
+// console.log(nbYear(1500000, 0.25, 1000, 2000000), 94);
+
+// kata - https://www.codewars.com/kata/587731fda577b3d1b0001196
+
+String.prototype.camelCase = function () {
+  return this.split(' ')
+    .map((x) => (x ? x[0].toUpperCase() + x.slice(1) : x))
+    .join('');
 };
 
-console.log(nbYear(1500, 5, 100, 5000), 15);
-console.log(nbYear(1500000, 2.5, 10000, 2000000), 10);
-console.log(nbYear(1500000, 0.25, 1000, 2000000), 94);
+console.log('test case'.camelCase(), 'TestCase');
+console.log('camel case method'.camelCase(), 'CamelCaseMethod');
+console.log('say hello '.camelCase(), 'SayHello');
+console.log(' camel case word'.camelCase(), 'CamelCaseWord');
+console.log(''.camelCase(), '');
