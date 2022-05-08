@@ -3056,37 +3056,60 @@
 // console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'), 'The Wind in the Willows');
 // console.log(titleCase('the quick brown fox'), 'The Quick Brown Fox');
 
-// kata - https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991
+// // kata - https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991
 
-const revrot = (str, size) => {
-  if (size <= 0 || size.length > str.length) return '';
-  const split = [];
-  let i = 0;
-  while (i <= str.length - size) {
-    split.push(str.slice(i, i + size));
-    i += size;
+// const revrot = (str, size) => {
+//   if (size <= 0 || size.length > str.length) return '';
+//   const split = [];
+//   let i = 0;
+//   while (i <= str.length - size) {
+//     split.push(str.slice(i, i + size));
+//     i += size;
+//   }
+
+//   return split
+//     .reduce((acc, chunk) => {
+//       const chunkCubedSum = chunk.split('').reduce((res, x) => (res += Number(x) ** 3), 0);
+//       if (chunkCubedSum % 2 === 0) {
+//         acc.push(chunk.split('').reverse().join(''));
+//       } else {
+//         const shifted = chunk.slice(1) + chunk[0];
+//         acc.push(shifted);
+//       }
+//       return acc;
+//     }, [])
+//     .join('');
+// };
+
+// console.log(revrot('123456987654', 6), `--> "234561876549"`);
+// console.log(revrot('123456987653', 6), `--> "234561356789"`);
+// console.log(revrot('66443875', 4), `--> "44668753"`);
+// console.log(revrot('66443875', 8), `--> "64438756"`);
+// console.log(revrot('664438769', 8), `--> "67834466"`);
+// console.log(revrot('123456779', 8), `--> "23456771"`);
+// console.log(revrot('', 8), `--> ""`);
+// console.log(revrot('123456779', 0), `--> "" `);
+// console.log(revrot('563000655734469485', 4), `--> "0365065073456944"`);
+
+// kata - https://www.codewars.com/kata/54a91a4883a7de5d7800009c
+
+// P - receive string
+// R - increment the string by adding 1 to the number at its end, or 1 if no number exists at end
+
+const incrementString = (str) => {
+  const num = [];
+  str = [...str];
+  while (Number.isInteger(+str[str.length - 1])) {
+    num.push(str.pop());
   }
-
-  return split
-    .reduce((acc, chunk) => {
-      const chunkCubedSum = chunk.split('').reduce((res, x) => (res += Number(x) ** 3), 0);
-      if (chunkCubedSum % 2 === 0) {
-        acc.push(chunk.split('').reverse().join(''));
-      } else {
-        const shifted = chunk.slice(1) + chunk[0];
-        acc.push(shifted);
-      }
-      return acc;
-    }, [])
-    .join('');
+  num.reverse();
+  const insert = String(Number(num.join('')) + 1).padStart(num.length, 0);
+  return str.join('') + insert;
 };
 
-console.log(revrot('123456987654', 6), `--> "234561876549"`);
-console.log(revrot('123456987653', 6), `--> "234561356789"`);
-console.log(revrot('66443875', 4), `--> "44668753"`);
-console.log(revrot('66443875', 8), `--> "64438756"`);
-console.log(revrot('664438769', 8), `--> "67834466"`);
-console.log(revrot('123456779', 8), `--> "23456771"`);
-console.log(revrot('', 8), `--> ""`);
-console.log(revrot('123456779', 0), `--> "" `);
-console.log(revrot('563000655734469485', 4), `--> "0365065073456944"`);
+console.log(incrementString('foobar000'), 'foobar001');
+console.log(incrementString('foo'), 'foo1');
+console.log(incrementString('foobar001'), 'foobar002');
+console.log(incrementString('foobar99'), 'foobar100');
+console.log(incrementString('foobar099'), 'foobar100');
+console.log(incrementString(''), '1');
