@@ -3091,25 +3091,74 @@
 // console.log(revrot('123456779', 0), `--> "" `);
 // console.log(revrot('563000655734469485', 4), `--> "0365065073456944"`);
 
-// kata - https://www.codewars.com/kata/54a91a4883a7de5d7800009c
+// // kata - https://www.codewars.com/kata/54a91a4883a7de5d7800009c
 
-// P - receive string
-// R - increment the string by adding 1 to the number at its end, or 1 if no number exists at end
+// // P - receive string
+// // R - increment the string by adding 1 to the number at its end, or 1 if no number exists at end
 
-const incrementString = (str) => {
-  const num = [];
-  str = [...str];
-  while (Number.isInteger(+str[str.length - 1])) {
-    num.push(str.pop());
-  }
-  num.reverse();
-  const insert = String(Number(num.join('')) + 1).padStart(num.length, 0);
-  return str.join('') + insert;
-};
+// const incrementString = (str) => {
+//   const num = [];
+//   str = [...str];
+//   while (Number.isInteger(+str[str.length - 1])) {
+//     num.push(str.pop());
+//   }
+//   num.reverse();
+//   const insert = String(Number(num.join('')) + 1).padStart(num.length, 0);
+//   return str.join('') + insert;
+// };
 
-console.log(incrementString('foobar000'), 'foobar001');
-console.log(incrementString('foo'), 'foo1');
-console.log(incrementString('foobar001'), 'foobar002');
-console.log(incrementString('foobar99'), 'foobar100');
-console.log(incrementString('foobar099'), 'foobar100');
-console.log(incrementString(''), '1');
+// console.log(incrementString('foobar000'), 'foobar001');
+// console.log(incrementString('foo'), 'foo1');
+// console.log(incrementString('foobar001'), 'foobar002');
+// console.log(incrementString('foobar99'), 'foobar100');
+// console.log(incrementString('foobar099'), 'foobar100');
+// console.log(incrementString(''), '1');
+
+// // kata - https://www.codewars.com/kata/52f787eb172a8b4ae1000a34
+
+// // P - Receive n
+// // R - Return number of trailing zeroes in n! (factorial)
+
+// function zeros(n) {
+//   let count = 0;
+//   for (let i = 5; Math.floor(n / i) >= 1; i *= 5) count += Math.floor(n / i);
+//   return count;
+// }
+
+// console.log(zeros(0), 0, 'Testing with n = 0');
+// console.log(zeros(5), 1, 'Testing with n = 5');
+// console.log(zeros(6), 1, 'Testing with n = 6');
+// console.log(zeros(30), 7, 'Testing with n = 30');
+
+// const fib = (n) => (n < 2 ? n : fib(n - 1) + fib(n - 2));
+
+// const fib = (n) => {
+//   if (n <= 1) {
+//     // console.log(1);
+//     return n;
+//   }
+//   // console.log(n);
+//   return fib(n - 2) + fib(n - 1);
+// };
+
+// console.log(fibArray(8).reduce((acc, x) => (acc += x * 4), 0));
+
+// kata - https://www.codewars.com/kata/559a28007caad2ac4e000083/
+
+function perimeter(n) {
+  if (n === 0) return 4;
+  const fibArray = (n) => {
+    const results = [1, 1];
+    for (let i = 2; i < n; i++) {
+      results.push(results[i - 1] + results[i - 2]);
+    }
+    return results;
+  };
+  return fibArray(n + 1).reduce((acc, x) => (acc += x * 4), 0);
+}
+
+console.log(perimeter(0), 4);
+console.log(perimeter(5), 80);
+console.log(perimeter(7), 216);
+console.log(perimeter(20), 114624);
+console.log(perimeter(30), 14098308);
