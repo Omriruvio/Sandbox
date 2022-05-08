@@ -3033,25 +3033,60 @@
 // console.log(isValidIP('1.2.3.4\n'), false);
 // console.log(isValidIP('\n1.2.3.4'), false);
 
-// kata - https://www.codewars.com/kata/5202ef17a402dd033c000009
+// // kata - https://www.codewars.com/kata/5202ef17a402dd033c000009
 
-// P - Receive title and minorWords strings
-// R - Return title cased string, first word letter always capped, the rest according to specs.
+// // P - Receive title and minorWords strings
+// // R - Return title cased string, first word letter always capped, the rest according to specs.
 
-const titleCase = (title, exceptions) => {
-  if (exceptions) exceptions = exceptions.toLowerCase().split(' ');
-  if (!title) return '';
-  title = title.toLowerCase();
-  title = title
-    .split(' ')
-    .map((word) => {
-      return exceptions ? (!exceptions.includes(word) ? word[0].toUpperCase() + word.slice(1) : word) : word[0].toUpperCase() + word.slice(1);
-    })
-    .join(' ');
-  return title[0].toUpperCase() + title.slice(1);
+// const titleCase = (title, exceptions) => {
+//   if (exceptions) exceptions = exceptions.toLowerCase().split(' ');
+//   if (!title) return '';
+//   title = title.toLowerCase();
+//   title = title
+//     .split(' ')
+//     .map((word) => {
+//       return exceptions ? (!exceptions.includes(word) ? word[0].toUpperCase() + word.slice(1) : word) : word[0].toUpperCase() + word.slice(1);
+//     })
+//     .join(' ');
+//   return title[0].toUpperCase() + title.slice(1);
+// };
+
+// console.log(titleCase(''), '');
+// console.log(titleCase('a clash of KINGS', 'a an the of'), 'A Clash of Kings');
+// console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'), 'The Wind in the Willows');
+// console.log(titleCase('the quick brown fox'), 'The Quick Brown Fox');
+
+// kata - https://www.codewars.com/kata/56b5afb4ed1f6d5fb0000991
+
+const revrot = (str, size) => {
+  if (size <= 0 || size.length > str.length) return '';
+  const split = [];
+  let i = 0;
+  while (i <= str.length - size) {
+    split.push(str.slice(i, i + size));
+    i += size;
+  }
+
+  return split
+    .reduce((acc, chunk) => {
+      const chunkCubedSum = chunk.split('').reduce((res, x) => (res += Number(x) ** 3), 0);
+      if (chunkCubedSum % 2 === 0) {
+        acc.push(chunk.split('').reverse().join(''));
+      } else {
+        const shifted = chunk.slice(1) + chunk[0];
+        acc.push(shifted);
+      }
+      return acc;
+    }, [])
+    .join('');
 };
 
-console.log(titleCase(''), '');
-console.log(titleCase('a clash of KINGS', 'a an the of'), 'A Clash of Kings');
-console.log(titleCase('THE WIND IN THE WILLOWS', 'The In'), 'The Wind in the Willows');
-console.log(titleCase('the quick brown fox'), 'The Quick Brown Fox');
+console.log(revrot('123456987654', 6), `--> "234561876549"`);
+console.log(revrot('123456987653', 6), `--> "234561356789"`);
+console.log(revrot('66443875', 4), `--> "44668753"`);
+console.log(revrot('66443875', 8), `--> "64438756"`);
+console.log(revrot('664438769', 8), `--> "67834466"`);
+console.log(revrot('123456779', 8), `--> "23456771"`);
+console.log(revrot('', 8), `--> ""`);
+console.log(revrot('123456779', 0), `--> "" `);
+console.log(revrot('563000655734469485', 4), `--> "0365065073456944"`);
