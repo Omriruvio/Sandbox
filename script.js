@@ -3182,16 +3182,38 @@
 
 // console.log(primeFactors(7775460));
 
-// kata - https://www.codewars.com/kata/55e2adece53b4cdcb900006c
+// // kata - https://www.codewars.com/kata/55e2adece53b4cdcb900006c
 
-const race = (a, b, c) => {
-  if (b < a || a < 0 || b < 0 || c < 0) return null;
-  const hours = c / (b - a);
-  const minutes = (hours * 60) % 60;
-  const seconds = (minutes * 60) % 60;
-  return [Math.floor(hours), Math.floor(minutes), Math.floor(seconds)];
+// const race = (a, b, c) => {
+//   if (b < a || a < 0 || b < 0 || c < 0) return null;
+//   const hours = c / (b - a);
+//   const minutes = (hours * 60) % 60;
+//   const seconds = (minutes * 60) % 60;
+//   return [Math.floor(hours), Math.floor(minutes), Math.floor(seconds)];
+// };
+
+// console.log(race(720, 850, 70), [0, 32, 18]);
+// console.log(race(80, 91, 37), [3, 21, 49]);
+// console.log(race(80, 100, 40), [2, 0, 0]);
+
+// kata - https://www.codewars.com/kata/54dc6f5a224c26032800005c
+
+const stockList = (stock, search) => {
+  const cache = stock.reduce((result, x) => {
+    const count = x.split(' ')[1];
+    const category = x.split(' ')[0][0];
+    result[category] = result[category] ? result[category] + +count : +count;
+    return result;
+  }, {});
+  let success = false;
+  const results = search
+    .map((searchItem) => {
+      if (cache[searchItem]) success = true;
+      return `(${searchItem} : ${cache[searchItem] || 0})`;
+    })
+    .join(' - ');
+  return success ? results : '';
 };
 
-console.log(race(720, 850, 70), [0, 32, 18]);
-console.log(race(80, 91, 37), [3, 21, 49]);
-console.log(race(80, 100, 40), [2, 0, 0]);
+console.log(stockList(['ABAR 200', 'CDXE 500', 'BKWR 250', 'BTSQ 890', 'DRTY 600'], ['A', 'B']));
+console.log(stockList(['CBART 20', 'CDXEF 50', 'BKWRK 25', 'BTSQZ 89', 'DRTYM 60'], ['A', 'B', 'C', 'W']));
