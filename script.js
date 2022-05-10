@@ -3196,24 +3196,46 @@
 // console.log(race(80, 91, 37), [3, 21, 49]);
 // console.log(race(80, 100, 40), [2, 0, 0]);
 
-// kata - https://www.codewars.com/kata/54dc6f5a224c26032800005c
+// // kata - https://www.codewars.com/kata/54dc6f5a224c26032800005c
 
-const stockList = (stock, search) => {
-  const cache = stock.reduce((result, x) => {
-    const count = x.split(' ')[1];
-    const category = x.split(' ')[0][0];
-    result[category] = result[category] ? result[category] + +count : +count;
-    return result;
-  }, {});
-  let success = false;
-  const results = search
-    .map((searchItem) => {
-      if (cache[searchItem]) success = true;
-      return `(${searchItem} : ${cache[searchItem] || 0})`;
-    })
-    .join(' - ');
-  return success ? results : '';
+// const stockList = (stock, search) => {
+//   const cache = stock.reduce((result, x) => {
+//     const count = x.split(' ')[1];
+//     const category = x.split(' ')[0][0];
+//     result[category] = result[category] ? result[category] + +count : +count;
+//     return result;
+//   }, {});
+//   let success = false;
+//   const results = search
+//     .map((searchItem) => {
+//       if (cache[searchItem]) success = true;
+//       return `(${searchItem} : ${cache[searchItem] || 0})`;
+//     })
+//     .join(' - ');
+//   return success ? results : '';
+// };
+
+// console.log(stockList(['ABAR 200', 'CDXE 500', 'BKWR 250', 'BTSQ 890', 'DRTY 600'], ['A', 'B']));
+// console.log(stockList(['CBART 20', 'CDXEF 50', 'BKWRK 25', 'BTSQZ 89', 'DRTYM 60'], ['A', 'B', 'C', 'W']));
+
+const goodVsEvil = (good, evil) => {
+  const raceWorth = {
+    good: [1, 2, 3, 3, 4, 10],
+    evil: [1, 2, 2, 2, 3, 5, 10],
+  };
+  const calcWorth = (str, race) =>
+    str.split(' ').reduce((acc, x, i) => {
+      acc += raceWorth[race][i] * x;
+      return acc;
+    }, 0);
+  const victoryText = 'Battle Result: Good triumphs over Evil';
+  const defeatText = 'Battle Result: Evil eradicates all trace of Good';
+  const tieText = 'Battle Result: No victor on this battle field';
+  const goodWorth = calcWorth(good, 'good');
+  const evilWorth = calcWorth(evil, 'evil');
+  return goodWorth > evilWorth ? victoryText : goodWorth < evilWorth ? defeatText : tieText;
 };
 
-console.log(stockList(['ABAR 200', 'CDXE 500', 'BKWR 250', 'BTSQ 890', 'DRTY 600'], ['A', 'B']));
-console.log(stockList(['CBART 20', 'CDXEF 50', 'BKWRK 25', 'BTSQZ 89', 'DRTYM 60'], ['A', 'B', 'C', 'W']));
+console.log(goodVsEvil('1 1 1 1 1 1', '1 1 1 1 1 1 1'), 'Battle Result: Evil eradicates all trace of Good');
+console.log(goodVsEvil('0 0 0 0 0 10', '0 1 1 1 1 0 0'), 'Battle Result: Good triumphs over Evil');
+console.log(goodVsEvil('1 0 0 0 0 0', '1 0 0 0 0 0 0'), 'Battle Result: No victor on this battle field');
