@@ -3240,21 +3240,80 @@
 // console.log(goodVsEvil('0 0 0 0 0 10', '0 1 1 1 1 0 0'), 'Battle Result: Good triumphs over Evil');
 // console.log(goodVsEvil('1 0 0 0 0 0', '1 0 0 0 0 0 0'), 'Battle Result: No victor on this battle field');
 
-// kata - https://www.codewars.com/kata/51e0007c1f9378fa810002a9
+// // kata - https://www.codewars.com/kata/51e0007c1f9378fa810002a9
 
-const parse = (data) => {
-  let currentValue = 0;
-  return data.split('').reduce((result, x) => {
-    switch (x) {
-      case 'i': currentValue++; break;
-      case 'd': currentValue--; break;
-      case 's': currentValue **= 2; break;
-      case 'o': result.push(currentValue); break;
-      default: break;
-    }
-    return result;
-  }, []);
+// const parse = (data) => {
+//   let currentValue = 0;
+//   return data.split('').reduce((result, x) => {
+//     switch (x) {
+//       case 'i': currentValue++; break;
+//       case 'd': currentValue--; break;
+//       case 's': currentValue **= 2; break;
+//       case 'o': result.push(currentValue); break;
+//       default: break;
+//     }
+//     return result;
+//   }, []);
+// };
+
+// console.log(parse('iiisdoso'), [8, 64]);
+// console.log(parse('iiisxxxdoso'), [8, 64]);
+
+// // Sum of Parts kata - https://www.codewars.com/kata/5ce399e0047a45001c853c2b
+
+// // P - Receive array of integers
+// // R - Return sum of parts (remove first of array for each part)
+
+// const partsSums = (arr) => {
+//   if (arr.length === 0) return [0];
+//   let total = arr.reduce((a, b) => a + b);
+//   return [total, ...arr.map((x) => (total -= x))];
+// };
+
+// console.log(partsSums([]), [0]);
+// console.log(partsSums([0, 1, 3, 6, 10]), [20, 20, 19, 16, 10, 0]);
+// console.log(partsSums([1, 2, 3, 4, 5, 6]), [21, 20, 18, 15, 11, 6, 0]);
+// console.log(
+//   partsSums([744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]),
+//   [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0]
+// );
+
+// // Find the missing term in an Arithmetic Progression
+// // Kata - https://www.codewars.com/kata/52de553ebb55d1fca3000371
+
+// const findMissing = (list) => {
+//   const incrementor = Math.min(list[1] - list[0], list[2] - list[1]);
+//   for (let i = 1; i < list.length; i++) {
+//     if (list[i] - list[i - 1] !== incrementor) return list[i] - incrementor;
+//   }
+// };
+
+// // P - array representing an arithmetic progression with a missing link
+// // R - the missing link - integer
+
+// console.log(findMissing([1, 3, 4]), 2);
+// console.log(findMissing([2, 4, 8, 10]), 6);
+// console.log(findMissing([3, 9, 12]), 6);
+// console.log(findMissing([100, 300, 400]), 200);
+
+// A Rule of Divisibility by 13
+// kata - https://www.codewars.com/kata/564057bc348c7200bd0000ff
+
+const thirt = (n) => {
+  const rule = [1, 10, 9, 12, 3, 4];
+  result = String(n).split('').reverse();
+  result = result.reduce((acc, x, i) => {
+    const ruleIndex = i % rule.length;
+    acc += x * rule[ruleIndex];
+    return acc;
+  }, 0);
+  if (result === n) return result;
+  return thirt(result);
 };
 
-console.log(parse('iiisdoso'), [8, 64]);
-console.log(parse('iiisxxxdoso'), [8, 64]);
+console.log(thirt(1234567), 87);
+console.log(thirt(8529), 79);
+console.log(thirt(85299258), 31);
+console.log(thirt(5634), 57);
+console.log(thirt(1111111111), 71);
+console.log(thirt(987654321), 30);
