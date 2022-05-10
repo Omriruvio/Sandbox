@@ -3163,86 +3163,35 @@
 // console.log(perimeter(20), 114624);
 // console.log(perimeter(30), 14098308);
 
-// kata - https://www.codewars.com/kata/54d512e62a5e54c96200019e
+// // kata - https://www.codewars.com/kata/54d512e62a5e54c96200019e
 
 // const primeFactors = (n) => {
-//   const isPrime = (x) => {
-//     for (let i = 2; i <= Math.floor(Math.sqrt(x)); i++) {
-//       if (x % i == 0) return false;
+//   const results = {};
+//   // loop from divisor 2 until n is not divisible anymore
+//   for (let div = 2; n > 1; div++) {
+//     // while n is divisible by current divisor
+//     while (n % div === 0) {
+//       n /= div; // keep dividing
+//       results[div] = results[div] ? ++results[div] : 1; // push and count divisors
 //     }
-//     return true;
-//   };
-//   const getNextPrime = (n) => {
-//     while (!isPrime(n)) {
-//       isPrime(++n);
-//     }
-//     return n;
-//   };
-//   // initialize results []
-//   const results = [];
-//   let total = 0;
-//   let temp = n;
-//   // while not results.every(x => isPrime(x)) && n > 1
-//   while (total < n) {
-//     // find the first prime that n is divisible by
-//     let prime = 2;
-//     while (!(temp % prime === 0)) {
-//       prime = getNextPrime(++prime);
-//     }
-//     // push prime to results
-//     results.push(prime);
-//     // update prime to be the result of the division
-//     temp = temp / prime;
-//     total = results.reduce((a, b) => a * b, 1);
 //   }
-
-//   return results;
-// };
-
-// const primeFactors = (n) => {
-//   const isPrime = (x) => {                                       // helper function - checks if number is prime number
-//     for (let i = 2; i <= Math.sqrt(x); i++) {
-//       if (x % i == 0) return false;
-//     }
-//     return true;
-//   };
-//   const getNextPrime = (n) => {                                 // helper function - gets next prime number
-//     while (!isPrime(n)) isPrime(++n)
-//     return n;
-//   };
-
-//   const results = {};                                           // initialize results object - keys: prime numbers used, values: amount of each prime
-//   let total = 1;                                                // initialize total - holds sum of prime numbers multiplication
-//   let temp = n;                                                 // initialize temp - holds changing value of each division
-
-//   while (total < n) {                                           // while multiplication sum is not greater than the input number (n)
-//     let prime = 2;                                              // set first prime to test with 2
-//     while (!(temp % prime === 0)) {                             // find the first prime that current 'temp' is divisible by
-//       prime = getNextPrime(++prime);
-//     }                                                           // 'prime' is now the first prime that 'temp' is divisible by
-//     results[prime] = results[prime] ? ++results[prime] : 1;     // update results object with {prime: prime-count}
-//     total *= prime;                                             // update 'total' with the current sum of prime numbers multiplication
-//     temp = temp / prime;                                        // update prime to be the result of the division
-//   }
-
-//   return Object.entries(results)                                // formatting results object for output
+//   return Object.entries(results) // format results object
 //     .map((x) => `(${x[0]}${x[1] > 1 ? '**' + x[1] : ''})`)
 //     .join('');
 // };
 
-const primeFactors = (n) => {
-  const results = {};
-  // loop from divisor 2 until n is not divisible anymore
-  for (let div = 2; n > 1; div++) {
-    // while n is divisible by current divisor
-    while (n % div === 0) {
-      n /= div; // keep dividing
-      results[div] = results[div] ? ++results[div] : 1; // push and count divisors
-    }
-  }
-  return Object.entries(results) // format results object
-    .map((x) => `(${x[0]}${x[1] > 1 ? '**' + x[1] : ''})`)
-    .join('');
+// console.log(primeFactors(7775460));
+
+// kata - https://www.codewars.com/kata/55e2adece53b4cdcb900006c
+
+const race = (a, b, c) => {
+  if (b < a || a < 0 || b < 0 || c < 0) return null;
+  const hours = c / (b - a);
+  const minutes = (hours * 60) % 60;
+  const seconds = (minutes * 60) % 60;
+  return [Math.floor(hours), Math.floor(minutes), Math.floor(seconds)];
 };
 
-console.log(primeFactors(7775460));
+console.log(race(720, 850, 70), [0, 32, 18]);
+console.log(race(80, 91, 37), [3, 21, 49]);
+console.log(race(80, 100, 40), [2, 0, 0]);
