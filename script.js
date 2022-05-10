@@ -3218,24 +3218,43 @@
 // console.log(stockList(['ABAR 200', 'CDXE 500', 'BKWR 250', 'BTSQ 890', 'DRTY 600'], ['A', 'B']));
 // console.log(stockList(['CBART 20', 'CDXEF 50', 'BKWRK 25', 'BTSQZ 89', 'DRTYM 60'], ['A', 'B', 'C', 'W']));
 
-const goodVsEvil = (good, evil) => {
-  const raceWorth = {
-    good: [1, 2, 3, 3, 4, 10],
-    evil: [1, 2, 2, 2, 3, 5, 10],
-  };
-  const calcWorth = (str, race) =>
-    str.split(' ').reduce((acc, x, i) => {
-      acc += raceWorth[race][i] * x;
-      return acc;
-    }, 0);
-  const victoryText = 'Battle Result: Good triumphs over Evil';
-  const defeatText = 'Battle Result: Evil eradicates all trace of Good';
-  const tieText = 'Battle Result: No victor on this battle field';
-  const goodWorth = calcWorth(good, 'good');
-  const evilWorth = calcWorth(evil, 'evil');
-  return goodWorth > evilWorth ? victoryText : goodWorth < evilWorth ? defeatText : tieText;
+// const goodVsEvil = (good, evil) => {
+//   const raceWorth = {
+//     good: [1, 2, 3, 3, 4, 10],
+//     evil: [1, 2, 2, 2, 3, 5, 10],
+//   };
+//   const calcWorth = (str, race) =>
+//     str.split(' ').reduce((acc, x, i) => {
+//       acc += raceWorth[race][i] * x;
+//       return acc;
+//     }, 0);
+//   const victoryText = 'Battle Result: Good triumphs over Evil';
+//   const defeatText = 'Battle Result: Evil eradicates all trace of Good';
+//   const tieText = 'Battle Result: No victor on this battle field';
+//   const goodWorth = calcWorth(good, 'good');
+//   const evilWorth = calcWorth(evil, 'evil');
+//   return goodWorth > evilWorth ? victoryText : goodWorth < evilWorth ? defeatText : tieText;
+// };
+
+// console.log(goodVsEvil('1 1 1 1 1 1', '1 1 1 1 1 1 1'), 'Battle Result: Evil eradicates all trace of Good');
+// console.log(goodVsEvil('0 0 0 0 0 10', '0 1 1 1 1 0 0'), 'Battle Result: Good triumphs over Evil');
+// console.log(goodVsEvil('1 0 0 0 0 0', '1 0 0 0 0 0 0'), 'Battle Result: No victor on this battle field');
+
+// kata - https://www.codewars.com/kata/51e0007c1f9378fa810002a9
+
+const parse = (data) => {
+  let currentValue = 0;
+  return data.split('').reduce((result, x) => {
+    switch (x) {
+      case 'i': currentValue++; break;
+      case 'd': currentValue--; break;
+      case 's': currentValue **= 2; break;
+      case 'o': result.push(currentValue); break;
+      default: break;
+    }
+    return result;
+  }, []);
 };
 
-console.log(goodVsEvil('1 1 1 1 1 1', '1 1 1 1 1 1 1'), 'Battle Result: Evil eradicates all trace of Good');
-console.log(goodVsEvil('0 0 0 0 0 10', '0 1 1 1 1 0 0'), 'Battle Result: Good triumphs over Evil');
-console.log(goodVsEvil('1 0 0 0 0 0', '1 0 0 0 0 0 0'), 'Battle Result: No victor on this battle field');
+console.log(parse('iiisdoso'), [8, 64]);
+console.log(parse('iiisxxxdoso'), [8, 64]);
