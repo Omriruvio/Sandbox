@@ -3390,16 +3390,44 @@
 // console.log(encryptThis('good'), '103doo');
 // console.log(encryptThis('hello world'), '104olle 119drlo');
 
-// Data Reverse
-// Kata - https://www.codewars.com/kata/569d488d61b812a0f7000015
+// // Data Reverse
+// // Kata - https://www.codewars.com/kata/569d488d61b812a0f7000015
 
-const dataReverse = (arr) => {
-  const bytes = [];
-  for (let i = 0; i < arr.length; i += 8) {
-    bytes.push(arr.slice(i, i + 8));
+// const dataReverse = (arr) => {
+//   const bytes = [];
+//   for (let i = 0; i < arr.length; i += 8) {
+//     bytes.push(arr.slice(i, i + 8));
+//   }
+//   return [].concat(...bytes.reverse());
+// };
+
+// console.log(dataReverse([1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0]));
+// // console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
+
+// // Backspaces in string
+// // Kata - https://www.codewars.com/kata/5727bb0fe81185ae62000ae3
+
+// const cleanString = (str) => {
+//   let result = [];
+//   [...str].forEach((x) => (x === '#' ? result.pop() : result.push(x)));
+//   return result.join('');
+// };
+// console.log(cleanString('abc#d##c'), 'ac');
+// console.log(cleanString('abc####d##c#'), '');
+
+// Multiplication table
+// kata - https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
+
+multiplicationTable = function (size) {
+  const result = [];
+  for (let i = 1; i <= size; i++) {
+    result.push(Array.from({ length: size }, (x, j) => (j + 1) * i));
   }
-  return [].concat(...bytes.reverse());
+  return result;
 };
 
-console.log(dataReverse([1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0]));
-// console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
+console.log(multiplicationTable(10), [
+  [1, 2, 3],
+  [2, 4, 6],
+  [3, 6, 9],
+]);
