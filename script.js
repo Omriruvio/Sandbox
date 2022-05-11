@@ -3368,26 +3368,38 @@
 // //   '(ARNO, ALEX)(ARNO, HALEY)(BELL, SARAH)(CORNWELL, ALISSA)(DORNY, PAUL)(DORRIES, ANDREW)(KERN, ANN)(KERN, MADISON)'
 // // );
 
-// Encrypt this!
-// kata - https://www.codewars.com/kata/5848565e273af816fb000449
+// // Encrypt this!
+// // kata - https://www.codewars.com/kata/5848565e273af816fb000449
 
-// P - Input - receive strng
-// R - Output - return encrypted string: first letter to ascii, second letter swapped with last letter
+// // P - Input - receive strng
+// // R - Output - return encrypted string: first letter to ascii, second letter swapped with last letter
 
-const encryptThis = (str) => {
-  return str
-    .split(' ')
-    .map((x) => {
-      let temp = x.split('');
-      temp[0] = temp[0].charCodeAt(0);
-      [temp[1], temp[temp.length - 1]] = [temp[temp.length - 1], temp[1]];
-      return temp.join('');
-    })
-    .join(' ');
+// const encryptThis = (str) => {
+//   return str
+//     .split(' ')
+//     .map((x) => {
+//       let temp = x.split('');
+//       temp[0] = temp[0].charCodeAt(0);
+//       [temp[1], temp[temp.length - 1]] = [temp[temp.length - 1], temp[1]];
+//       return temp.join('');
+//     })
+//     .join(' ');
+// };
+
+// console.log(encryptThis('Hello'), '72olle');
+// console.log(encryptThis('good'), '103doo');
+// console.log(encryptThis('hello world'), '104olle 119drlo');
+
+// Data Reverse
+// Kata - https://www.codewars.com/kata/569d488d61b812a0f7000015
+
+const dataReverse = (arr) => {
+  const bytes = [];
+  for (let i = 0; i < arr.length; i += 8) {
+    bytes.push(arr.slice(i, i + 8));
+  }
+  return [].concat(...bytes.reverse());
 };
 
-console.log(encryptThis('Hello'), '72olle');
-console.log(encryptThis('good'), '103doo');
-console.log(encryptThis('hello world'), '104olle 119drlo');
-
-// console.log(['H', 'e', 'l'][0].charCodeAt(0));
+console.log(dataReverse([1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0]));
+// console.log(dataReverse([0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]));
