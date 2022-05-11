@@ -3324,35 +3324,70 @@
 // P - Input, receive string of name:familyname separated with ;
 // R - Return string, sorted by family name then by first name, all capitalized;
 
-const meeting = (str) => {
-  let result = '';
-  result = str
-    .split(';')
-    .map((x) => x.split(':').map((y) => y.toUpperCase()))
-    .sort((a, b) => (a[1] < b[1] ? -1 : 1))
-    .reduce((acc, x) => {
-      acc[x[1]] = acc[x[1]] ? [acc[x[1]], x[0]] : x[0];
-      return acc;
-    }, {});
-  let output = '';
-  for (let [famName, firstNames] of Object.entries(result)) {
-    []
-      .concat(...firstNames)
-      .sort((a, b) => (a < b ? -1 : 1))
-      .forEach((firstName) => (output += `(${famName}, ${firstName})`));
-  }
-  return output;
+// const meeting = (str) => {
+//   let result = '';
+//   result = str
+//     .split(';')
+//     .map((x) => x.split(':').map((y) => y.toUpperCase()))
+//     .sort((a, b) => (a[1] < b[1] ? -1 : 1))
+//     .reduce((acc, x) => {
+//       acc[x[1]] = acc[x[1]] ? [acc[x[1]], x[0]] : x[0];
+//       return acc;
+//     }, {});
+//   let output = '';
+//   for (let [famName, firstNames] of Object.entries(result)) {
+//     []
+//       .concat(...firstNames)
+//       .sort((a, b) => (a < b ? -1 : 1))
+//       .forEach((firstName) => (output += `(${famName}, ${firstName})`));
+//   }
+//   return output;
+// };
+
+// function meeting(s) {
+//   let string = s
+//     .toUpperCase()
+//     .split(';')
+//     .map((x) => x.split(':').reverse().join(', '))
+//     .sort()
+//     .join(')(');
+
+//   return string;
+//   return '(' + string + ')';
+// }
+
+// console.log(
+//   meeting('Alexis:Wahl;John:Bell;Victoria:Schwarz;Abba:Dorny;Grace:Meta;Ann:Arno;Madison:STAN;Alex:Cornwell;Lewis:Kern;Megan:Stan;Alex:Korn')
+// );
+// // console.log(
+// //   meeting('John:Gates;Michael:Wahl;Megan:Bell;Paul:Dorries;James:Dorny;Lewis:Steve;Alex:Meta;Elizabeth:Russel;Anna:Korn;Ann:Kern;Amber:Cornwell'),
+// //   '(BELL, MEGAN)(CORNWELL, AMBER)(DORNY, JAMES)(DORRIES, PAUL)(GATES, JOHN)(KERN, ANN)(KORN, ANNA)(META, ALEX)(RUSSEL, ELIZABETH)(STEVE, LEWIS)(WAHL, MICHAEL)'
+// // );
+// // console.log(
+// //   meeting('Alex:Arno;Alissa:Cornwell;Sarah:Bell;Andrew:Dorries;Ann:Kern;Haley:Arno;Paul:Dorny;Madison:Kern'),
+// //   '(ARNO, ALEX)(ARNO, HALEY)(BELL, SARAH)(CORNWELL, ALISSA)(DORNY, PAUL)(DORRIES, ANDREW)(KERN, ANN)(KERN, MADISON)'
+// // );
+
+// Encrypt this!
+// kata - https://www.codewars.com/kata/5848565e273af816fb000449
+
+// P - Input - receive strng
+// R - Output - return encrypted string: first letter to ascii, second letter swapped with last letter
+
+const encryptThis = (str) => {
+  return str
+    .split(' ')
+    .map((x) => {
+      let temp = x.split('');
+      temp[0] = temp[0].charCodeAt(0);
+      [temp[1], temp[temp.length - 1]] = [temp[temp.length - 1], temp[1]];
+      return temp.join('');
+    })
+    .join(' ');
 };
 
-console.log(
-  meeting('Alexis:Wahl;John:Bell;Victoria:Schwarz;Abba:Dorny;Grace:Meta;Ann:Arno;Madison:STAN;Alex:Cornwell;Lewis:Kern;Megan:Stan;Alex:Korn'),
-  '(ARNO, ANN)(BELL, JOHN)(CORNWELL, ALEX)(DORNY, ABBA)(KERN, LEWIS)(KORN, ALEX)(META, GRACE)(SCHWARZ, VICTORIA)(STAN, MADISON)(STAN, MEGAN)(WAHL, ALEXIS)'
-);
-console.log(
-  meeting('John:Gates;Michael:Wahl;Megan:Bell;Paul:Dorries;James:Dorny;Lewis:Steve;Alex:Meta;Elizabeth:Russel;Anna:Korn;Ann:Kern;Amber:Cornwell'),
-  '(BELL, MEGAN)(CORNWELL, AMBER)(DORNY, JAMES)(DORRIES, PAUL)(GATES, JOHN)(KERN, ANN)(KORN, ANNA)(META, ALEX)(RUSSEL, ELIZABETH)(STEVE, LEWIS)(WAHL, MICHAEL)'
-);
-console.log(
-  meeting('Alex:Arno;Alissa:Cornwell;Sarah:Bell;Andrew:Dorries;Ann:Kern;Haley:Arno;Paul:Dorny;Madison:Kern'),
-  '(ARNO, ALEX)(ARNO, HALEY)(BELL, SARAH)(CORNWELL, ALISSA)(DORNY, PAUL)(DORRIES, ANDREW)(KERN, ANN)(KERN, MADISON)'
-);
+console.log(encryptThis('Hello'), '72olle');
+console.log(encryptThis('good'), '103doo');
+console.log(encryptThis('hello world'), '104olle 119drlo');
+
+// console.log(['H', 'e', 'l'][0].charCodeAt(0));
