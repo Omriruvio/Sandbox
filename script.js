@@ -3415,19 +3415,41 @@
 // console.log(cleanString('abc#d##c'), 'ac');
 // console.log(cleanString('abc####d##c#'), '');
 
-// Multiplication table
-// kata - https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
+// // Multiplication table
+// // kata - https://www.codewars.com/kata/534d2f5b5371ecf8d2000a08
 
-multiplicationTable = function (size) {
-  const result = [];
-  for (let i = 1; i <= size; i++) {
-    result.push(Array.from({ length: size }, (x, j) => (j + 1) * i));
-  }
-  return result;
-};
+// multiplicationTable = function (size) {
+//   const result = [];
+//   for (let i = 1; i <= size; i++) {
+//     result.push(Array.from({ length: size }, (x, j) => (j + 1) * i));
+//   }
+//   return result;
+// };
 
-console.log(multiplicationTable(10), [
-  [1, 2, 3],
-  [2, 4, 6],
-  [3, 6, 9],
-]);
+// console.log(multiplicationTable(10), [
+//   [1, 2, 3],
+//   [2, 4, 6],
+//   [3, 6, 9],
+// ]);
+
+// const solution = (str) =>
+//   [...str]
+//     .map((x) => (x.toUpperCase() === x ? ` ${x}` : x))
+//     .join('')
+//     .trim();
+
+// console.log(solution('camelCasing'), 'camel Casing');
+// console.log(solution('camelCasingTest'), 'camel Casing Test');
+// console.log(solution('WhoLetTheDogsOut'), 'Who Let The Dogs Out');
+
+// const obj = { user: 'Omri' };
+// Object.defineProperties(obj, {
+//   key: { value: 'value', writable: false, configurable: false, enumerable: true },
+//   age: { value: 38, enumerable: true },
+// });
+// obj.age = 40;
+
+// const obj2 = {};
+// Object.defineProperties(obj2, Object.getOwnPropertyDescriptors(obj));
+// console.log(obj);
+// console.log(obj2);
